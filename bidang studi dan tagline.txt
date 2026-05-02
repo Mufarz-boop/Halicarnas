@@ -1,0 +1,176 @@
+HALICARNAS ACADEMY ["Where Logic Meets Purpose"]
+
+BIDANG STUDI HALICARNAS ACADEMY
+A. ILMU MATEMATIKA DAN TERAPAN
+    1. Kalkulus Lanjutan
+    2. Aljabar Linear
+    3. Analisis Numerik
+    4. Probabilitas dan Statistik
+    5. Persamaan Diferensial
+    6. Matematika Diskrit
+    7. Optimisasi dan Operasi Riset
+    8. Matematika Keuangan
+    9. Geometri Komputasional
+    10. Penelitian Matematika Terapan
+
+B. ILMU BAHASA DAN SASTRA
+    1. Fonetik dan Fonologi
+    2. Sintaksis dan Semantik
+    3. Sosiolinguistik
+    4. Psikolinguistik
+    5. Sastra Komparatif
+    6. Teori Sastra Kontemporer
+    7. Penerjemahan Lanjutan
+    8. Retorika dan Komunikasi
+    9. Linguistik dan Komputasional
+    10. Penelitian Sastra Digital
+
+C. ILMU SOSIAL DAN HUMANIORA
+    1. Antropologi Budaya
+    2. Sejarah Global
+    3. Sosiologi Kontemporer
+    4. Psikologi Sosial
+    5. Filsafat Politik
+    6. Ekonomi Perilaku
+    7. Studi Gender dan Identitas
+    8. Arkeologi dan Warisan Budaya
+    9. Metodologi Penelitian Kualitatif
+    10. Proyek Humaniora Terintegrasi
+
+D. ILMU PENGETAHUAN ALAM
+    1. Kimia Organik Lanjutan
+    2. Fisika Kuantum
+    3. Biologi Molekuler
+    4. Ekologi dan Lingkungan
+    5. Geofisika
+    6. Termodinamika Lanjutan
+    7. Mikrobiologi Terapan
+    8. Astronomi dan Kosmologi
+    9. Nanoteknologi
+    10. Penelitian IPA Berkelanjutan
+
+E. ILMU KOMPUTER DAN INFORMATIKA
+    1. Struktur Data dan Algoritma
+    2. Pemprograman Paradigma Ganda
+    3. Sistem Operasi
+    4. Jaringan Komputer
+    5. Kecerdasan Buatan
+    6. Basis Data Lanjutan
+    7. Keamanan Siber
+    8. Pengembangan Web dan Mobile
+    9. Rekayasa Perangkat Lunak
+    10. Proyek Informatika
+
+F. ILMU SENI DAN DESAIN
+    1. Sejarah Seni Global
+    2. Animasi dan Motion Graphics
+    3. Seni Performa
+    4. Desain Produk Industri
+    5. Fotografi Kontemporer
+    6. Musik Komposisi Digital
+    7. Desain UI/UX
+    8. Kurasi dan Kritik Seni
+    9. Desain Grafis Digital
+    10. Proyek Seni Interdisipliner
+
+G. ILMU BISNIS DAN MANAJEMEN
+    1. Mikroekonomi Lanjutan
+    2. Manajemen Keuangan
+    3. Pemasaran Digital
+    4. Manajemen Strategis
+    5. Kewirausahaan
+    6. Manajemen Rantai Pasok
+    7. Etika Bisnis Internasional
+    8. Analitik Bisnis
+    9. Manajemen Sumber Daya Manusia
+    10. Simulasi Perusahaan
+
+H. ILMU KEDOKTERAN
+    1. Ilmu Kedokteran Dasar
+    2. Patologi dan Patofisiologi
+    3. Farmakologi dan Terapeutik
+    4. Ilmu Kesehatan Masyarakat dan Kedokteran Preventif
+    5. Ilmu Penyakit Dalam
+    6. Ilmu Bedah dan Bedah Spesialis
+    7. Ilmu Kesehatan Anak
+    8. Obstetri dan Ginekologi
+    9. Ilmu Kedokteran Jiwa / Psikiatri
+    10. Etika, Hukum dan Kedokteran Terapan
+
+I. ILMU HUKUM
+    1. Hukum Konstitusi Internasional
+    2. Hukum Pidana
+    3. Hukum Perdata
+    4. Hukum Internasional Publik
+    5. Hukum Dagang Global
+    6. Hukum Lingkungan
+    7. Hukum Digital dan Privasi
+    8. Yurisdiksi Komparatif
+    9. Advokasi dan Litigasi
+    10. Penelitian Hukum Terapan
+
+J. ILMU POLITIK INTERNASIONAL
+    1. Teori Politik Klasik
+    2. Politik Komparatif
+    3. Hubungan Internasional
+    4. Keamanan Global
+    5. Ekonomi Politik Internasional
+    6. Diplomasi dan Negosiasi
+    7. Politik Identitas
+    8. Kebijakan Luar Negeri
+    9. Metodologi Politik Kuantitatif
+    10. Simulasi Politik Internasional
+
+BIDANG STUDI DAN TAGLINENYA
+
+A. ILMU MATEMATIKA DAN TERAPAN
+"Mengasah kekuatan logika dan pemodelan matematika 
+untuk mengubah masalah kompleks menjadi solusi presisi 
+yang mendorong kemajuan ilmiah dan teknologi dunia nyata."
+
+B. ILMU BAHASA DAN SASTRA
+"Menyelami kedalaman bahasa, makna, dan narasi manusia 
+untuk membangun komunikasi yang kuat, pemahaman lintas budaya, 
+serta kreasi sastra yang relevan di era digital."
+
+C. ILMU SOSIAL DAN HUMANIORA
+"Menganalisis dinamika manusia, masyarakat, dan budaya secara 
+mendalam untuk menciptakan pemahaman yang lebih baik dan solusi 
+humanis terhadap tantangan sosial kontemporer."
+
+D. ILMU PENGETAHUAN ALAM
+"Mengungkap hukum-hukum alam semesta melalui pendekatan ilmiah yang 
+ketat, serta memanfaatkan pengetahuan tersebut untuk inovasi 
+berkelanjutan dan kemajuan peradaban manusia."
+
+E. ILMU KOMPUTER DAN INFORMATIKA
+"Membangun fondasi komputasi yang tangguh dan inovatif untuk 
+menciptakan teknologi cerdas, sistem aman, serta solusi digital yang 
+memberdayakan masyarakat di era kecerdasan buatan."
+
+F. ILMU SENI DAN DESAIN
+"Menggabungkan visi kreatif, estetika yang tajam, dan teknologi 
+modern untuk menghasilkan karya seni dan desain yang bermakna, 
+fungsional, serta berdampak budaya dan sosial."
+
+G. ILMU BISNIS DAN MANAJEMEN
+"Mencetak pemimpin strategis yang menguasai analitik, inovasi, dan 
+etika bisnis untuk menciptakan nilai berkelanjutan dan keunggulan 
+kompetitif di pasar global yang dinamis."
+
+H. ILMU KEDOKTERAN
+"Mengintegrasikan ilmu biomedis yang mendalam, keterampilan klinis 
+yang presisi, serta nilai kemanusiaan untuk memahami, mencegah, 
+menyembuhkan penyakit, dan meningkatkan kualitas kehidupan manusia 
+di tengah tantangan kesehatan global dan kemajuan teknologi medis."
+
+I. ILMU HUKUM
+"Mengembangkan pemahaman hukum yang komprehensif dan kritis untuk 
+menegakkan keadilan, melindungi hak asasi, serta menciptakan kerangka 
+regulasi yang adil di era digital dan hubungan internasional."
+
+J. ILMU POLITIK INTERNASIONAL
+"Menganalisis kekuasaan, geopolitik, dan dinamika global secara 
+mendalam untuk membentuk pemimpin yang visioner, diplomat yang handal, 
+serta pembuat kebijakan yang mampu membangun perdamaian dan kerjasama 
+internasional."
