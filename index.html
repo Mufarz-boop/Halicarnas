@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Halicarnas Academy | Secure Access</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+            background: transparent;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4e4ba;
+            --gold-dark: #b8941f;
+            --blue: #3b82f6;
+            --blue-light: #60a5fa;
+            --dark: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --gray: #2a2a2a;
+            --light-gray: #888;
+            --white: #ffffff;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Background Image - GANTI PATH INI */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            will-change: transform;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(10,10,10,0.88) 50%, rgba(0,0,0,0.92) 100%),
+                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            padding: 16px;
+            perspective: 1000px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+            background: transparent;
+        }
+
+        /* Glass Card */
+        .login-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: 
+                0 32px 64px -12px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+                0 0 60px rgba(212, 175, 55, 0.05);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.4) 20%, 
+                rgba(212, 175, 55, 0.6) 50%, 
+                rgba(212, 175, 55, 0.4) 80%, 
+                transparent 100%
+            );
+        }
+
+        .login-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(59, 130, 246, 0.3) 50%, 
+                transparent 100%
+            );
+        }
+
+        /* Corner Accents */
+        .corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+        .corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+        /* Logo Section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        /* Logo Container - Rounded Rectangle */
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            position: relative;
+            border-radius: 24px; /* Sudut melengkung */
+            padding: 3px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--blue) 100%);
+            box-shadow: 
+                0 0 40px rgba(212, 175, 55, 0.3),
+                0 0 80px rgba(59, 130, 246, 0.1);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+
+        .logo-inner {
+            width: 100%;
+            height: 100%;
+            background: var(--dark-gray);
+            border-radius: 21px; /* Sedikit lebih kecil dari container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Gambar logo - object-fit: cover agar memenuhi dan ter-crop rapi */
+        .logo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Gambar persegi panjang akan ter-crop jadi rounded */
+            object-position: center;
+            border-radius: 19px; /* Sedikit lebih kecil dari inner */
+            display: block;
+        }
+
+        /* Placeholder untuk fallback */
+        .logo-placeholder {
+            font-size: 48px;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes logo-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 40px rgba(212, 175, 55, 0.3),
+                    0 0 80px rgba(59, 130, 246, 0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 60px rgba(212, 175, 55, 0.5),
+                    0 0 100px rgba(59, 130, 246, 0.2);
+            }
+        }
+
+        .logo-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo-section .subtitle {
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 12px auto;
+            opacity: 0.6;
+        }
+
+        /* Form Section */
+        .form-section {
+            margin-top: 24px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--light-gray);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 16px 48px 16px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: var(--white);
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            letter-spacing: 0.5px;
+            -webkit-appearance: none;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.03);
+            box-shadow: 
+                0 0 0 4px rgba(212, 175, 55, 0.1),
+                0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .input-wrapper input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+        }
+
+        /* Gold line animation on focus */
+        .input-line {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--blue-light));
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+            border-radius: 0 0 14px 14px;
+        }
+
+        .input-wrapper input:focus ~ .input-line {
+            width: 100%;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--light-gray);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 8px;
+            transition: all 0.3s;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            min-height: 36px;
+        }
+
+        .toggle-password:hover, .toggle-password:active {
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+            border: none;
+            border-radius: 14px;
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 4px 20px rgba(212, 175, 55, 0.3),
+                0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            -webkit-appearance: none;
+            touch-action: manipulation;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 30px rgba(212, 175, 55, 0.5),
+                0 0 0 1px rgba(212, 175, 55, 0.3) inset;
+        }
+
+        .submit-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.4), 
+                transparent
+            );
+            transition: left 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn.loading {
+            pointer-events: none;
+            color: transparent;
+        }
+
+        .submit-btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            top: 50%;
+            left: 50%;
+            margin-left: -11px;
+            margin-top: -11px;
+            border: 2.5px solid transparent;
+            border-top-color: var(--dark);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error Message */
+        .error-container {
+            margin-top: 16px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+        }
+
+        .error-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .error-icon {
+            width: 18px;
+            height: 18px;
+            background: rgba(239, 68, 68, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        /* Shake Animation */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        /* Success Overlay */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.97);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            padding: 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .success-overlay::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+            background: transparent;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .success-ring {
+            width: 100px;
+            height: 100px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 28px;
+            flex-shrink: 0;
+        }
+
+        .success-ring::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--gold);
+            animation: ring-rotate 1s linear infinite;
+        }
+
+        @keyframes ring-rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .success-icon {
+            font-size: 40px;
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            animation: success-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transform: scale(0);
+        }
+
+        @keyframes success-pop {
+            to { transform: scale(1); }
+        }
+
+        .success-overlay h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .success-overlay p {
+            color: var(--light-gray);
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .success-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 10px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .footer span {
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
+        /* Glow effect for inputs */
+        .input-glow {
+            position: absolute;
+            inset: -2px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(59, 130, 246, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .input-wrapper:focus-within .input-glow {
+            opacity: 1;
+        }
+
+        /* Lock icon decoration */
+        .lock-decoration {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.03;
+            font-size: 60px;
+            pointer-events: none;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px;
+                align-items: flex-start;
+                padding-top: 60px;
+            }
+
+            .login-card {
+                padding: 32px 24px;
+                border-radius: 20px;
+            }
+
+            .corner {
+                width: 24px;
+                height: 24px;
+            }
+
+            .corner-tl { top: 12px; left: 12px; }
+            .corner-tr { top: 12px; right: 12px; }
+            .corner-bl { bottom: 12px; left: 12px; }
+            .corner-br { bottom: 12px; right: 12px; }
+
+            .logo-section {
+                margin-bottom: 24px;
+            }
+
+            .logo-container {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 16px;
+                border-radius: 20px;
+            }
+
+            .logo-inner {
+                border-radius: 17px;
+            }
+
+            .logo-inner img {
+                border-radius: 15px;
+            }
+
+            .logo-placeholder {
+                font-size: 36px;
+            }
+
+            .logo-section h1 {
+                font-size: 22px;
+                letter-spacing: 2px;
+            }
+
+            .logo-section .subtitle {
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
+
+            .divider {
+                width: 40px;
+                margin: 10px auto;
+            }
+
+            .form-section {
+                margin-top: 16px;
+            }
+
+            .input-group {
+                margin-bottom: 20px;
+            }
+
+            .input-wrapper input {
+                padding: 14px 44px 14px 16px;
+                font-size: 16px;
+                border-radius: 12px;
+            }
+
+            .toggle-password {
+                right: 12px;
+                min-width: 32px;
+                min-height: 32px;
+            }
+
+            .submit-btn {
+                padding: 14px;
+                font-size: 13px;
+                border-radius: 12px;
+            }
+
+            .error-container {
+                margin-top: 12px;
+            }
+
+            .footer {
+                margin-top: 20px;
+                font-size: 9px;
+            }
+
+            .success-ring {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+
+            .success-icon {
+                font-size: 32px;
+            }
+
+            .success-overlay h2 {
+                font-size: 24px;
+            }
+
+            .success-overlay p {
+                font-size: 13px;
+            }
+
+            .lock-decoration {
+                display: none;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 360px) {
+            .container {
+                padding-top: 40px;
+            }
+
+            .login-card {
+                padding: 24px 20px;
+            }
+
+            .logo-container {
+                width: 80px;
+                height: 80px;
+            }
+
+            .logo-section h1 {
+                font-size: 20px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .container {
+                align-items: center;
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+
+            .login-card {
+                padding: 24px 28px;
+            }
+
+            .logo-container {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 12px;
+            }
+
+            .logo-section {
+                margin-bottom: 16px;
+            }
+
+            .form-section {
+                margin-top: 12px;
+            }
+
+            .input-group {
+                margin-bottom: 16px;
+            }
+
+            .footer {
+                margin-top: 16px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                max-width: 440px;
+            }
+
+            .login-card {
+                padding: 52px 44px;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --dark: #0a0a0a;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .login-card {
+                border: 2px solid var(--gold);
+            }
+
+            .input-wrapper input {
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image - GANTI PATH DI SINI -->
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="login-card" id="loginCard">
+            <!-- Corner Accents -->
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+
+            <div class="lock-decoration">🔒</div>
+
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="logo-inner">
+                        <!-- GANTI PATH LOGO DI SINI -->
+                        <!-- Gambar persegi panjang akan otomatis ter-crop jadi rounded -->
+                        <img src="app/assets/icons/Halicarnas Academy.jpeg" alt="Halicarnas Academy" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'logo-placeholder\'>⚜</span>';">
+                    </div>
+                </div>
+                <h1>HALICARNAS</h1>
+                <div class="divider"></div>
+                <p class="subtitle">Academy Secure Access</p>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <form id="passwordForm" autocomplete="off">
+                    <div class="input-group">
+                        <label class="input-label" for="password">Kata Sandi</label>
+                        <div class="input-wrapper">
+                            <div class="input-glow"></div>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Masukkan kata sandi rahasia" 
+                                required
+                                autocomplete="new-password"
+                                spellcheck="false"
+                                inputmode="verbatim"
+                            >
+                            <div class="input-line"></div>
+                            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Buka Akses
+                    </button>
+
+                    <div class="error-container" id="errorContainer">
+                        <div class="error-msg">
+                            <span class="error-icon">!</span>
+                            <span id="errorText">Kata sandi tidak valid</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p>Halicarnas Academy <span>•</span> Hak Cipta Dilindungi</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-ring">
+            <div class="success-icon">⚜</div>
+        </div>
+        <h2>Akses Diterima</h2>
+        <div class="success-line"></div>
+        <p>Selamat datang di Halicarnas Academy</p>
+        <p style="margin-top: 8px; font-size: 14px;">Memuat dashboard...</p>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // Toggle Password Visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                if (type === 'text') {
+                    this.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+                } else {
+                    this.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+                }
+            });
+
+            // Form Submission
+            const passwordForm = document.getElementById('passwordForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const errorContainer = document.getElementById('errorContainer');
+            const errorText = document.getElementById('errorText');
+            const loginCard = document.getElementById('loginCard');
+            const successOverlay = document.getElementById('successOverlay');
+
+            // GANTI PASSWORD INI SESUAI KEINGINANMU
+            const CORRECT_PASSWORD = 'Where Logic Meets Creativity';
+
+            passwordForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const password = passwordInput.value;
+
+                errorContainer.classList.remove('show');
+                loginCard.classList.remove('shake');
+
+                if (password.length < 1) {
+                    showError('Kata sandi tidak boleh kosong');
+                    return;
+                }
+
+                submitBtn.classList.add('loading');
+
+                await new Promise(resolve => setTimeout(resolve, 1800));
+
+                submitBtn.classList.remove('loading');
+
+                if (password === CORRECT_PASSWORD) {
+                    showSuccess();
+                } else {
+                    showError('Kata sandi yang Anda masukkan salah');
+                    loginCard.classList.add('shake');
+                    
+                    setTimeout(() => {
+                        loginCard.classList.remove('shake');
+                    }, 500);
+
+                    passwordInput.focus();
+                    passwordInput.select();
+                }
+            });
+
+            function showError(message) {
+                errorText.textContent = message;
+                errorContainer.classList.add('show');
+            }
+
+            function showSuccess() {
+                successOverlay.classList.add('active');
+                
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 2500);
+            }
+
+            // Input focus effects - desktop only
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+            if (!isTouchDevice) {
+                passwordInput.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                    this.parentElement.style.transition = 'transform 0.3s ease';
+                });
+                
+                passwordInput.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            }
+
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    passwordForm.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            window.addEventListener('load', () => {
+                if (!isTouchDevice) {
+                    setTimeout(() => {
+                        passwordInput.focus();
+                    }, 500);
+                }
+            });
+
+            // Parallax effect - desktop only
+            if (!isTouchDevice) {
+                document.addEventListener('mousemove', (e) => {
+                    const x = (window.innerWidth - e.pageX * 2) / 100;
+                    const y = (window.innerHeight - e.pageY * 2) / 100;
+                    loginCard.style.transform = `rotateY(${x * 0.1}deg) rotateX(${y * 0.1}deg)`;
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    loginCard.style.transform = 'rotateY(0) rotateX(0)';
+                });
+            }
+
+            // Prevent zoom on double tap
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', (e) => {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, { passive: false });
+
+            // Handle keyboard appearance on mobile
+            const viewportHeight = window.innerHeight;
+            window.addEventListener('resize', () => {
+                const currentHeight = window.innerHeight;
+                if (currentHeight < viewportHeight * 0.8) {
+                    document.body.style.alignItems = 'flex-start';
+                } else {
+                    document.body.style.alignItems = 'center';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
