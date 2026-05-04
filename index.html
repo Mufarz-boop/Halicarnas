@@ -6,29 +6,20 @@
     <meta name="theme-color" content="#0a0a0a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+
     <link rel="icon" type="image/jpeg" href="app/assets/icons/Afdal Adha Firnansyah.png">
     <link rel="shortcut icon" type="image/jpeg" href="app/assets/icons/Afdal Adha Firnansyah.png">
     <link rel="apple-touch-icon" href="app/assets/icons/Afdal Adha Firnansyah.png">
-    
+
     <title>Halicarnas Academy</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        *::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-            background: transparent;
         }
 
         :root {
@@ -44,21 +35,20 @@
             --white: #ffffff;
         }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background: var(--dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 100vh;
+            min-height: 100dvh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .bg-image {
@@ -94,24 +84,14 @@
             z-index: 10;
             width: 100%;
             max-width: 480px;
-            padding: 16px;
-            perspective: 1000px;
-            height: 100%;
+            padding: 24px 16px;
+            margin: 0 auto;
+            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow-y: auto;
             overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .container::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-            background: transparent;
         }
 
         .login-card {
@@ -274,7 +254,6 @@
             letter-spacing: 1px;
         }
 
-        /* Form Section */
         .form-section {
             margin-top: 0;
         }
@@ -344,7 +323,6 @@
             width: 100%;
         }
 
-        /* Submit Button */
         .submit-btn {
             width: 100%;
             padding: 18px;
@@ -423,7 +401,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Error Message */
         .error-container {
             margin-top: 20px;
             text-align: center;
@@ -459,7 +436,6 @@
             flex-shrink: 0;
         }
 
-        /* Shake Animation */
         .shake {
             animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
         }
@@ -471,7 +447,6 @@
             40%, 60% { transform: translate3d(4px, 0, 0); }
         }
 
-        /* Wrong Answer Overlay - Auto Refresh */
         .wrong-overlay {
             position: fixed;
             top: 0;
@@ -536,7 +511,6 @@
             margin-top: 8px;
         }
 
-        /* Success Overlay */
         .success-overlay {
             position: fixed;
             top: 0;
@@ -554,15 +528,6 @@
             transition: opacity 0.6s ease;
             padding: 20px;
             overflow-y: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .success-overlay::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-            background: transparent;
         }
 
         .success-overlay.active {
@@ -633,7 +598,6 @@
             flex-shrink: 0;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             margin-top: 32px;
@@ -663,7 +627,6 @@
             opacity: 1;
         }
 
-        /* Hint text */
         .hint-text {
             text-align: center;
             color: rgba(255, 255, 255, 0.2);
@@ -672,12 +635,31 @@
             letter-spacing: 1px;
         }
 
-        /* Mobile Optimizations */
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 2px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.5);
+        }
+
+        /* Mobile */
         @media (max-width: 480px) {
             .container {
-                padding: 12px;
+                padding: 20px 16px;
                 align-items: flex-start;
-                padding-top: 60px;
+                padding-top: 40px;
+                padding-bottom: 40px;
             }
 
             .login-card {
@@ -720,10 +702,6 @@
 
             .question-text {
                 font-size: 14px;
-            }
-
-            .form-section {
-                margin-top: 0;
             }
 
             .input-group {
@@ -776,7 +754,8 @@
 
         @media (max-width: 360px) {
             .container {
-                padding-top: 40px;
+                padding-top: 30px;
+                padding-bottom: 30px;
             }
 
             .login-card {
@@ -790,45 +769,6 @@
 
             .logo-section h1 {
                 font-size: 22px;
-            }
-        }
-
-        @media (max-height: 500px) and (orientation: landscape) {
-            .container {
-                align-items: center;
-                padding-top: 16px;
-                padding-bottom: 16px;
-            }
-
-            .login-card {
-                padding: 24px 28px;
-            }
-
-            .logo-container {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 12px;
-            }
-
-            .logo-section {
-                margin-bottom: 16px;
-            }
-
-            .question-display {
-                margin-bottom: 16px;
-                padding: 12px;
-            }
-
-            .form-section {
-                margin-top: 0;
-            }
-
-            .input-group {
-                margin-bottom: 16px;
-            }
-
-            .footer {
-                margin-top: 20px;
             }
         }
 
@@ -849,19 +789,8 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --dark: #0a0a0a;
-            }
-        }
-
-        @media (prefers-contrast: high) {
-            .input-wrapper input {
-                border: 2px solid rgba(212, 175, 55, 0.4);
-            }
-        }
     </style>
+<base target="_blank">
 </head>
 <body>
     <div class="bg-image"></div>
@@ -880,7 +809,6 @@
                 <p class="subtitle">Academy Secure Access</p>
             </div>
 
-            <!-- Random Question Display -->
             <div class="question-display" id="questionDisplay">
                 <span class="question-number" id="questionNumber">#01</span>
                 <span class="question-label">Pertanyaan Keamanan</span>
@@ -929,7 +857,6 @@
         </div>
     </div>
 
-    <!-- Wrong Answer Overlay -->
     <div class="wrong-overlay" id="wrongOverlay">
         <div class="wrong-icon">✕</div>
         <h2>Jawaban Salah</h2>
@@ -938,7 +865,6 @@
         <div class="countdown-label">detik</div>
     </div>
 
-    <!-- Success Overlay -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-ring">
             <div class="success-icon">⚜</div>
@@ -953,116 +879,12 @@
         (function() {
             'use strict';
 
-            // ============================================
-            // DAFTAR PERTANYAAN & JAWABAN
-            // Tambah/ubah sesuai kebutuhanmu di sini
-            // ============================================
             const QUESTIONS = [
                 {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
-                },
-                {
-                    question: "",
-                    answer: [""]
+                    question: "“Apakah ‘sejarah’ itu ilmu yang objektif?” Analisislah pandangan Leopold von Ranke, E.H. Carr, dan Hayden White mengenai objektivitas sejarah, lalu berikan argumen mengapa pandangan postmodernisme White lebih relevan untuk memahami narasi sejarah kolonial di Asia Tenggara pada abad ke-19 dan ke-20.",
+                    answer: ["Sejarah bukanlah ilmu yang sepenuhnya objektif. Pandangan Ranke (“wie es eigentlich gewesen”) terlalu idealis, Carr menekankan peran sejarawan, sedangkan White benar bahwa sejarah adalah “narasi” yang dibentuk oleh tropologi sastra."]
                 }
             ];
-
-            // ============================================
-            // FUNGSI UTAMA
-            // ============================================
 
             const answerInput = document.getElementById('answer');
             const answerForm = document.getElementById('answerForm');
@@ -1078,7 +900,6 @@
 
             let currentQuestion = null;
 
-            // Ambil pertanyaan acak
             function getRandomQuestion() {
                 const randomIndex = Math.floor(Math.random() * QUESTIONS.length);
                 return {
@@ -1087,24 +908,21 @@
                 };
             }
 
-            // Tampilkan pertanyaan
             function displayQuestion() {
                 currentQuestion = getRandomQuestion();
                 questionText.textContent = currentQuestion.question;
                 questionNumber.textContent = '#' + String(currentQuestion.index).padStart(2, '0');
-                
-                // Animasi fade in
+
                 questionText.style.opacity = '0';
                 questionText.style.transform = 'translateY(10px)';
                 questionText.style.transition = 'all 0.5s ease';
-                
+
                 setTimeout(() => {
                     questionText.style.opacity = '1';
                     questionText.style.transform = 'translateY(0)';
                 }, 100);
             }
 
-            // Cek jawaban (case-insensitive, trim whitespace)
             function checkAnswer(userAnswer) {
                 const normalized = userAnswer.toLowerCase().trim();
                 return currentQuestion.answer.some(ans => 
@@ -1113,31 +931,28 @@
                 );
             }
 
-            // Tampilkan error
             function showError(message) {
                 errorText.textContent = message;
                 errorContainer.classList.add('show');
             }
 
-            // Tampilkan success
             function showSuccess() {
                 successOverlay.classList.add('active');
                 setTimeout(() => {
-                    window.location.href = 'home.html';
+                    window.location.href = 'app/templates/dashboard.html';
                 }, 2500);
             }
 
-            // Tampilkan wrong + auto refresh
             function showWrongAndRefresh() {
                 wrongOverlay.classList.add('active');
-                
+
                 let count = 3;
                 countdownEl.textContent = count;
-                
+
                 const timer = setInterval(() => {
                     count--;
                     countdownEl.textContent = count;
-                    
+
                     if (count <= 0) {
                         clearInterval(timer);
                         window.location.reload();
@@ -1145,10 +960,9 @@
                 }, 1000);
             }
 
-            // Form submission
             answerForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
+
                 const answer = answerInput.value;
 
                 errorContainer.classList.remove('show');
@@ -1160,21 +974,16 @@
                 }
 
                 submitBtn.classList.add('loading');
-
-                // Simulasi verifikasi
                 await new Promise(resolve => setTimeout(resolve, 1500));
-
                 submitBtn.classList.remove('loading');
 
                 if (checkAnswer(answer)) {
                     showSuccess();
                 } else {
-                    // Jawaban salah → tampilkan overlay + refresh
                     showWrongAndRefresh();
                 }
             });
 
-            // Input focus effects - desktop only
             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
             if (!isTouchDevice) {
@@ -1182,7 +991,7 @@
                     this.parentElement.style.transform = 'scale(1.02)';
                     this.parentElement.style.transition = 'transform 0.3s ease';
                 });
-                
+
                 answerInput.addEventListener('blur', function() {
                     this.parentElement.style.transform = 'scale(1)';
                 });
@@ -1194,7 +1003,6 @@
                 }
             });
 
-            // Parallax effect - desktop only
             if (!isTouchDevice) {
                 document.addEventListener('mousemove', (e) => {
                     const x = (window.innerWidth - e.pageX * 2) / 100;
@@ -1207,7 +1015,6 @@
                 });
             }
 
-            // Prevent zoom on double tap
             let lastTouchEnd = 0;
             document.addEventListener('touchend', (e) => {
                 const now = Date.now();
@@ -1217,21 +1024,9 @@
                 lastTouchEnd = now;
             }, { passive: false });
 
-            // Handle keyboard appearance on mobile
-            const viewportHeight = window.innerHeight;
-            window.addEventListener('resize', () => {
-                const currentHeight = window.innerHeight;
-                if (currentHeight < viewportHeight * 0.8) {
-                    document.body.style.alignItems = 'flex-start';
-                } else {
-                    document.body.style.alignItems = 'center';
-                }
-            });
-
-            // Inisialisasi: tampilkan pertanyaan acak saat load
             window.addEventListener('load', () => {
                 displayQuestion();
-                
+
                 if (!isTouchDevice) {
                     setTimeout(() => {
                         answerInput.focus();
