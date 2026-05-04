@@ -6,7 +6,13 @@
     <meta name="theme-color" content="#0a0a0a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Halicarnas Academy | Secure Access</title>
+    
+    <!-- Favicon - GANTI PATH INI -->
+    <link rel="icon" type="image/jpeg" href="app/assets/icons/Afdal Adha Firnansyah.png">
+    <link rel="shortcut icon" type="image/jpeg" href="app/assets/icons/Afdal Adha Firnansyah.png">
+    <link rel="apple-touch-icon" href="app/assets/icons/Afdal Adha Firnansyah.png">
+    
+    <title>Halicarnas Academy</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
         
@@ -56,17 +62,18 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Background Image - GANTI PATH INI */
+        /* Background Image - SELURUH GAMBAR TERLIHAT, TIDAK TERPOTONG */
         .bg-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('assets/bg.jpg');
+            background-image: url('app/assets/background/background 2.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-color: var(--dark);
             z-index: 0;
             will-change: transform;
         }
@@ -78,9 +85,9 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(10,10,10,0.88) 50%, rgba(0,0,0,0.92) 100%),
-                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+                linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,10,10,0.75) 50%, rgba(0,0,0,0.85) 100%),
+                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
             z-index: 1;
         }
 
@@ -110,116 +117,76 @@
             background: transparent;
         }
 
-        /* Glass Card */
+        /* Glass Card - TRANSPARAN */
         .login-card {
-            background: rgba(26, 26, 26, 0.6);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 24px;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            border-radius: 0;
             padding: 48px 40px;
-            box-shadow: 
-                0 32px 64px -12px rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-                0 0 60px rgba(212, 175, 55, 0.05);
+            box-shadow: none;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             transform-style: preserve-3d;
             transition: transform 0.6s ease;
             width: 100%;
             flex-shrink: 0;
         }
 
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(212, 175, 55, 0.4) 20%, 
-                rgba(212, 175, 55, 0.6) 50%, 
-                rgba(212, 175, 55, 0.4) 80%, 
-                transparent 100%
-            );
-        }
-
-        .login-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(59, 130, 246, 0.3) 50%, 
-                transparent 100%
-            );
-        }
-
-        /* Corner Accents */
+        /* Corner Accents - dihapus karena transparan */
         .corner {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: none;
         }
-
-        .corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-        .corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
-        .corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
-        .corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
 
         /* Logo Section */
         .logo-section {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
         }
 
-        /* Logo Container - Rounded Rectangle */
+        /* Logo Container - BULAT SEMPURNA */
         .logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 24px;
             position: relative;
-            border-radius: 24px; /* Sudut melengkung */
-            padding: 3px;
+            border-radius: 50%;
+            padding: 4px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--blue) 100%);
             box-shadow: 
-                0 0 40px rgba(212, 175, 55, 0.3),
-                0 0 80px rgba(59, 130, 246, 0.1);
+                0 0 50px rgba(212, 175, 55, 0.35),
+                0 0 100px rgba(59, 130, 246, 0.15);
             animation: logo-pulse 3s ease-in-out infinite;
+            aspect-ratio: 1 / 1;
         }
 
         .logo-inner {
             width: 100%;
             height: 100%;
             background: var(--dark-gray);
-            border-radius: 21px; /* Sedikit lebih kecil dari container */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 2px solid rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.25);
+            aspect-ratio: 1 / 1;
         }
 
-        /* Gambar logo - object-fit: cover agar memenuhi dan ter-crop rapi */
+        /* Gambar logo - object-fit: cover agar memenuhi lingkaran */
         .logo-inner img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Gambar persegi panjang akan ter-crop jadi rounded */
+            object-fit: cover;
             object-position: center;
-            border-radius: 19px; /* Sedikit lebih kecil dari inner */
+            border-radius: 50%;
             display: block;
         }
 
         /* Placeholder untuk fallback */
         .logo-placeholder {
-            font-size: 48px;
+            font-size: 56px;
             color: var(--gold);
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
             display: flex;
@@ -232,51 +199,51 @@
         @keyframes logo-pulse {
             0%, 100% { 
                 box-shadow: 
-                    0 0 40px rgba(212, 175, 55, 0.3),
-                    0 0 80px rgba(59, 130, 246, 0.1);
+                    0 0 50px rgba(212, 175, 55, 0.35),
+                    0 0 100px rgba(59, 130, 246, 0.15);
             }
             50% { 
                 box-shadow: 
-                    0 0 60px rgba(212, 175, 55, 0.5),
-                    0 0 100px rgba(59, 130, 246, 0.2);
+                    0 0 70px rgba(212, 175, 55, 0.55),
+                    0 0 120px rgba(59, 130, 246, 0.25);
             }
         }
 
         .logo-section h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 6px;
-            letter-spacing: 3px;
+            margin-bottom: 8px;
+            letter-spacing: 4px;
             text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
         .logo-section .subtitle {
             color: var(--gold);
-            font-size: 11px;
-            letter-spacing: 3px;
+            font-size: 12px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 500;
             text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         .divider {
-            width: 50px;
+            width: 60px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 12px auto;
+            margin: 16px auto;
             opacity: 0.6;
         }
 
         /* Form Section */
         .form-section {
-            margin-top: 24px;
+            margin-top: 32px;
         }
 
         .input-group {
             position: relative;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .input-label {
@@ -286,7 +253,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             transition: color 0.3s;
         }
 
@@ -294,11 +261,12 @@
             position: relative;
         }
 
+        /* Input transparan dengan border tipis */
         .input-wrapper input {
             width: 100%;
-            padding: 16px 48px 16px 18px;
+            padding: 18px 52px 18px 20px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(212, 175, 55, 0.15);
             border-radius: 14px;
             color: var(--white);
             font-size: 16px;
@@ -311,14 +279,14 @@
 
         .input-wrapper input:focus {
             border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.03);
+            background: rgba(212, 175, 55, 0.05);
             box-shadow: 
-                0 0 0 4px rgba(212, 175, 55, 0.1),
-                0 0 20px rgba(212, 175, 55, 0.1);
+                0 0 0 4px rgba(212, 175, 55, 0.08),
+                0 0 25px rgba(212, 175, 55, 0.1);
         }
 
         .input-wrapper input::placeholder {
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.25);
             font-size: 14px;
         }
 
@@ -341,7 +309,7 @@
 
         .toggle-password {
             position: absolute;
-            right: 14px;
+            right: 16px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
@@ -367,12 +335,12 @@
         /* Submit Button */
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
             border: none;
             border-radius: 14px;
             color: var(--dark);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
@@ -380,7 +348,7 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 
-                0 4px 20px rgba(212, 175, 55, 0.3),
+                0 4px 25px rgba(212, 175, 55, 0.35),
                 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -392,7 +360,7 @@
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 
-                0 8px 30px rgba(212, 175, 55, 0.5),
+                0 8px 35px rgba(212, 175, 55, 0.55),
                 0 0 0 1px rgba(212, 175, 55, 0.3) inset;
         }
 
@@ -445,7 +413,7 @@
 
         /* Error Message */
         .error-container {
-            margin-top: 16px;
+            margin-top: 20px;
             text-align: center;
             opacity: 0;
             transform: translateY(-10px);
@@ -591,9 +559,9 @@
         /* Footer */
         .footer {
             text-align: center;
-            margin-top: 24px;
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 10px;
+            margin-top: 32px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
             letter-spacing: 1px;
             flex-shrink: 0;
         }
@@ -608,7 +576,7 @@
             position: absolute;
             inset: -2px;
             border-radius: 16px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(59, 130, 246, 0.2));
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(59, 130, 246, 0.15));
             opacity: 0;
             transition: opacity 0.4s;
             z-index: -1;
@@ -621,14 +589,7 @@
 
         /* Lock icon decoration */
         .lock-decoration {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.03;
-            font-size: 60px;
-            pointer-events: none;
+            display: none;
         }
 
         /* Mobile Optimizations */
@@ -640,46 +601,26 @@
             }
 
             .login-card {
-                padding: 32px 24px;
-                border-radius: 20px;
+                padding: 32px 20px;
             }
-
-            .corner {
-                width: 24px;
-                height: 24px;
-            }
-
-            .corner-tl { top: 12px; left: 12px; }
-            .corner-tr { top: 12px; right: 12px; }
-            .corner-bl { bottom: 12px; left: 12px; }
-            .corner-br { bottom: 12px; right: 12px; }
 
             .logo-section {
-                margin-bottom: 24px;
+                margin-bottom: 28px;
             }
 
             .logo-container {
-                width: 90px;
-                height: 90px;
-                margin-bottom: 16px;
-                border-radius: 20px;
-            }
-
-            .logo-inner {
-                border-radius: 17px;
-            }
-
-            .logo-inner img {
-                border-radius: 15px;
+                width: 110px;
+                height: 110px;
+                margin-bottom: 20px;
             }
 
             .logo-placeholder {
-                font-size: 36px;
+                font-size: 44px;
             }
 
             .logo-section h1 {
-                font-size: 22px;
-                letter-spacing: 2px;
+                font-size: 24px;
+                letter-spacing: 3px;
             }
 
             .logo-section .subtitle {
@@ -689,11 +630,11 @@
 
             .divider {
                 width: 40px;
-                margin: 10px auto;
+                margin: 12px auto;
             }
 
             .form-section {
-                margin-top: 16px;
+                margin-top: 20px;
             }
 
             .input-group {
@@ -723,8 +664,8 @@
             }
 
             .footer {
-                margin-top: 20px;
-                font-size: 9px;
+                margin-top: 24px;
+                font-size: 10px;
             }
 
             .success-ring {
@@ -744,10 +685,6 @@
             .success-overlay p {
                 font-size: 13px;
             }
-
-            .lock-decoration {
-                display: none;
-            }
         }
 
         /* Small mobile */
@@ -757,16 +694,16 @@
             }
 
             .login-card {
-                padding: 24px 20px;
+                padding: 24px 16px;
             }
 
             .logo-container {
-                width: 80px;
-                height: 80px;
+                width: 90px;
+                height: 90px;
             }
 
             .logo-section h1 {
-                font-size: 20px;
+                font-size: 22px;
             }
         }
 
@@ -783,8 +720,8 @@
             }
 
             .logo-container {
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
                 margin-bottom: 12px;
             }
 
@@ -801,7 +738,7 @@
             }
 
             .footer {
-                margin-top: 16px;
+                margin-top: 20px;
             }
         }
 
@@ -834,38 +771,26 @@
 
         /* High contrast mode */
         @media (prefers-contrast: high) {
-            .login-card {
-                border: 2px solid var(--gold);
-            }
-
             .input-wrapper input {
-                border: 2px solid rgba(255, 255, 255, 0.3);
+                border: 2px solid rgba(212, 175, 55, 0.4);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Image - GANTI PATH DI SINI -->
+    <!-- Background Image - SELURUH GAMBAR TERLIHAT -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
     <!-- Main Container -->
     <div class="container">
+        <!-- Form TRANSPARAN -->
         <div class="login-card" id="loginCard">
-            <!-- Corner Accents -->
-            <div class="corner corner-tl"></div>
-            <div class="corner corner-tr"></div>
-            <div class="corner corner-bl"></div>
-            <div class="corner corner-br"></div>
-
-            <div class="lock-decoration">🔒</div>
-
             <!-- Logo Section -->
             <div class="logo-section">
+                <!-- Logo BULAT SEMPURNA -->
                 <div class="logo-container">
                     <div class="logo-inner">
-                        <!-- GANTI PATH LOGO DI SINI -->
-                        <!-- Gambar persegi panjang akan otomatis ter-crop jadi rounded -->
                         <img src="app/assets/icons/Halicarnas Academy.jpeg" alt="Halicarnas Academy" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'logo-placeholder\'>⚜</span>';">
                     </div>
                 </div>
