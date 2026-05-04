@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
-    <!-- Favicon - GANTI PATH INI -->
     <link rel="icon" type="image/jpeg" href="app/assets/icons/Afdal Adha Firnansyah.png">
     <link rel="shortcut icon" type="image/jpeg" href="app/assets/icons/Afdal Adha Firnansyah.png">
     <link rel="apple-touch-icon" href="app/assets/icons/Afdal Adha Firnansyah.png">
@@ -62,7 +61,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Background Image - SELURUH GAMBAR TERLIHAT, TIDAK TERPOTONG */
         .bg-image {
             position: fixed;
             top: 0;
@@ -91,7 +89,6 @@
             z-index: 1;
         }
 
-        /* Main Container */
         .container {
             position: relative;
             z-index: 10;
@@ -117,7 +114,6 @@
             background: transparent;
         }
 
-        /* Glass Card - TRANSPARAN */
         .login-card {
             background: transparent;
             backdrop-filter: none;
@@ -134,18 +130,11 @@
             flex-shrink: 0;
         }
 
-        /* Corner Accents - dihapus karena transparan */
-        .corner {
-            display: none;
-        }
-
-        /* Logo Section */
         .logo-section {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        /* Logo Container - BULAT SEMPURNA */
         .logo-container {
             width: 140px;
             height: 140px;
@@ -174,7 +163,6 @@
             aspect-ratio: 1 / 1;
         }
 
-        /* Gambar logo - object-fit: cover agar memenuhi lingkaran */
         .logo-inner img {
             width: 100%;
             height: 100%;
@@ -184,7 +172,6 @@
             display: block;
         }
 
-        /* Placeholder untuk fallback */
         .logo-placeholder {
             font-size: 56px;
             color: var(--gold);
@@ -236,9 +223,60 @@
             opacity: 0.6;
         }
 
+        /* Question Display */
+        .question-display {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            background: rgba(212, 175, 55, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.5;
+        }
+
+        .question-label {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .question-text {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        .question-number {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            color: rgba(212, 175, 55, 0.3);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
         /* Form Section */
         .form-section {
-            margin-top: 32px;
+            margin-top: 0;
         }
 
         .input-group {
@@ -261,10 +299,9 @@
             position: relative;
         }
 
-        /* Input transparan dengan border tipis */
         .input-wrapper input {
             width: 100%;
-            padding: 18px 52px 18px 20px;
+            padding: 18px 20px;
             background: rgba(255, 255, 255, 0.03);
             border: 1.5px solid rgba(212, 175, 55, 0.15);
             border-radius: 14px;
@@ -275,6 +312,7 @@
             outline: none;
             letter-spacing: 0.5px;
             -webkit-appearance: none;
+            text-align: center;
         }
 
         .input-wrapper input:focus {
@@ -290,7 +328,6 @@
             font-size: 14px;
         }
 
-        /* Gold line animation on focus */
         .input-line {
             position: absolute;
             bottom: 0;
@@ -305,31 +342,6 @@
 
         .input-wrapper input:focus ~ .input-line {
             width: 100%;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--light-gray);
-            cursor: pointer;
-            font-size: 18px;
-            padding: 8px;
-            transition: all 0.3s;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 36px;
-            min-height: 36px;
-        }
-
-        .toggle-password:hover, .toggle-password:active {
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
         }
 
         /* Submit Button */
@@ -459,6 +471,71 @@
             40%, 60% { transform: translate3d(4px, 0, 0); }
         }
 
+        /* Wrong Answer Overlay - Auto Refresh */
+        .wrong-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+
+        .wrong-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .wrong-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: wrong-bounce 0.6s ease infinite alternate;
+        }
+
+        @keyframes wrong-bounce {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        .wrong-overlay h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #ef4444;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .wrong-overlay p {
+            color: var(--light-gray);
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            color: var(--gold);
+            font-size: 36px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .countdown-label {
+            color: var(--light-gray);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
         /* Success Overlay */
         .success-overlay {
             position: fixed;
@@ -571,7 +648,6 @@
             opacity: 0.6;
         }
 
-        /* Glow effect for inputs */
         .input-glow {
             position: absolute;
             inset: -2px;
@@ -587,9 +663,13 @@
             opacity: 1;
         }
 
-        /* Lock icon decoration */
-        .lock-decoration {
-            display: none;
+        /* Hint text */
+        .hint-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            margin-top: 16px;
+            letter-spacing: 1px;
         }
 
         /* Mobile Optimizations */
@@ -633,8 +713,17 @@
                 margin: 12px auto;
             }
 
+            .question-display {
+                padding: 16px;
+                margin-bottom: 24px;
+            }
+
+            .question-text {
+                font-size: 14px;
+            }
+
             .form-section {
-                margin-top: 20px;
+                margin-top: 0;
             }
 
             .input-group {
@@ -642,15 +731,9 @@
             }
 
             .input-wrapper input {
-                padding: 14px 44px 14px 16px;
+                padding: 14px 16px;
                 font-size: 16px;
                 border-radius: 12px;
-            }
-
-            .toggle-password {
-                right: 12px;
-                min-width: 32px;
-                min-height: 32px;
             }
 
             .submit-btn {
@@ -685,9 +768,12 @@
             .success-overlay p {
                 font-size: 13px;
             }
+
+            .wrong-overlay h2 {
+                font-size: 20px;
+            }
         }
 
-        /* Small mobile */
         @media (max-width: 360px) {
             .container {
                 padding-top: 40px;
@@ -707,7 +793,6 @@
             }
         }
 
-        /* Landscape mobile */
         @media (max-height: 500px) and (orientation: landscape) {
             .container {
                 align-items: center;
@@ -729,8 +814,13 @@
                 margin-bottom: 16px;
             }
 
+            .question-display {
+                margin-bottom: 16px;
+                padding: 12px;
+            }
+
             .form-section {
-                margin-top: 12px;
+                margin-top: 0;
             }
 
             .input-group {
@@ -742,7 +832,6 @@
             }
         }
 
-        /* Tablet */
         @media (min-width: 768px) and (max-width: 1024px) {
             .container {
                 max-width: 440px;
@@ -753,7 +842,6 @@
             }
         }
 
-        /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -762,14 +850,12 @@
             }
         }
 
-        /* Dark mode support */
         @media (prefers-color-scheme: dark) {
             :root {
                 --dark: #0a0a0a;
             }
         }
 
-        /* High contrast mode */
         @media (prefers-contrast: high) {
             .input-wrapper input {
                 border: 2px solid rgba(212, 175, 55, 0.4);
@@ -778,17 +864,12 @@
     </style>
 </head>
 <body>
-    <!-- Background Image - SELURUH GAMBAR TERLIHAT -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Form TRANSPARAN -->
         <div class="login-card" id="loginCard">
-            <!-- Logo Section -->
             <div class="logo-section">
-                <!-- Logo BULAT SEMPURNA -->
                 <div class="logo-container">
                     <div class="logo-inner">
                         <img src="app/assets/icons/Halicarnas Academy.jpeg" alt="Halicarnas Academy" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'logo-placeholder\'>⚜</span>';">
@@ -799,49 +880,62 @@
                 <p class="subtitle">Academy Secure Access</p>
             </div>
 
-            <!-- Form Section -->
+            <!-- Random Question Display -->
+            <div class="question-display" id="questionDisplay">
+                <span class="question-number" id="questionNumber">#01</span>
+                <span class="question-label">Pertanyaan Keamanan</span>
+                <p class="question-text" id="questionText">Memuat pertanyaan...</p>
+            </div>
+
             <div class="form-section">
-                <form id="passwordForm" autocomplete="off">
+                <form id="answerForm" autocomplete="off">
                     <div class="input-group">
-                        <label class="input-label" for="password">Kata Sandi</label>
+                        <label class="input-label" for="answer">Jawaban Anda</label>
                         <div class="input-wrapper">
                             <div class="input-glow"></div>
                             <input 
-                                type="password" 
-                                id="password" 
-                                placeholder="Masukkan kata sandi rahasia" 
+                                type="text" 
+                                id="answer" 
+                                placeholder="Ketik jawaban di sini..." 
                                 required
-                                autocomplete="new-password"
+                                autocomplete="off"
                                 spellcheck="false"
-                                inputmode="verbatim"
+                                inputmode="text"
                             >
                             <div class="input-line"></div>
-                            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                            </button>
                         </div>
                     </div>
 
                     <button type="submit" class="submit-btn" id="submitBtn">
-                        Buka Akses
+                        Verifikasi Jawaban
                     </button>
 
                     <div class="error-container" id="errorContainer">
                         <div class="error-msg">
                             <span class="error-icon">!</span>
-                            <span id="errorText">Kata sandi tidak valid</span>
+                            <span id="errorText">Jawaban tidak valid</span>
                         </div>
                     </div>
                 </form>
+            </div>
+
+            <div class="hint-text" id="hintText">
+                Jawaban bersifat case-insensitive
             </div>
 
             <div class="footer">
                 <p>Halicarnas Academy <span>•</span> Hak Cipta Dilindungi</p>
             </div>
         </div>
+    </div>
+
+    <!-- Wrong Answer Overlay -->
+    <div class="wrong-overlay" id="wrongOverlay">
+        <div class="wrong-icon">✕</div>
+        <h2>Jawaban Salah</h2>
+        <p>Halaman akan dimuat ulang dengan pertanyaan baru</p>
+        <div class="countdown" id="countdown">3</div>
+        <div class="countdown-label">detik</div>
     </div>
 
     <!-- Success Overlay -->
@@ -859,104 +953,184 @@
         (function() {
             'use strict';
 
-            // Toggle Password Visibility
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
-            
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                
-                if (type === 'text') {
-                    this.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
-                } else {
-                    this.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+            // ============================================
+            // DAFTAR PERTANYAAN & JAWABAN
+            // Tambah/ubah sesuai kebutuhanmu di sini
+            // ============================================
+            const QUESTIONS = [
+                {
+                    question: "Siapakah pendiri Halicarnas Academy?",
+                    answer: ["maestro halicarnas", "maestro", "halicarnas", "pendiri halicarnas"]
+                },
+                {
+                    question: "Apa motto resmi Halicarnas Academy?",
+                    answer: ["where logic meets creativity", "logic meets creativity", "logika bertemu kreativitas"]
+                },
+                {
+                    question: "Di kota mana Halicarnas Academy berdiri?",
+                    answer: ["jakarta", "ibukota", "dki jakarta"]
+                },
+                {
+                    question: "Berapa jumlah fakultas di Halicarnas Academy?",
+                    answer: ["7", "tujuh", "seven"]
+                },
+                {
+                    question: "Warna apa yang melambangkan kebijaksanaan di academy ini?",
+                    answer: ["emas", "gold", "kuning", "golden"]
+                },
+                {
+                    question: "Siapa kepala sekolah pertama Halicarnas Academy?",
+                    answer: ["professor aetherius", "aetherius", "prof aetherius"]
+                },
+                {
+                    question: "Tahun berapa Halicarnas Academy didirikan?",
+                    answer: ["1924", "tahun 1924", "seribu sembilan ratus dua puluh empat"]
+                },
+                {
+                    question: "Apa nama perpustakaan utama academy ini?",
+                    answer: ["perpustakaan alexandria", "alexandria", "library alexandria"]
+                },
+                {
+                    question: "Mata pelajaran apa yang paling terkenal di sini?",
+                    answer: ["rekayasa sihir", "sihir", "magical engineering", "engineering sihir"]
+                },
+                {
+                    question: "Siapa musuh bebuyutan Halicarnas Academy?",
+                    answer: ["ordo umbra", "umbra", "the umbra order"]
                 }
-            });
+            ];
 
-            // Form Submission
-            const passwordForm = document.getElementById('passwordForm');
+            // ============================================
+            // FUNGSI UTAMA
+            // ============================================
+
+            const answerInput = document.getElementById('answer');
+            const answerForm = document.getElementById('answerForm');
             const submitBtn = document.getElementById('submitBtn');
             const errorContainer = document.getElementById('errorContainer');
             const errorText = document.getElementById('errorText');
             const loginCard = document.getElementById('loginCard');
             const successOverlay = document.getElementById('successOverlay');
+            const wrongOverlay = document.getElementById('wrongOverlay');
+            const countdownEl = document.getElementById('countdown');
+            const questionText = document.getElementById('questionText');
+            const questionNumber = document.getElementById('questionNumber');
 
-            // GANTI PASSWORD INI SESUAI KEINGINANMU
-            const CORRECT_PASSWORD = 'Where Logic Meets Creativity';
+            let currentQuestion = null;
 
-            passwordForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
+            // Ambil pertanyaan acak
+            function getRandomQuestion() {
+                const randomIndex = Math.floor(Math.random() * QUESTIONS.length);
+                return {
+                    ...QUESTIONS[randomIndex],
+                    index: randomIndex + 1
+                };
+            }
+
+            // Tampilkan pertanyaan
+            function displayQuestion() {
+                currentQuestion = getRandomQuestion();
+                questionText.textContent = currentQuestion.question;
+                questionNumber.textContent = '#' + String(currentQuestion.index).padStart(2, '0');
                 
-                const password = passwordInput.value;
+                // Animasi fade in
+                questionText.style.opacity = '0';
+                questionText.style.transform = 'translateY(10px)';
+                questionText.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    questionText.style.opacity = '1';
+                    questionText.style.transform = 'translateY(0)';
+                }, 100);
+            }
 
-                errorContainer.classList.remove('show');
-                loginCard.classList.remove('shake');
+            // Cek jawaban (case-insensitive, trim whitespace)
+            function checkAnswer(userAnswer) {
+                const normalized = userAnswer.toLowerCase().trim();
+                return currentQuestion.answer.some(ans => 
+                    normalized === ans.toLowerCase().trim() ||
+                    normalized.includes(ans.toLowerCase().trim())
+                );
+            }
 
-                if (password.length < 1) {
-                    showError('Kata sandi tidak boleh kosong');
-                    return;
-                }
-
-                submitBtn.classList.add('loading');
-
-                await new Promise(resolve => setTimeout(resolve, 1800));
-
-                submitBtn.classList.remove('loading');
-
-                if (password === CORRECT_PASSWORD) {
-                    showSuccess();
-                } else {
-                    showError('Kata sandi yang Anda masukkan salah');
-                    loginCard.classList.add('shake');
-                    
-                    setTimeout(() => {
-                        loginCard.classList.remove('shake');
-                    }, 500);
-
-                    passwordInput.focus();
-                    passwordInput.select();
-                }
-            });
-
+            // Tampilkan error
             function showError(message) {
                 errorText.textContent = message;
                 errorContainer.classList.add('show');
             }
 
+            // Tampilkan success
             function showSuccess() {
                 successOverlay.classList.add('active');
-                
                 setTimeout(() => {
                     window.location.href = 'home.html';
                 }, 2500);
             }
 
+            // Tampilkan wrong + auto refresh
+            function showWrongAndRefresh() {
+                wrongOverlay.classList.add('active');
+                
+                let count = 3;
+                countdownEl.textContent = count;
+                
+                const timer = setInterval(() => {
+                    count--;
+                    countdownEl.textContent = count;
+                    
+                    if (count <= 0) {
+                        clearInterval(timer);
+                        window.location.reload();
+                    }
+                }, 1000);
+            }
+
+            // Form submission
+            answerForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const answer = answerInput.value;
+
+                errorContainer.classList.remove('show');
+                loginCard.classList.remove('shake');
+
+                if (answer.length < 1) {
+                    showError('Jawaban tidak boleh kosong');
+                    return;
+                }
+
+                submitBtn.classList.add('loading');
+
+                // Simulasi verifikasi
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                submitBtn.classList.remove('loading');
+
+                if (checkAnswer(answer)) {
+                    showSuccess();
+                } else {
+                    // Jawaban salah → tampilkan overlay + refresh
+                    showWrongAndRefresh();
+                }
+            });
+
             // Input focus effects - desktop only
             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
             if (!isTouchDevice) {
-                passwordInput.addEventListener('focus', function() {
+                answerInput.addEventListener('focus', function() {
                     this.parentElement.style.transform = 'scale(1.02)';
                     this.parentElement.style.transition = 'transform 0.3s ease';
                 });
                 
-                passwordInput.addEventListener('blur', function() {
+                answerInput.addEventListener('blur', function() {
                     this.parentElement.style.transform = 'scale(1)';
                 });
             }
 
-            passwordInput.addEventListener('keypress', function(e) {
+            answerInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
-                    passwordForm.dispatchEvent(new Event('submit'));
-                }
-            });
-
-            window.addEventListener('load', () => {
-                if (!isTouchDevice) {
-                    setTimeout(() => {
-                        passwordInput.focus();
-                    }, 500);
+                    answerForm.dispatchEvent(new Event('submit'));
                 }
             });
 
@@ -991,6 +1165,17 @@
                     document.body.style.alignItems = 'flex-start';
                 } else {
                     document.body.style.alignItems = 'center';
+                }
+            });
+
+            // Inisialisasi: tampilkan pertanyaan acak saat load
+            window.addEventListener('load', () => {
+                displayQuestion();
+                
+                if (!isTouchDevice) {
+                    setTimeout(() => {
+                        answerInput.focus();
+                    }, 600);
                 }
             });
         })();
