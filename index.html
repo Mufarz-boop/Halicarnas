@@ -33,6 +33,8 @@
             --gray: #2a2a2a;
             --light-gray: #888;
             --white: #ffffff;
+            --red: #ef4444;
+            --green: #22c55e;
         }
 
         html {
@@ -73,9 +75,9 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,10,10,0.75) 50%, rgba(0,0,0,0.85) 100%),
-                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
+                linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(10,10,10,0.78) 50%, rgba(0,0,0,0.88) 100%),
+                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
             z-index: 1;
         }
 
@@ -83,8 +85,8 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 480px;
-            padding: 24px 16px;
+            max-width: 1100px;
+            padding: 40px 24px;
             margin: 0 auto;
             min-height: 100vh;
             min-height: 100dvh;
@@ -94,38 +96,57 @@
             overflow-x: hidden;
         }
 
-        .login-card {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: none;
-            border-radius: 0;
-            padding: 48px 40px;
-            box-shadow: none;
-            position: relative;
-            overflow: visible;
-            transform-style: preserve-3d;
-            transition: transform 0.6s ease;
+        .split-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
             width: 100%;
-            flex-shrink: 0;
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(212, 175, 55, 0.05) inset;
+            position: relative;
         }
 
-        .logo-section {
+        .split-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            z-index: 2;
+        }
+
+        /* Left Side - Branding */
+        .left-side {
+            padding: 48px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            margin-bottom: 40px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
         }
 
         .logo-container {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 24px;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 28px;
             position: relative;
             border-radius: 50%;
             padding: 4px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--blue) 100%);
             box-shadow: 
-                0 0 50px rgba(212, 175, 55, 0.35),
-                0 0 100px rgba(59, 130, 246, 0.15);
+                0 0 60px rgba(212, 175, 55, 0.4),
+                0 0 120px rgba(59, 130, 246, 0.15);
             animation: logo-pulse 3s ease-in-out infinite;
             aspect-ratio: 1 / 1;
         }
@@ -153,7 +174,7 @@
         }
 
         .logo-placeholder {
-            font-size: 56px;
+            font-size: 64px;
             color: var(--gold);
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
             display: flex;
@@ -166,56 +187,57 @@
         @keyframes logo-pulse {
             0%, 100% { 
                 box-shadow: 
-                    0 0 50px rgba(212, 175, 55, 0.35),
-                    0 0 100px rgba(59, 130, 246, 0.15);
+                    0 0 60px rgba(212, 175, 55, 0.4),
+                    0 0 120px rgba(59, 130, 246, 0.15);
             }
             50% { 
                 box-shadow: 
-                    0 0 70px rgba(212, 175, 55, 0.55),
-                    0 0 120px rgba(59, 130, 246, 0.25);
+                    0 0 80px rgba(212, 175, 55, 0.6),
+                    0 0 140px rgba(59, 130, 246, 0.3);
             }
         }
 
-        .logo-section h1 {
+        .brand-title {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 8px;
-            letter-spacing: 4px;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
             text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
-        .logo-section .subtitle {
+        .brand-subtitle {
             color: var(--gold);
             font-size: 12px;
             letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 500;
             text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            margin-bottom: 24px;
         }
 
         .divider {
             width: 60px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 16px auto;
+            margin: 0 auto 24px;
             opacity: 0.6;
         }
 
-        /* Question Display */
-        .question-display {
-            text-align: center;
-            margin-bottom: 32px;
-            padding: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        /* Tagline Box */
+        .tagline-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 16px;
-            background: rgba(212, 175, 55, 0.03);
+            padding: 20px 24px;
+            margin-top: 8px;
             position: relative;
             overflow: hidden;
+            max-width: 320px;
         }
 
-        .question-display::before {
+        .tagline-box::before {
             content: '';
             position: absolute;
             top: 0;
@@ -224,6 +246,43 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             opacity: 0.5;
+        }
+
+        .tagline-icon {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tagline-text {
+            color: var(--light-gray);
+            font-size: 13px;
+            line-height: 1.7;
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+
+        .tagline-author {
+            color: var(--gold);
+            font-size: 11px;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        /* Right Side - Question */
+        .right-side {
+            padding: 48px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .question-header {
+            margin-bottom: 28px;
         }
 
         .question-label {
@@ -236,208 +295,137 @@
             display: block;
         }
 
+        .question-number {
+            color: rgba(212, 175, 55, 0.3);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         .question-text {
             color: var(--white);
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 500;
-            line-height: 1.6;
+            line-height: 1.7;
             letter-spacing: 0.3px;
         }
 
-        .question-number {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            color: rgba(212, 175, 55, 0.3);
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .form-section {
-            margin-top: 0;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 28px;
-        }
-
-        .input-label {
-            display: block;
-            color: var(--light-gray);
-            font-size: 11px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper input {
-            width: 100%;
-            padding: 18px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1.5px solid rgba(212, 175, 55, 0.15);
-            border-radius: 14px;
-            color: var(--white);
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            outline: none;
-            letter-spacing: 0.5px;
-            -webkit-appearance: none;
-            text-align: center;
-        }
-
-        .input-wrapper input:focus {
-            border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.05);
-            box-shadow: 
-                0 0 0 4px rgba(212, 175, 55, 0.08),
-                0 0 25px rgba(212, 175, 55, 0.1);
-        }
-
-        .input-wrapper input::placeholder {
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 14px;
-        }
-
-        .input-line {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
+        .question-divider {
+            width: 40px;
             height: 2px;
-            background: linear-gradient(90deg, var(--gold), var(--blue-light));
-            transition: all 0.4s ease;
-            transform: translateX(-50%);
-            border-radius: 0 0 14px 14px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 20px 0;
+            opacity: 0.6;
         }
 
-        .input-wrapper input:focus ~ .input-line {
-            width: 100%;
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 
-        .submit-btn {
+        .option-btn {
             width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
-            border: none;
-            border-radius: 14px;
-            color: var(--dark);
-            font-size: 15px;
-            font-weight: 700;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(212, 175, 55, 0.12);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 14px;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 
-                0 4px 25px rgba(212, 175, 55, 0.35),
-                0 0 0 1px rgba(212, 175, 55, 0.2) inset;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             -webkit-appearance: none;
             touch-action: manipulation;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 8px 35px rgba(212, 175, 55, 0.55),
-                0 0 0 1px rgba(212, 175, 55, 0.3) inset;
+        .option-btn:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(4px);
         }
 
-        .submit-btn:active {
-            transform: translateY(0) scale(0.98);
+        .option-btn:active {
+            transform: scale(0.98);
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255,255,255,0.4), 
-                transparent
-            );
-            transition: left 0.6s;
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        .submit-btn.loading {
-            pointer-events: none;
-            color: transparent;
-        }
-
-        .submit-btn.loading::after {
-            content: '';
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            top: 50%;
-            left: 50%;
-            margin-left: -11px;
-            margin-top: -11px;
-            border: 2.5px solid transparent;
-            border-top-color: var(--dark);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .error-container {
-            margin-top: 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.4s ease;
-        }
-
-        .error-container.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .error-msg {
-            color: #ef4444;
+        .option-btn .option-letter {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1.5px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            font-weight: 700;
             font-size: 13px;
-            font-weight: 500;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            transition: all 0.3s ease;
         }
 
-        .error-icon {
-            width: 18px;
-            height: 18px;
-            background: rgba(239, 68, 68, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            flex-shrink: 0;
+        .option-btn:hover .option-letter {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
         }
 
-        .shake {
+        .option-btn .option-text {
+            flex: 1;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+
+        /* Selected / Correct / Wrong states */
+        .option-btn.selected {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .option-btn.selected .option-letter {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+
+        .option-btn.correct {
+            border-color: var(--green);
+            background: rgba(34, 197, 94, 0.08);
+            animation: correct-pulse 0.5s ease;
+        }
+
+        .option-btn.correct .option-letter {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+
+        .option-btn.wrong {
+            border-color: var(--red);
+            background: rgba(239, 68, 68, 0.08);
             animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        .option-btn.wrong .option-letter {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        @keyframes correct-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         @keyframes shake {
@@ -447,13 +435,41 @@
             40%, 60% { transform: translate3d(4px, 0, 0); }
         }
 
-        .wrong-overlay {
+        .options-grid.disabled .option-btn {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .options-grid.disabled .option-btn.selected,
+        .options-grid.disabled .option-btn.correct,
+        .options-grid.disabled .option-btn.wrong {
+            opacity: 1;
+        }
+
+        .hint-text {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 10, 0.98);
+            background: rgba(10, 10, 10, 0.95);
             z-index: 100;
             display: flex;
             flex-direction: column;
@@ -461,56 +477,35 @@
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
-            padding: 20px;
+            transition: opacity 0.4s ease;
         }
 
-        .wrong-overlay.active {
+        .loading-overlay.active {
             opacity: 1;
             pointer-events: all;
         }
 
-        .wrong-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            animation: wrong-bounce 0.6s ease infinite alternate;
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
         }
 
-        @keyframes wrong-bounce {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .wrong-overlay h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: #ef4444;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .wrong-overlay p {
+        .loading-overlay p {
             color: var(--light-gray);
             font-size: 14px;
-            text-align: center;
-            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
-        .countdown {
-            color: var(--gold);
-            font-size: 36px;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .countdown-label {
-            color: var(--light-gray);
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 8px;
-        }
-
+        /* Success Overlay */
         .success-overlay {
             position: fixed;
             top: 0;
@@ -527,7 +522,6 @@
             pointer-events: none;
             transition: opacity 0.6s ease;
             padding: 20px;
-            overflow-y: auto;
         }
 
         .success-overlay.active {
@@ -545,7 +539,6 @@
             justify-content: center;
             position: relative;
             margin-bottom: 28px;
-            flex-shrink: 0;
         }
 
         .success-ring::before {
@@ -595,47 +588,9 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             margin: 20px auto;
-            flex-shrink: 0;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 32px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 11px;
-            letter-spacing: 1px;
-            flex-shrink: 0;
-        }
-
-        .footer span {
-            color: var(--gold);
-            opacity: 0.6;
-        }
-
-        .input-glow {
-            position: absolute;
-            inset: -2px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(59, 130, 246, 0.15));
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: -1;
-            filter: blur(8px);
-        }
-
-        .input-wrapper:focus-within .input-glow {
-            opacity: 1;
-        }
-
-        .hint-text {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.2);
-            font-size: 11px;
-            margin-top: 16px;
-            letter-spacing: 1px;
-        }
-
-        /* Scrollbar styling */
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 4px;
         }
@@ -649,84 +604,130 @@
             border-radius: 2px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.5);
+        /* Tablet */
+        @media (max-width: 900px) {
+            .container {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .split-card {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+                margin: 0 auto;
+            }
+
+            .split-card::before {
+                display: none;
+            }
+
+            .left-side {
+                padding: 36px 28px 28px;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            }
+
+            .logo-container {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
+            }
+
+            .logo-placeholder {
+                font-size: 48px;
+            }
+
+            .brand-title {
+                font-size: 28px;
+                letter-spacing: 3px;
+            }
+
+            .brand-subtitle {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
+            .tagline-box {
+                max-width: 100%;
+                padding: 16px 20px;
+            }
+
+            .right-side {
+                padding: 28px;
+            }
+
+            .question-text {
+                font-size: 15px;
+            }
         }
 
         /* Mobile */
         @media (max-width: 480px) {
             .container {
-                padding: 20px 16px;
+                padding: 16px;
                 align-items: flex-start;
-                padding-top: 40px;
-                padding-bottom: 40px;
+                padding-top: 24px;
+                padding-bottom: 24px;
             }
 
-            .login-card {
-                padding: 32px 20px;
+            .split-card {
+                border-radius: 16px;
             }
 
-            .logo-section {
-                margin-bottom: 28px;
+            .left-side {
+                padding: 28px 20px 24px;
             }
 
             .logo-container {
-                width: 110px;
-                height: 110px;
-                margin-bottom: 20px;
+                width: 100px;
+                height: 100px;
             }
 
             .logo-placeholder {
-                font-size: 44px;
+                font-size: 40px;
             }
 
-            .logo-section h1 {
+            .brand-title {
                 font-size: 24px;
-                letter-spacing: 3px;
-            }
-
-            .logo-section .subtitle {
-                font-size: 10px;
                 letter-spacing: 2px;
             }
 
-            .divider {
-                width: 40px;
-                margin: 12px auto;
+            .brand-subtitle {
+                font-size: 10px;
+                letter-spacing: 2px;
+                margin-bottom: 16px;
             }
 
-            .question-display {
-                padding: 16px;
-                margin-bottom: 24px;
+            .tagline-box {
+                padding: 14px 16px;
+            }
+
+            .tagline-text {
+                font-size: 12px;
+            }
+
+            .right-side {
+                padding: 24px 20px;
             }
 
             .question-text {
                 font-size: 14px;
+                line-height: 1.6;
             }
 
-            .input-group {
-                margin-bottom: 20px;
+            .option-btn {
+                padding: 12px 14px;
+                gap: 10px;
             }
 
-            .input-wrapper input {
-                padding: 14px 16px;
-                font-size: 16px;
-                border-radius: 12px;
+            .option-btn .option-letter {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                font-size: 12px;
             }
 
-            .submit-btn {
-                padding: 14px;
-                font-size: 13px;
-                border-radius: 12px;
-            }
-
-            .error-container {
-                margin-top: 12px;
-            }
-
-            .footer {
-                margin-top: 24px;
-                font-size: 10px;
+            .option-btn .option-text {
+                font-size: 12px;
             }
 
             .success-ring {
@@ -741,44 +742,6 @@
 
             .success-overlay h2 {
                 font-size: 24px;
-            }
-
-            .success-overlay p {
-                font-size: 13px;
-            }
-
-            .wrong-overlay h2 {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .container {
-                padding-top: 30px;
-                padding-bottom: 30px;
-            }
-
-            .login-card {
-                padding: 24px 16px;
-            }
-
-            .logo-container {
-                width: 90px;
-                height: 90px;
-            }
-
-            .logo-section h1 {
-                font-size: 22px;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .container {
-                max-width: 440px;
-            }
-
-            .login-card {
-                padding: 52px 44px;
             }
         }
 
@@ -796,73 +759,55 @@
     <div class="bg-overlay"></div>
 
     <div class="container">
-        <div class="login-card" id="loginCard">
-            <div class="logo-section">
+        <div class="split-card" id="splitCard">
+            <!-- LEFT SIDE: Branding -->
+            <div class="left-side">
                 <div class="logo-container">
                     <div class="logo-inner">
                         <img src="app/assets/icons/Afdal Adha Firnansyah.png" alt="Fiction World" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'logo-placeholder\'>🤍</span>';">
                     </div>
                 </div>
-                <h1>Fiction World</h1>
+                <h1 class="brand-title">Fiction World</h1>
+                <p class="brand-subtitle">Secure Access Portal</p>
                 <div class="divider"></div>
-                <p class="subtitle">World Secure Access</p>
+                
+                <div class="tagline-box">
+                    <span class="tagline-icon">✦</span>
+                    <p class="tagline-text">
+                        "Di balik setiap pintu yang terkunci, ada dunia yang menunggu untuk ditemukan. 
+                        Hanya mereka yang berani menjawab, yang layak melangkah masuk."
+                    </p>
+                    <p class="tagline-author">— Sang Dunia</p>
+                </div>
             </div>
 
-            <div class="question-display" id="questionDisplay">
-                <span class="question-number" id="questionNumber">#01</span>
-                <span class="question-label">Pertanyaan Sang Dunia</span>
-                <p class="question-text" id="questionText">Memuat pertanyaan...</p>
-            </div>
+            <!-- RIGHT SIDE: Question -->
+            <div class="right-side">
+                <div class="question-header">
+                    <span class="question-number" id="questionNumber">#01</span>
+                    <span class="question-label">Pertanyaan Sang Dunia</span>
+                    <p class="question-text" id="questionText">Memuat pertanyaan...</p>
+                    <div class="question-divider"></div>
+                </div>
 
-            <div class="form-section">
-                <form id="answerForm" autocomplete="off">
-                    <div class="input-group">
-                        <label class="input-label" for="answer"><center>Jawaban Anda</center></label>
-                        <div class="input-wrapper">
-                            <div class="input-glow"></div>
-                            <input 
-                                type="text" 
-                                id="answer" 
-                                placeholder="Ketik jawaban di sini..." 
-                                required
-                                autocomplete="off"
-                                spellcheck="false"
-                                inputmode="text"
-                            >
-                            <div class="input-line"></div>
-                        </div>
-                    </div>
+                <div class="options-grid" id="optionsGrid">
+                    <!-- Options injected here -->
+                </div>
 
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        Verifikasi Jawaban
-                    </button>
+                <p class="hint-text">
+                    Pilih salah satu jawaban yang menurutmu benar. Jika salah, pertanyaan baru akan muncul secara otomatis.
+                </p>
 
-                    <div class="error-container" id="errorContainer">
-                        <div class="error-msg">
-                            <span class="error-icon">!</span>
-                            <span id="errorText">Jawaban tidak valid</span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="hint-text" id="hintText">
-                Kalau kamu kesulitan, coba pikirkan dengan tenang dan perhatikan setiap detail pertanyaannya. 
-                Jawaban yang benar mungkin lebih sederhana dari yang kamu bayangkan.
-            </div>
-
-            <div class="footer">
-                <p>Hak Cipta Dilindungi</p>
+                <div class="footer">
+                    <p>Hak Cipta Dilindungi • Fiction World</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="wrong-overlay" id="wrongOverlay">
-        <div class="wrong-icon">✕</div>
-        <h2>Jawaban Salah</h2>
-        <p>Halaman akan dimuat ulang dengan pertanyaan baru</p>
-        <div class="countdown" id="countdown">3</div>
-        <div class="countdown-label">detik</div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Memuat pertanyaan baru...</p>
     </div>
 
     <div class="success-overlay" id="successOverlay">
@@ -881,24 +826,159 @@
 
             const QUESTIONS = [
                 {
-                    question: "Di sebuah toko, harga 1 kg apel adalah Rp25.000. Andi membeli 3 kg apel dan membayar dengan uang Rp100.000. Berapa kembalian yang diterima Andi?",
-                    answer: ["Rp 25.000","Rp 25000", "25.000", "25000"]
+                    question: "Hasil dari 12² × 4² - 25² adalah ...",
+                    options: {
+                        A: "1.151",
+                        B: "1.251",
+                        C: "1.351",
+                        D: "1.451",
+                        E: "1.551"
+                    },
+                    answer: "A"
+                },
+                {
+                    question: "Hasil dari 6² - √144 adalah ...",
+                    options: {
+                        A: "20",
+                        B: "22",
+                        C: "24",
+                        D: "26",
+                        E: "28"
+                    },
+                    answer: "C"
+                },
+                {
+                    question: "Banyaknya bilangan 1 sampai 100 yang tidak habis dibagi 7 tetapi habis dibagi 11 atau 13 adalah ...",
+                    options: {
+                        A: "15",
+                        B: "16",
+                        C: "17",
+                        D: "18",
+                        E: "19"
+                    },
+                    answer: "C"
+                },
+                {
+                    question: "Jumlah bilangan kelipatan 2 dan 3 antara 200 dan 400 adalah ...",
+                    options: {
+                        A: "8.100",
+                        B: "8.200",
+                        C: "8.300",
+                        D: "8.400",
+                        E: "8.500"
+                    },
+                    answer: "D"
+                },
+                {
+                    question: "x, y dan z adalah bilangan bulat berurutan di mana x < y < z. Jika angka satuan dari x² = 6 dan angka satuan dari y² = 9, maka angka satuan dari z² = ...",
+                    options: {
+                        A: "1",
+                        B: "4",
+                        C: "5",
+                        D: "6",
+                        E: "9"
+                    },
+                    answer: "B"
+                },
+                {
+                    question: "Aspek geografi yang mengkaji segala fenomena geosfer yang mempengaruhi kehidupan manusia termasuk aspek kimiawi, biologis dan astronomis yang dapat langsung diamati disebut aspek ...",
+                    options: {
+                        A: "Fisik",
+                        B: "Sosial",
+                        C: "Ekonomi",
+                        D: "Budaya",
+                        E: "Politik"
+                    },
+                    answer: "A"
+                },
+                {
+                    question: "Pertumbuhan penduduk alami (natural increase) dapat diketahui dengan menggunakan rumus ...",
+                    options: {
+                        A: "Lahir + Mati",
+                        B: "Lahir - Mati",
+                        C: "Lahir × Mati",
+                        D: "Lahir ÷ Mati",
+                        E: "Mati - Lahir"
+                    },
+                    answer: "B"
+                },
+                {
+                    question: "Awan noctilucent merupakan awan yang paling tinggi terbentuk di atmosfer, awan tersebut hanya bisa terjadi pada lapisan ...",
+                    options: {
+                        A: "Troposfer",
+                        B: "Stratosfer",
+                        C: "Mesosfer",
+                        D: "Termosfer",
+                        E: "Eksosfer"
+                    },
+                    answer: "C"
+                },
+                {
+                    question: "Negara Indonesia adalah negara hukum. Pernyataan tersebut merupakan bunyi UUD NRI Tahun 1945 yaitu pasal ...",
+                    options: {
+                        A: "1 ayat 2",
+                        B: "1 ayat 3",
+                        C: "2 ayat 1",
+                        D: "2 ayat 2",
+                        E: "3"
+                    },
+                    answer: "B"
+                },
+                {
+                    question: "Menurut wujudnya, hukum dibedakan menjadi dua, yaitu ...",
+                    options: {
+                        A: "Hukum tertulis dan hukum tidak tertulis",
+                        B: "Hukum publik dan hukum privat",
+                        C: "Hukum nasional dan hukum internasional",
+                        D: "Hukum material dan hukum formal",
+                        E: "Hukum objektif dan hukum subjektif"
+                    },
+                    answer: "A"
+                },
+                {
+                    question: "Semua warga negara sama kedudukannya dalam hukum dan pemerintahan, dan wajib menjunjung hukum dan pemerintahan itu dengan tidak ada kecualinya. Kalimat tersebut tercantum dalam UUD 1945 Amandemen pasal ...",
+                    options: {
+                        A: "27 ayat 1",
+                        B: "27 ayat 2",
+                        C: "28 ayat 1",
+                        D: "28 ayat 2",
+                        E: "29 ayat 1"
+                    },
+                    answer: "A"
+                },
+                {
+                    question: "Sistem Tanam Paksa mewajibkan rakyat menanami sebagian dari sawah dan atau ladangnya dengan tanaman yang ditentukan oleh pemerintah. Sistem tanam paksa ini disebut juga dengan ...",
+                    options: {
+                        A: "Cultuurstelsel",
+                        B: "Politik Etis",
+                        C: "Devide et Impera",
+                        D: "Liberalisme",
+                        E: "Imperialisme"
+                    },
+                    answer: "A"
+                },
+                {
+                    question: "Di berbagai daerah VOC melakukan tindakan dengan melaksanakan politik devide et impera. Pengertian politik divide et impera yaitu ...",
+                    options: {
+                        A: "Membagi dan memerintah",
+                        B: "Membagi dan memperdaya",
+                        C: "Memecah belah dan memerintah",
+                        D: "Memecah belah dan menguasai",
+                        E: "Membagi dan menguasai"
+                    },
+                    answer: "C"
                 }
             ];
 
-            const answerInput = document.getElementById('answer');
-            const answerForm = document.getElementById('answerForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const errorContainer = document.getElementById('errorContainer');
-            const errorText = document.getElementById('errorText');
-            const loginCard = document.getElementById('loginCard');
+            const splitCard = document.getElementById('splitCard');
             const successOverlay = document.getElementById('successOverlay');
-            const wrongOverlay = document.getElementById('wrongOverlay');
-            const countdownEl = document.getElementById('countdown');
+            const loadingOverlay = document.getElementById('loadingOverlay');
             const questionText = document.getElementById('questionText');
             const questionNumber = document.getElementById('questionNumber');
+            const optionsGrid = document.getElementById('optionsGrid');
 
             let currentQuestion = null;
+            let isProcessing = false;
 
             function getRandomQuestion() {
                 const randomIndex = Math.floor(Math.random() * QUESTIONS.length);
@@ -908,10 +988,28 @@
                 };
             }
 
+            function renderOptions(options) {
+                optionsGrid.innerHTML = '';
+                const letters = ['A', 'B', 'C', 'D', 'E'];
+                
+                letters.forEach(letter => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.setAttribute('data-letter', letter);
+                    btn.innerHTML = `
+                        <span class="option-letter">${letter}</span>
+                        <span class="option-text">${options[letter]}</span>
+                    `;
+                    btn.addEventListener('click', () => handleOptionClick(letter, btn));
+                    optionsGrid.appendChild(btn);
+                });
+            }
+
             function displayQuestion() {
                 currentQuestion = getRandomQuestion();
                 questionText.textContent = currentQuestion.question;
                 questionNumber.textContent = '#' + String(currentQuestion.index).padStart(2, '0');
+                renderOptions(currentQuestion.options);
 
                 questionText.style.opacity = '0';
                 questionText.style.transform = 'translateY(10px)';
@@ -923,17 +1021,30 @@
                 }, 100);
             }
 
-            function checkAnswer(userAnswer) {
-                const normalized = userAnswer.toLowerCase().trim();
-                return currentQuestion.answer.some(ans => 
-                    normalized === ans.toLowerCase().trim() ||
-                    normalized.includes(ans.toLowerCase().trim())
-                );
-            }
+            function handleOptionClick(selectedLetter, btnElement) {
+                if (isProcessing) return;
+                isProcessing = true;
 
-            function showError(message) {
-                errorText.textContent = message;
-                errorContainer.classList.add('show');
+                btnElement.classList.add('selected');
+                optionsGrid.classList.add('disabled');
+
+                setTimeout(() => {
+                    if (selectedLetter === currentQuestion.answer) {
+                        btnElement.classList.remove('selected');
+                        btnElement.classList.add('correct');
+                        setTimeout(() => showSuccess(), 800);
+                    } else {
+                        btnElement.classList.remove('selected');
+                        btnElement.classList.add('wrong');
+                        
+                        const correctBtn = optionsGrid.querySelector(`[data-letter="${currentQuestion.answer}"]`);
+                        if (correctBtn) {
+                            setTimeout(() => correctBtn.classList.add('correct'), 300);
+                        }
+
+                        setTimeout(() => showLoadingAndRefresh(), 1500);
+                    }
+                }, 400);
             }
 
             function showSuccess() {
@@ -943,95 +1054,35 @@
                 }, 2500);
             }
 
-            function showWrongAndRefresh() {
-                wrongOverlay.classList.add('active');
-
-                let count = 3;
-                countdownEl.textContent = count;
-
-                const timer = setInterval(() => {
-                    count--;
-                    countdownEl.textContent = count;
-
-                    if (count <= 0) {
-                        clearInterval(timer);
-                        window.location.reload();
-                    }
-                }, 1000);
+            function showLoadingAndRefresh() {
+                loadingOverlay.classList.add('active');
+                setTimeout(() => window.location.reload(), 1200);
             }
 
-            answerForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const answer = answerInput.value;
-
-                errorContainer.classList.remove('show');
-                loginCard.classList.remove('shake');
-
-                if (answer.length < 1) {
-                    showError('Jawaban tidak boleh kosong');
-                    return;
-                }
-
-                submitBtn.classList.add('loading');
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                submitBtn.classList.remove('loading');
-
-                if (checkAnswer(answer)) {
-                    showSuccess();
-                } else {
-                    showWrongAndRefresh();
-                }
-            });
-
+            // 3D tilt effect for desktop
             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-            if (!isTouchDevice) {
-                answerInput.addEventListener('focus', function() {
-                    this.parentElement.style.transform = 'scale(1.02)';
-                    this.parentElement.style.transition = 'transform 0.3s ease';
-                });
-
-                answerInput.addEventListener('blur', function() {
-                    this.parentElement.style.transform = 'scale(1)';
-                });
-            }
-
-            answerInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    answerForm.dispatchEvent(new Event('submit'));
-                }
-            });
-
             if (!isTouchDevice) {
                 document.addEventListener('mousemove', (e) => {
                     const x = (window.innerWidth - e.pageX * 2) / 100;
                     const y = (window.innerHeight - e.pageY * 2) / 100;
-                    loginCard.style.transform = `rotateY(${x * 0.1}deg) rotateX(${y * 0.1}deg)`;
+                    splitCard.style.transform = `rotateY(${x * 0.05}deg) rotateX(${y * 0.05}deg)`;
                 });
 
                 document.addEventListener('mouseleave', () => {
-                    loginCard.style.transform = 'rotateY(0) rotateX(0)';
+                    splitCard.style.transform = 'rotateY(0) rotateX(0)';
                 });
             }
 
+            // Prevent double tap zoom
             let lastTouchEnd = 0;
             document.addEventListener('touchend', (e) => {
                 const now = Date.now();
-                if (now - lastTouchEnd <= 300) {
-                    e.preventDefault();
-                }
+                if (now - lastTouchEnd <= 300) e.preventDefault();
                 lastTouchEnd = now;
             }, { passive: false });
 
             window.addEventListener('load', () => {
                 displayQuestion();
-
-                if (!isTouchDevice) {
-                    setTimeout(() => {
-                        answerInput.focus();
-                    }, 600);
-                }
             });
         })();
     </script>
