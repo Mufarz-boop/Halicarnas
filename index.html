@@ -26,6 +26,7 @@
             --gold: #d4af37;
             --gold-light: #f4e4ba;
             --gold-dark: #b8941f;
+            --gold-glow: rgba(212, 175, 55, 0.4);
             --blue: #3b82f6;
             --blue-light: #60a5fa;
             --dark: #0a0a0a;
@@ -68,6 +69,7 @@
             will-change: transform;
         }
 
+        /* Background luar card — lebih pekat & berwarna */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -75,9 +77,9 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(10,10,10,0.78) 50%, rgba(0,0,0,0.88) 100%),
-                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+                linear-gradient(135deg, rgba(5,5,5,0.92) 0%, rgba(15,10,5,0.85) 50%, rgba(5,5,5,0.92) 100%),
+                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
             z-index: 1;
         }
 
@@ -96,32 +98,118 @@
             overflow-x: hidden;
         }
 
+        /* 
+         * CARD UTAMA — efek pinggiran tajam, tengah transparan
+         * Menggunakan multiple background layers untuk efek frame
+         */
         .split-card {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
             width: 100%;
-            background: rgba(26, 26, 26, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
+            position: relative;
             border-radius: 24px;
             overflow: hidden;
+            
+            /* Border luar tajam dengan glow */
+            border: 1px solid rgba(212, 175, 55, 0.25);
             box-shadow: 
-                0 25px 80px rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(212, 175, 55, 0.05) inset;
-            position: relative;
+                /* Glow luar lembut */
+                0 0 60px rgba(212, 175, 55, 0.08),
+                0 0 120px rgba(212, 175, 55, 0.04),
+                /* Shadow dasar */
+                0 25px 80px rgba(0, 0, 0, 0.7);
         }
 
+        /* 
+         * FRAME/PINGGIRAN — layer terpisah untuk efek tajam di border
+         */
         .split-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 50%;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            inset: 0;
+            border-radius: 24px;
+            padding: 1.5px; /* ketebalan frame */
+            background: linear-gradient(
+                135deg,
+                rgba(212, 175, 55, 0.6) 0%,
+                rgba(212, 175, 55, 0.1) 25%,
+                rgba(184, 148, 31, 0.3) 50%,
+                rgba(212, 175, 55, 0.1) 75%,
+                rgba(212, 175, 55, 0.6) 100%
+            );
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* 
+         * INNER SHADOW — memberikan efek "tebal" di pinggiran dalam
+         */
+        .split-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 60px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            z-index: 9;
+        }
+
+        /* 
+         * BACKGROUND CARD — transparan dengan warna berbeda dari luar
+         * Menggunakan backdrop-filter untuk efek glass
+         */
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                /* Warna dasar transparan — lebih terang & warm dibanding bg luar */
+                rgba(20, 18, 14, 0.35),
+                /* Subtle gradient warm untuk beda dengan luar */
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 60%);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            z-index: 1;
+        }
+
+        /* Noise texture untuk kesan premium */
+        .card-noise {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
             z-index: 2;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 128px;
+        }
+
+        /* Separator tengah */
+        .card-separator {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80%;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(212, 175, 55, 0.2) 20%,
+                rgba(212, 175, 55, 0.35) 50%,
+                rgba(212, 175, 55, 0.2) 80%,
+                transparent 100%
+            );
+            z-index: 5;
+            pointer-events: none;
         }
 
         /* Left Side - Branding */
@@ -133,7 +221,23 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+            z-index: 3;
+        }
+
+        /* Subtle gradient di left side */
+        .left-side::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(212, 175, 55, 0.03) 0%,
+                transparent 40%,
+                transparent 60%,
+                rgba(59, 130, 246, 0.02) 100%
+            );
+            pointer-events: none;
+            z-index: -1;
         }
 
         .logo-container {
@@ -145,8 +249,8 @@
             padding: 4px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--blue) 100%);
             box-shadow: 
-                0 0 60px rgba(212, 175, 55, 0.4),
-                0 0 120px rgba(59, 130, 246, 0.15);
+                0 0 60px rgba(212, 175, 55, 0.35),
+                0 0 120px rgba(59, 130, 246, 0.12);
             animation: logo-pulse 3s ease-in-out infinite;
             aspect-ratio: 1 / 1;
         }
@@ -187,13 +291,13 @@
         @keyframes logo-pulse {
             0%, 100% { 
                 box-shadow: 
-                    0 0 60px rgba(212, 175, 55, 0.4),
-                    0 0 120px rgba(59, 130, 246, 0.15);
+                    0 0 60px rgba(212, 175, 55, 0.35),
+                    0 0 120px rgba(59, 130, 246, 0.12);
             }
             50% { 
                 box-shadow: 
-                    0 0 80px rgba(212, 175, 55, 0.6),
-                    0 0 140px rgba(59, 130, 246, 0.3);
+                    0 0 80px rgba(212, 175, 55, 0.55),
+                    0 0 140px rgba(59, 130, 246, 0.22);
             }
         }
 
@@ -225,9 +329,9 @@
             opacity: 0.6;
         }
 
-        /* Tagline Box */
+        /* Tagline Box — transparan dengan border glow */
         .tagline-box {
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(212, 175, 55, 0.04);
             border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 16px;
             padding: 20px 24px;
@@ -235,6 +339,15 @@
             position: relative;
             overflow: hidden;
             max-width: 320px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+        }
+
+        .tagline-box:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.06);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
         }
 
         .tagline-box::before {
@@ -267,7 +380,7 @@
             font-size: 11px;
             margin-top: 10px;
             letter-spacing: 2px;
-            text-transform: uppercase;
+            text-transform: none;
             font-weight: 500;
             opacity: 0.7;
         }
@@ -279,6 +392,7 @@
             flex-direction: column;
             justify-content: center;
             position: relative;
+            z-index: 3;
         }
 
         .question-header {
@@ -331,7 +445,7 @@
             width: 100%;
             padding: 14px 18px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1.5px solid rgba(212, 175, 55, 0.12);
+            border: 1.5px solid rgba(212, 175, 55, 0.1);
             border-radius: 12px;
             color: var(--white);
             font-size: 14px;
@@ -346,12 +460,15 @@
             gap: 12px;
             -webkit-appearance: none;
             touch-action: manipulation;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
         .option-btn:hover {
             border-color: rgba(212, 175, 55, 0.35);
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(212, 175, 55, 0.06);
             transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
         }
 
         .option-btn:active {
@@ -385,7 +502,7 @@
             font-size: 13px;
         }
 
-        /* Selected / Correct / Wrong states */
+        /* States */
         .option-btn.selected {
             border-color: var(--gold);
             background: rgba(212, 175, 55, 0.08);
@@ -617,7 +734,7 @@
                 margin: 0 auto;
             }
 
-            .split-card::before {
+            .card-separator {
                 display: none;
             }
 
@@ -670,6 +787,11 @@
             }
 
             .split-card {
+                border-radius: 16px;
+            }
+
+            .split-card::before,
+            .split-card::after {
                 border-radius: 16px;
             }
 
@@ -760,6 +882,11 @@
 
     <div class="container">
         <div class="split-card" id="splitCard">
+            <!-- Background layers card -->
+            <div class="card-bg"></div>
+            <div class="card-noise"></div>
+            <div class="card-separator"></div>
+
             <!-- LEFT SIDE: Branding -->
             <div class="left-side">
                 <div class="logo-container">
@@ -768,16 +895,15 @@
                     </div>
                 </div>
                 <h1 class="brand-title">Fiction World</h1>
-                <p class="brand-subtitle">Secure Access Portal</p>
+                <p class="brand-subtitle"></p>
                 <div class="divider"></div>
                 
                 <div class="tagline-box">
                     <span class="tagline-icon">✦</span>
                     <p class="tagline-text">
-                        "Di balik setiap pintu yang terkunci, ada dunia yang menunggu untuk ditemukan. 
-                        Hanya mereka yang berani menjawab, yang layak melangkah masuk."
+                        "Di mana mimpi membangun imajinasi dan kreativitas dengan gemuruh angin beraroma bunga api mistis, menghancurkan tembok logika hingga berkeping-keping yang berderit tajam di kulit, meledakkan warna pelangi liar di mata, bisikan rahasia dewa di telinga, dan rasa manis pahit kebebasan abadi di lidah jiwa petualang."
                     </p>
-                    <p class="tagline-author">— Sang Dunia</p>
+                    <p class="tagline-author">Mr. Ashar</p>
                 </div>
             </div>
 
@@ -826,148 +952,38 @@
 
             const QUESTIONS = [
                 {
-                    question: "Hasil dari 12² × 4² - 25² adalah ...",
+                    question: "Apa nama Lengkap dari Mr. Ashar?",
                     options: {
-                        A: "1.151",
-                        B: "1.251",
-                        C: "1.351",
-                        D: "1.451",
-                        E: "1.551"
+                        A: "Haris Pradipta Firnansyah",
+                        B: "Muhammad Arafat Firnansyah",
+                        C: "Teuku Adhikara Pratana Firnansyah",
+                        D: "Aluna Qanita Syafira Putri Firnansyah",
+                        E: "Muhammad Arshaka Mahendra Adhikara Firnansyah"
                     },
-                    answer: "A"
+                    answer: "B"
                 },
                 {
-                    question: "Hasil dari 6² - √144 adalah ...",
+                    question: "Siapa nama asli dari karakter fiksi 'Muhammad Arafat Firnansyah'?",
                     options: {
-                        A: "20",
-                        B: "22",
-                        C: "24",
-                        D: "26",
-                        E: "28"
-                    },
-                    answer: "C"
-                },
-                {
-                    question: "Banyaknya bilangan 1 sampai 100 yang tidak habis dibagi 7 tetapi habis dibagi 11 atau 13 adalah ...",
-                    options: {
-                        A: "15",
-                        B: "16",
-                        C: "17",
-                        D: "18",
-                        E: "19"
-                    },
-                    answer: "C"
-                },
-                {
-                    question: "Jumlah bilangan kelipatan 2 dan 3 antara 200 dan 400 adalah ...",
-                    options: {
-                        A: "8.100",
-                        B: "8.200",
-                        C: "8.300",
-                        D: "8.400",
-                        E: "8.500"
+                        A: "Ihsan Habibullah",
+                        B: "Nauval Risqullah",
+                        C: "Arafa Syahputra",
+                        D: "Afdal Adha Firnansyah",
+                        E: "Muhammad Rayvan Kahfi Effendi"
                     },
                     answer: "D"
                 },
                 {
-                    question: "x, y dan z adalah bilangan bulat berurutan di mana x < y < z. Jika angka satuan dari x² = 6 dan angka satuan dari y² = 9, maka angka satuan dari z² = ...",
+                    question: "Tanggal berapa Muhammad Arafat Firnansyah lahir?",
                     options: {
-                        A: "1",
-                        B: "4",
-                        C: "5",
-                        D: "6",
-                        E: "9"
-                    },
-                    answer: "B"
-                },
-                {
-                    question: "Aspek geografi yang mengkaji segala fenomena geosfer yang mempengaruhi kehidupan manusia termasuk aspek kimiawi, biologis dan astronomis yang dapat langsung diamati disebut aspek ...",
-                    options: {
-                        A: "Fisik",
-                        B: "Sosial",
-                        C: "Ekonomi",
-                        D: "Budaya",
-                        E: "Politik"
+                        A: "23 November",
+                        B: "19 April",
+                        C: "03 Agustus",
+                        D: "27 Maret",
+                        E: "11 Februari"
                     },
                     answer: "A"
                 },
-                {
-                    question: "Pertumbuhan penduduk alami (natural increase) dapat diketahui dengan menggunakan rumus ...",
-                    options: {
-                        A: "Lahir + Mati",
-                        B: "Lahir - Mati",
-                        C: "Lahir × Mati",
-                        D: "Lahir ÷ Mati",
-                        E: "Mati - Lahir"
-                    },
-                    answer: "B"
-                },
-                {
-                    question: "Awan noctilucent merupakan awan yang paling tinggi terbentuk di atmosfer, awan tersebut hanya bisa terjadi pada lapisan ...",
-                    options: {
-                        A: "Troposfer",
-                        B: "Stratosfer",
-                        C: "Mesosfer",
-                        D: "Termosfer",
-                        E: "Eksosfer"
-                    },
-                    answer: "C"
-                },
-                {
-                    question: "Negara Indonesia adalah negara hukum. Pernyataan tersebut merupakan bunyi UUD NRI Tahun 1945 yaitu pasal ...",
-                    options: {
-                        A: "1 ayat 2",
-                        B: "1 ayat 3",
-                        C: "2 ayat 1",
-                        D: "2 ayat 2",
-                        E: "3"
-                    },
-                    answer: "B"
-                },
-                {
-                    question: "Menurut wujudnya, hukum dibedakan menjadi dua, yaitu ...",
-                    options: {
-                        A: "Hukum tertulis dan hukum tidak tertulis",
-                        B: "Hukum publik dan hukum privat",
-                        C: "Hukum nasional dan hukum internasional",
-                        D: "Hukum material dan hukum formal",
-                        E: "Hukum objektif dan hukum subjektif"
-                    },
-                    answer: "A"
-                },
-                {
-                    question: "Semua warga negara sama kedudukannya dalam hukum dan pemerintahan, dan wajib menjunjung hukum dan pemerintahan itu dengan tidak ada kecualinya. Kalimat tersebut tercantum dalam UUD 1945 Amandemen pasal ...",
-                    options: {
-                        A: "27 ayat 1",
-                        B: "27 ayat 2",
-                        C: "28 ayat 1",
-                        D: "28 ayat 2",
-                        E: "29 ayat 1"
-                    },
-                    answer: "A"
-                },
-                {
-                    question: "Sistem Tanam Paksa mewajibkan rakyat menanami sebagian dari sawah dan atau ladangnya dengan tanaman yang ditentukan oleh pemerintah. Sistem tanam paksa ini disebut juga dengan ...",
-                    options: {
-                        A: "Cultuurstelsel",
-                        B: "Politik Etis",
-                        C: "Devide et Impera",
-                        D: "Liberalisme",
-                        E: "Imperialisme"
-                    },
-                    answer: "A"
-                },
-                {
-                    question: "Di berbagai daerah VOC melakukan tindakan dengan melaksanakan politik devide et impera. Pengertian politik divide et impera yaitu ...",
-                    options: {
-                        A: "Membagi dan memerintah",
-                        B: "Membagi dan memperdaya",
-                        C: "Memecah belah dan memerintah",
-                        D: "Memecah belah dan menguasai",
-                        E: "Membagi dan menguasai"
-                    },
-                    answer: "C"
-                }
             ];
 
             const splitCard = document.getElementById('splitCard');
