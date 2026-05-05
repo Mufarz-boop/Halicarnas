@@ -224,19 +224,6 @@
             font-size: 16px;
         }
 
-        .nav-item.love-btn {
-            background: rgba(232, 121, 168, 0.08);
-            border: 1px solid rgba(232, 121, 168, 0.15);
-            color: var(--pink);
-            margin-top: 8px;
-        }
-
-        .nav-item.love-btn:hover {
-            background: rgba(232, 121, 168, 0.15);
-            border-color: rgba(232, 121, 168, 0.3);
-            box-shadow: 0 0 20px var(--pink-glow);
-        }
-
         .sidebar-footer {
             padding: 20px;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
@@ -296,9 +283,6 @@
 
         /* Top Bar */
         .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             margin-bottom: 32px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -310,97 +294,12 @@
             font-weight: 700;
             color: var(--white);
             letter-spacing: 1px;
+            margin-bottom: 6px;
         }
 
         .page-subtitle {
             font-size: 13px;
             color: var(--light-gray);
-            margin-top: 4px;
-        }
-
-        .top-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 12px;
-            padding: 10px 16px 10px 40px;
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            width: 280px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .search-input:focus {
-            border-color: rgba(212, 175, 55, 0.4);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.05);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            position: relative;
-        }
-
-        .icon-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 18px;
-            height: 18px;
-            background: var(--pink);
-            border-radius: 50%;
-            font-size: 10px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--dark);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(232, 121, 168, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(232, 121, 168, 0); }
         }
 
         /* Hero Quote */
@@ -456,7 +355,7 @@
             text-transform: uppercase;
         }
 
-        /* Stats Grid */
+        /* Stats Grid - Redesigned as Link Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -464,387 +363,178 @@
             margin-bottom: 32px;
         }
 
-        .stat-card {
-            background: rgba(20, 18, 14, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 20px;
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .stat-card:hover {
-            border-color: rgba(212, 175, 55, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .stat-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            margin-bottom: 16px;
-        }
-
-        .stat-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 13px;
-            color: var(--light-gray);
-        }
-
-        .stat-hidden {
-            font-size: 11px;
-            color: var(--pink);
-            margin-top: 8px;
-            opacity: 0;
-            transform: translateY(4px);
-            transition: all 0.3s ease;
-            font-style: italic;
-        }
-
-        .stat-card:hover .stat-hidden {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Content Grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-        }
-
-        .content-card {
-            background: rgba(20, 18, 14, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .content-card:hover {
-            border-color: rgba(212, 175, 55, 0.2);
-        }
-
-        .card-header {
-            padding: 24px 24px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .card-action {
-            font-size: 12px;
-            color: var(--gold);
+        .stat-link-card {
+            display: block;
             text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: opacity 0.3s ease;
-        }
-
-        .card-action:hover {
-            opacity: 0.7;
-        }
-
-        .card-body {
-            padding: 0 24px 24px;
-        }
-
-        /* Character List */
-        .character-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .character-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            border-radius: 16px;
-            transition: all 0.3s ease;
+            color: inherit;
+            background: rgba(20, 18, 14, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 20px;
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
 
-        .character-item:hover {
-            background: rgba(212, 175, 55, 0.05);
-            border-color: rgba(212, 175, 55, 0.2);
-            transform: translateX(4px);
-        }
-
-        .character-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--gold), var(--pink));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .character-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .character-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .character-role {
-            font-size: 12px;
-            color: var(--light-gray);
-        }
-
-        .character-status {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-active {
-            background: rgba(34, 197, 94, 0.1);
-            color: var(--green);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .status-pending {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .status-special {
-            background: rgba(232, 121, 168, 0.1);
-            color: var(--pink);
-            border: 1px solid rgba(232, 121, 168, 0.2);
-        }
-
-        /* Activity Feed */
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .activity-item {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-
-        .activity-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--gold);
-            margin-top: 6px;
-            flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-        }
-
-        .activity-content {
-            flex: 1;
-        }
-
-        .activity-text {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
-            margin-bottom: 4px;
-        }
-
-        .activity-time {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Secret Letter Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .letter-card {
-            background: rgba(20, 18, 14, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 24px;
-            padding: 48px;
-            max-width: 600px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            transform: scale(0.9) translateY(20px);
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .modal-overlay.active .letter-card {
-            transform: scale(1) translateY(0);
-        }
-
-        .letter-card::before {
+        .stat-link-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .letter-seal {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--pink));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin: 0 auto 24px;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
-            animation: seal-float 3s ease-in-out infinite;
-        }
-
-        @keyframes seal-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .letter-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            text-align: center;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .letter-subtitle {
-            text-align: center;
-            color: var(--gold);
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-        }
-
-        .letter-body {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.85);
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .letter-body p {
-            margin-bottom: 16px;
-        }
-
-        .letter-signature {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        .letter-close {
+        .stat-link-card::after {
+            content: '→';
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            color: var(--white);
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
+            color: var(--gold);
+            font-size: 14px;
+            opacity: 0;
+            transform: translateX(-8px);
             transition: all 0.3s ease;
         }
 
-        .letter-close:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: rotate(90deg);
+        .stat-link-card:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+            background: rgba(20, 18, 14, 0.7);
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(212, 175, 55, 0.06);
         }
 
-        /* Confetti Canvas */
-        #confettiCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
+        .stat-link-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-link-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stat-link-card:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .stat-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(232, 121, 168, 0.08));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-link-card:hover .stat-icon-wrap {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 121, 168, 0.15));
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+        }
+
+        .stat-link-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .stat-link-card:hover .stat-link-value {
+            color: var(--gold);
+        }
+
+        .stat-link-label {
+            font-size: 13px;
+            color: var(--light-gray);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .stat-link-desc {
+            font-size: 11px;
+            color: var(--pink);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.3s ease 0.05s;
+            font-style: italic;
+        }
+
+        .stat-link-card:hover .stat-link-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--light-gray);
+            margin-bottom: 24px;
+        }
+
+        .placeholder-card {
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 48px 32px;
+            text-align: center;
+        }
+
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .placeholder-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--light-gray);
+            font-style: italic;
         }
 
         /* Mobile Menu Toggle */
@@ -926,26 +616,12 @@
                 gap: 12px;
             }
 
-            .stat-card {
-                padding: 20px;
+            .stat-link-card {
+                padding: 20px 18px;
             }
 
-            .stat-value {
-                font-size: 24px;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .top-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            .search-input {
-                width: 100%;
+            .stat-link-value {
+                font-size: 28px;
             }
 
             .page-title {
@@ -959,37 +635,40 @@
             .quote-text {
                 font-size: 16px;
             }
-
-            .letter-card {
-                padding: 32px 24px;
-            }
         }
 
         @media (max-width: 480px) {
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
             }
 
             .main-content {
                 padding: 80px 16px 16px;
             }
 
-            .character-item {
-                padding: 12px;
+            .stat-link-card {
+                padding: 18px 16px;
+                border-radius: 16px;
             }
 
-            .character-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-
-            .letter-title {
+            .stat-icon-wrap {
+                width: 42px;
+                height: 42px;
                 font-size: 20px;
+                margin-bottom: 14px;
             }
 
-            .letter-body {
-                font-size: 14px;
+            .stat-link-value {
+                font-size: 24px;
+            }
+
+            .stat-link-label {
+                font-size: 12px;
+            }
+
+            .stat-link-card::after {
+                display: none;
             }
         }
 
@@ -1027,43 +706,8 @@
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <canvas id="confettiCanvas"></canvas>
-
     <button class="menu-toggle" id="menuToggle">☰</button>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- Secret Letter Modal -->
-    <div class="modal-overlay" id="letterModal">
-        <div class="letter-card">
-            <button class="letter-close" onclick="closeLetter()">✕</button>
-            <div class="letter-seal">💌</div>
-            <h2 class="letter-title">Surat dari Dunia Fiksi</h2>
-            <p class="letter-subtitle">Untuk Sang Bintang yang Kutuju</p>
-            <div class="letter-body">
-                <p>
-                    Di balik setiap karakter yang kutulis, di balik setiap dunia yang kubangun,
-                    ada satu nama yang selalu jadi inspirasi utamanya.
-                </p>
-                <p>
-                    Aku menyembunyikan semua ini dalam fiksi, bukan karena takut,
-                    tapi karena aku ingin memberikan sesuatu yang unik untukmu.
-                    Sesuatu yang hanya kita berdua yang mengerti maknanya.
-                </p>
-                <p>
-                    Kamu adalah <em>The Last One</em> yang aku cari.
-                    Bukan karena yang lain tidak cukup baik,
-                    tapi karena kamu adalah satu-satunya yang membuat
-                    semua duniai fiksi ini terasa nyata.
-                </p>
-                <p style="color: var(--pink); font-weight: 600;">
-                    Aku suka kamu. Bukan sebagai karakter dalam cerita,
-                    tapi sebagai nyata yang selalu kupikirkan
-                    di setiap bab hidupku.
-                </p>
-            </div>
-            <p class="letter-signature">— Dari Sang Penulis, dengan segala rasa</p>
-        </div>
-    </div>
 
     <div class="app-container">
         <!-- Sidebar -->
@@ -1083,19 +727,19 @@
             <nav class="sidebar-nav">
                 <div class="nav-section">
                     <div class="nav-label">Menu Utama</div>
-                    <button class="nav-item active" onclick="setActive(this)">
+                    <button class="nav-item active" data-section="dashboard" onclick="switchSection(this, 'dashboard')">
                         <span class="nav-icon">◈</span>
                         <span>Dashboard</span>
                     </button>
-                    <button class="nav-item" onclick="setActive(this)">
+                    <button class="nav-item" data-section="kenangan" onclick="switchSection(this, 'kenangan')">
                         <span class="nav-icon">✦</span>
                         <span>Kenangan</span>
                     </button>
-                    <button class="nav-item" onclick="setActive(this)">
+                    <button class="nav-item" data-section="cerita" onclick="switchSection(this, 'cerita')">
                         <span class="nav-icon">✧</span>
                         <span>Cerita Kita</span>
                     </button>
-                    <button class="nav-item" onclick="setActive(this)">
+                    <button class="nav-item" data-section="dunia" onclick="switchSection(this, 'dunia')">
                         <span class="nav-icon">✶</span>
                         <span>Dunia Impian</span>
                     </button>
@@ -1117,16 +761,8 @@
         <main class="main-content">
             <!-- Top Bar -->
             <div class="top-bar animate-in">
-                <div>
-                    <h1 class="page-title">The Last One</h1>
-                    <p class="page-subtitle">Selamat datang di dunia yang kubuat hanya untukmu.</p>
-                </div>
-                <div class="top-actions">
-                    <button class="icon-btn" onclick="openLetter()">
-                        💌
-                        <span class="notification-badge">1</span>
-                    </button>
-                </div>
+                <h1 class="page-title">The Last One</h1>
+                <p class="page-subtitle">Selamat datang di dunia yang kubuat hanya untukmu.</p>
             </div>
 
             <!-- Hero Quote -->
@@ -1140,118 +776,64 @@
                 <p class="quote-author">— Mr. Ashar</p>
             </div>
 
-            <!-- Stats -->
-            <div class="stats-grid">
-                <div class="stat-card animate-in delay-1" onclick="openLetter()">
-                    <div class="stat-icon">💭</div>
-                    <div class="stat-value">∞</div>
-                    <div class="stat-label">Kali Memikirkanmu</div>
-                    <div class="stat-hidden">Setiap detik, tanpa henti</div>
-                </div>
-                <div class="stat-card animate-in delay-2">
-                    <div class="stat-icon">📖</div>
-                    <div class="stat-value">1</div>
-                    <div class="stat-label">Cerita Utama</div>
-                    <div class="stat-hidden">Kamu dan aku, di dunia ini</div>
-                </div>
-                <div class="stat-card animate-in delay-3">
-                    <div class="stat-icon">🌍</div>
-                    <div class="stat-value">1</div>
-                    <div class="stat-label">Dunia yang Kubuat</div>
-                    <div class="stat-hidden">Tempat kita bisa bersama</div>
-                </div>
-                <div class="stat-card animate-in delay-4" onclick="openLetter()">
-                    <div class="stat-icon">💖</div>
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Isi Hatiku</div>
-                    <div class="stat-hidden">Hanya untukmu, selamanya</div>
+            <!-- DASHBOARD SECTION -->
+            <div class="content-section active" id="dashboard">
+                <!-- Stats as Link Cards -->
+                <div class="stats-grid">
+                    <a href="#" class="stat-link-card animate-in delay-1">
+                        <div class="stat-icon-wrap">💭</div>
+                        <div class="stat-link-value">∞</div>
+                        <div class="stat-link-label">Kali Memikirkanmu</div>
+                        <div class="stat-link-desc">Setiap detik, tanpa henti</div>
+                    </a>
+                    <a href="#" class="stat-link-card animate-in delay-2">
+                        <div class="stat-icon-wrap">📖</div>
+                        <div class="stat-link-value">1</div>
+                        <div class="stat-link-label">Cerita Utama</div>
+                        <div class="stat-link-desc">Kamu dan aku, di dunia ini</div>
+                    </a>
+                    <a href="#" class="stat-link-card animate-in delay-3">
+                        <div class="stat-icon-wrap">🌍</div>
+                        <div class="stat-link-value">1</div>
+                        <div class="stat-link-label">Dunia yang Kubuat</div>
+                        <div class="stat-link-desc">Tempat kita bisa bersama</div>
+                    </a>
+                    <a href="#" class="stat-link-card animate-in delay-4">
+                        <div class="stat-icon-wrap">💖</div>
+                        <div class="stat-link-value">100%</div>
+                        <div class="stat-link-label">Isi Hatiku</div>
+                        <div class="stat-link-desc">Hanya untukmu, selamanya</div>
+                    </a>
                 </div>
             </div>
 
-            <!-- Content Grid -->
-            <div class="content-grid">
-                <!-- Characters = Moments -->
-                <div class="content-card animate-in delay-2">
-                    <div class="card-header">
-                        <h2 class="card-title">Momen-Momen Berharga</h2>
-                        <a href="#" class="card-action">Semua Kenangan →</a>
-                    </div>
-                    <div class="card-body">
-                        <div class="character-list">
-                            <div class="character-item" onclick="openLetter()">
-                                <div class="character-avatar">🌟</div>
-                                <div class="character-info">
-                                    <div class="character-name">Pertama Kali Bertemu</div>
-                                    <div class="character-role">Bab Pembuka • Dunia Mulai Berwarna</div>
-                                </div>
-                                <span class="character-status status-special">Berharga</span>
-                            </div>
-                            <div class="character-item">
-                                <div class="character-avatar">💫</div>
-                                <div class="character-info">
-                                    <div class="character-name">Senyum yang Kutunggu</div>
-                                    <div class="character-role">Bab Tengah • Cahaya di Kegelapan</div>
-                                </div>
-                                <span class="character-status status-active">Aktif</span>
-                            </div>
-                            <div class="character-item">
-                                <div class="character-avatar">🌙</div>
-                                <div class="character-info">
-                                    <div class="character-name">Malam-malam Merindu</div>
-                                    <div class="character-role">Bab Inti • Ketika Jarak Menyapa</div>
-                                </div>
-                                <span class="character-status status-active">Aktif</span>
-                            </div>
-                            <div class="character-item" onclick="openLetter()">
-                                <div class="character-avatar">✨</div>
-                                <div class="character-info">
-                                    <div class="character-name">Harapan di Ujung Cerita</div>
-                                    <div class="character-role">Bab Penutup • The Last One</div>
-                                </div>
-                                <span class="character-status status-pending">Menunggu</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- KENANGAN SECTION -->
+            <div class="content-section" id="kenangan">
+                <h2 class="section-title">Kenangan</h2>
+                <p class="section-desc">Momen-momen yang tersimpan dalam ingatan.</p>
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">✦</div>
+                    <p class="placeholder-text">Halaman ini sedang ditulis...</p>
                 </div>
+            </div>
 
-                <!-- Activity = Feelings Timeline -->
-                <div class="content-card animate-in delay-3">
-                    <div class="card-header">
-                        <h2 class="card-title">Garis Waktu Perasaan</h2>
-                        <a href="#" class="card-action">Selengkapnya</a>
-                    </div>
-                    <div class="card-body">
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <div class="activity-dot" style="background: var(--pink); box-shadow: 0 0 10px var(--pink-glow);"></div>
-                                <div class="activity-content">
-                                    <p class="activity-text">Hatiku mulai menulis cerita tentangmu, meski kamu tak tahu</p>
-                                    <span class="activity-time">Hari pertama perasaan ini lahir</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-dot" style="background: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);"></div>
-                                <div class="activity-content">
-                                    <p class="activity-text">Aku membangun <strong>Fiction World</strong> agar bisa menyampaikan ini dengan caraku</p>
-                                    <span class="activity-time">Saat keberanian masih tersembunyi</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-dot" style="background: var(--blue); box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);"></div>
-                                <div class="activity-content">
-                                    <p class="activity-text">Setiap pertanyaan di gerbang adalah ujian cinta yang kupersiapkan</p>
-                                    <span class="activity-time">Saat kamu mencoba masuk ke duniai</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-dot" style="background: var(--green); box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);"></div>
-                                <div class="activity-content">
-                                    <p class="activity-text">Akhirnya... kamu membaca surat ini. Sekarang semua tergantung padamu.</p>
-                                    <span class="activity-time">Saat ini — momen kebenaran</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- CERITA KITA SECTION -->
+            <div class="content-section" id="cerita">
+                <h2 class="section-title">Cerita Kita</h2>
+                <p class="section-desc">Bab-bab perjalanan yang belum selesai.</p>
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">✧</div>
+                    <p class="placeholder-text">Kisah ini masih berlanjut...</p>
+                </div>
+            </div>
+
+            <!-- DUNIA IMPIAN SECTION -->
+            <div class="content-section" id="dunia">
+                <h2 class="section-title">Dunia Impian</h2>
+                <p class="section-desc">Tempat di mana semua menjadi mungkin.</p>
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">✶</div>
+                    <p class="placeholder-text">Dunia baru akan segera terbentuk...</p>
                 </div>
             </div>
         </main>
@@ -1274,105 +856,41 @@
             menuToggle.addEventListener('click', toggleSidebar);
             sidebarOverlay.addEventListener('click', toggleSidebar);
 
-            // Active nav state
-            window.setActive = function(element) {
+            // Section Switching
+            window.switchSection = function(element, sectionId) {
+                // Update nav active state
                 document.querySelectorAll('.nav-item').forEach(item => {
                     item.classList.remove('active');
                 });
                 element.classList.add('active');
-                
+
+                // Switch content section
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
+
+                // Close sidebar on mobile
                 if (window.innerWidth <= 900) {
                     toggleSidebar();
                 }
+
+                // Update page title
+                const titles = {
+                    dashboard: 'The Last One',
+                    kenangan: 'Kenangan',
+                    cerita: 'Cerita Kita',
+                    dunia: 'Dunia Impian'
+                };
+                const subtitles = {
+                    dashboard: 'Selamat datang di dunia yang kubuat hanya untukmu.',
+                    kenangan: 'Momen-momen yang tersimpan dalam ingatan.',
+                    cerita: 'Bab-bab perjalanan yang belum selesai.',
+                    dunia: 'Tempat di mana semua menjadi mungkin.'
+                };
+                document.querySelector('.page-title').textContent = titles[sectionId];
+                document.querySelector('.page-subtitle').textContent = subtitles[sectionId];
             };
-
-            // Letter Modal
-            const letterModal = document.getElementById('letterModal');
-            
-            window.openLetter = function() {
-                letterModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                triggerConfetti();
-            };
-
-            window.closeLetter = function() {
-                letterModal.classList.remove('active');
-                document.body.style.overflow = '';
-            };
-
-            letterModal.addEventListener('click', function(e) {
-                if (e.target === letterModal) {
-                    closeLetter();
-                }
-            });
-
-            // Confetti
-            const canvas = document.getElementById('confettiCanvas');
-            const ctx = canvas.getContext('2d');
-            let confettiParticles = [];
-            let confettiActive = false;
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            function createConfetti() {
-                const colors = ['#d4af37', '#e879a8', '#3b82f6', '#22c55e', '#f4e4ba'];
-                for (let i = 0; i < 100; i++) {
-                    confettiParticles.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height - canvas.height,
-                        size: Math.random() * 6 + 2,
-                        color: colors[Math.floor(Math.random() * colors.length)],
-                        speedY: Math.random() * 3 + 2,
-                        speedX: Math.random() * 2 - 1,
-                        rotation: Math.random() * 360,
-                        rotationSpeed: Math.random() * 4 - 2
-                    });
-                }
-            }
-
-            function drawConfetti() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                confettiParticles.forEach((p, index) => {
-                    ctx.save();
-                    ctx.translate(p.x, p.y);
-                    ctx.rotate((p.rotation * Math.PI) / 180);
-                    ctx.fillStyle = p.color;
-                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-                    ctx.restore();
-
-                    p.y += p.speedY;
-                    p.x += p.speedX;
-                    p.rotation += p.rotationSpeed;
-
-                    if (p.y > canvas.height) {
-                        p.y = -10;
-                        p.x = Math.random() * canvas.width;
-                    }
-                });
-
-                if (confettiActive) {
-                    requestAnimationFrame(drawConfetti);
-                } else {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                }
-            }
-
-            function triggerConfetti() {
-                confettiParticles = [];
-                createConfetti();
-                confettiActive = true;
-                drawConfetti();
-                
-                setTimeout(() => {
-                    confettiActive = false;
-                }, 5000);
-            }
 
             // Prevent double tap zoom
             let lastTouchEnd = 0;
@@ -1381,37 +899,6 @@
                 if (now - lastTouchEnd <= 300) e.preventDefault();
                 lastTouchEnd = now;
             }, { passive: false });
-
-            // Animate stats counting
-            function animateValue(element, start, end, duration, isInfinity) {
-                if (isInfinity) {
-                    element.textContent = '∞';
-                    return;
-                }
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const value = Math.floor(progress * (end - start) + start);
-                    element.textContent = value + (element.dataset.suffix || '');
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-
-            window.addEventListener('load', () => {
-                const statValues = document.querySelectorAll('.stat-value');
-                const targets = [0, 1, 1, 100];
-                const isInfinity = [true, false, false, false];
-                const suffixes = ['', '', '', '%'];
-                
-                statValues.forEach((el, index) => {
-                    el.dataset.suffix = suffixes[index] || '';
-                    animateValue(el, 0, targets[index], 1500, isInfinity[index]);
-                });
-            });
         })();
     </script>
 </body>
