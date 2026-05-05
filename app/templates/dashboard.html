@@ -8,10 +8,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
-    <link rel="shortcut icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
-    <link rel="apple-touch-icon" href="../assets/icons/Afdal Adha Firnansyah.png">
-
     <title>The Last One — Fiction World</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -24,20 +22,11 @@
 
         :root {
             --gold: #d4af37;
-            --gold-light: #f4e4ba;
-            --gold-dark: #b8941f;
-            --gold-glow: rgba(212, 175, 55, 0.4);
-            --blue: #3b82f6;
-            --blue-light: #60a5fa;
+            --pink: #e879a8;
             --dark: #0a0a0a;
             --dark-gray: #1a1a1a;
-            --gray: #2a2a2a;
             --light-gray: #888;
             --white: #ffffff;
-            --red: #ef4444;
-            --green: #22c55e;
-            --pink: #e879a8;
-            --pink-glow: rgba(232, 121, 168, 0.3);
             --sidebar-width: 260px;
         }
 
@@ -49,71 +38,60 @@
         body {
             font-family: 'Inter', sans-serif;
             background: var(--dark);
-            min-height: 100vh;
             min-height: 100dvh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
             color: var(--white);
         }
 
-        /* Background */
         .bg-image {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-image: url('../assets/background/background 3.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-color: var(--dark);
             z-index: 0;
-            will-change: transform;
         }
 
         .bg-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
+            inset: 0;
+            background:
                 linear-gradient(135deg, rgba(5,5,5,0.95) 0%, rgba(15,10,5,0.90) 50%, rgba(5,5,5,0.95) 100%),
                 radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
                 radial-gradient(ellipse at 70% 80%, rgba(232, 121, 168, 0.04) 0%, transparent 50%);
             z-index: 1;
         }
 
-        /* Layout */
         .app-container {
             position: relative;
             z-index: 10;
             display: flex;
-            min-height: 100vh;
             min-height: 100dvh;
         }
 
         /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(20px) saturate(1.2);
-            -webkit-backdrop-filter: blur(20px) saturate(1.2);
+            background: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-right: 1px solid rgba(212, 175, 55, 0.1);
             display: flex;
             flex-direction: column;
             position: fixed;
-            height: 100vh;
             height: 100dvh;
-            z-index: 100;
+            /* FIX: Sidebar z-index lebih tinggi dari toggle */
+            z-index: 2000;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            transform: translateX(0);
         }
 
         .sidebar-header {
             padding: 32px 24px 24px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            flex-shrink: 0;
         }
 
         .sidebar-brand {
@@ -126,7 +104,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--pink) 100%);
+            background: linear-gradient(135deg, var(--gold), var(--pink));
             padding: 2px;
             flex-shrink: 0;
             animation: heartbeat 2s ease-in-out infinite;
@@ -152,7 +130,6 @@
             font-family: 'Playfair Display', serif;
             font-size: 18px;
             font-weight: 700;
-            color: var(--white);
             letter-spacing: 1px;
         }
 
@@ -168,6 +145,7 @@
             flex: 1;
             padding: 20px 16px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .nav-section {
@@ -188,47 +166,46 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 16px;
+            padding: 14px 16px;
             border-radius: 12px;
             color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             transition: all 0.3s ease;
-            margin-bottom: 4px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            font-family: 'Inter', sans-serif;
+            margin-bottom: 6px;
+            position: relative;
+            min-height: 48px;
         }
 
-        .nav-item:hover {
-            background: rgba(212, 175, 55, 0.08);
+        .nav-item:hover, .nav-item:active {
+            background: rgba(212, 175, 55, 0.12);
             color: var(--white);
         }
 
         .nav-item.active {
-            background: rgba(212, 175, 55, 0.12);
+            background: rgba(212, 175, 55, 0.15);
             color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.25);
         }
 
         .nav-icon {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 16px;
+            flex-shrink: 0;
         }
 
         .sidebar-footer {
             padding: 20px;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
+            flex-shrink: 0;
         }
 
+        /* User Card */
         .user-card {
             display: flex;
             align-items: center;
@@ -237,11 +214,45 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(212, 175, 55, 0.1);
             border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            min-height: 48px;
+        }
+
+        .user-card:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.25);
         }
 
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .user-card:hover .user-avatar {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .avatar-fallback {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold), var(--pink));
             display: flex;
@@ -258,12 +269,16 @@
         }
 
         .user-name {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-            color: var(--white);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            transition: color 0.3s ease;
+        }
+
+        .user-card:hover .user-name {
+            color: var(--gold);
         }
 
         .user-role {
@@ -277,13 +292,13 @@
             flex: 1;
             margin-left: var(--sidebar-width);
             padding: 32px;
-            min-height: 100vh;
             min-height: 100dvh;
+            transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Top Bar */
         .top-bar {
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
@@ -292,7 +307,6 @@
             font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
-            color: var(--white);
             letter-spacing: 1px;
             margin-bottom: 6px;
         }
@@ -306,7 +320,6 @@
         .hero-quote {
             background: rgba(20, 18, 14, 0.4);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 20px;
             padding: 32px;
@@ -340,7 +353,6 @@
             font-family: 'Playfair Display', serif;
             font-size: 20px;
             font-style: italic;
-            color: var(--white);
             line-height: 1.8;
             margin-bottom: 16px;
             max-width: 700px;
@@ -355,7 +367,7 @@
             text-transform: uppercase;
         }
 
-        /* Stats Grid - Redesigned as Link Cards */
+        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -363,206 +375,161 @@
             margin-bottom: 32px;
         }
 
-        .stat-link-card {
-            display: block;
-            text-decoration: none;
-            color: inherit;
+        .stat-card {
+            display: flex;
+            flex-direction: column;
             background: rgba(20, 18, 14, 0.5);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 20px;
-            padding: 28px 24px;
-            position: relative;
+            border-radius: 24px;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            height: 320px;
         }
 
-        .stat-link-card::before {
+        .stat-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.06);
+        }
+
+        .stat-card:active {
+            transform: translateY(-3px) scale(0.98);
+        }
+
+        .stat-visual {
+            height: 40%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .stat-card:hover .stat-visual img {
+            transform: scale(1.1);
+        }
+
+        .stat-visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.6) 100%);
+        }
+
+        .stat-content {
+            height: 60%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+            position: relative;
+        }
+
+        .stat-content::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
+            left: 20px;
+            right: 20px;
+            height: 1px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            opacity: 0.3;
         }
 
-        .stat-link-card::after {
-            content: '→';
+        .stat-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        .stat-card:hover .stat-title {
+            color: var(--gold);
+        }
+
+        .stat-subtitle {
+            font-size: 12px;
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        .stat-arrow {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
+            bottom: 16px;
+            right: 16px;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
             background: rgba(212, 175, 55, 0.08);
             border: 1px solid rgba(212, 175, 55, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gold);
-            font-size: 14px;
+            font-size: 12px;
             opacity: 0;
-            transform: translateX(-8px);
+            transform: translateX(-4px);
             transition: all 0.3s ease;
         }
 
-        .stat-link-card:hover {
-            border-color: rgba(212, 175, 55, 0.35);
-            background: rgba(20, 18, 14, 0.7);
-            transform: translateY(-4px);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(212, 175, 55, 0.06);
-        }
-
-        .stat-link-card:hover::before {
-            opacity: 1;
-        }
-
-        .stat-link-card:hover::after {
+        .stat-card:hover .stat-arrow {
             opacity: 1;
             transform: translateX(0);
         }
 
-        .stat-link-card:active {
-            transform: translateY(-2px) scale(0.98);
-        }
-
-        .stat-icon-wrap {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(232, 121, 168, 0.08));
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-link-card:hover .stat-icon-wrap {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 121, 168, 0.15));
-            transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
-        }
-
-        .stat-link-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-            transition: color 0.3s ease;
-        }
-
-        .stat-link-card:hover .stat-link-value {
-            color: var(--gold);
-        }
-
-        .stat-link-label {
-            font-size: 13px;
-            color: var(--light-gray);
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .stat-link-desc {
-            font-size: 11px;
-            color: var(--pink);
-            opacity: 0;
-            transform: translateY(6px);
-            transition: all 0.3s ease 0.05s;
-            font-style: italic;
-        }
-
-        .stat-link-card:hover .stat-link-desc {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Content Sections */
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .section-desc {
-            font-size: 14px;
-            color: var(--light-gray);
-            margin-bottom: 24px;
-        }
-
-        .placeholder-card {
-            background: rgba(20, 18, 14, 0.4);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 20px;
-            padding: 48px 32px;
-            text-align: center;
-        }
-
-        .placeholder-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-            opacity: 0.5;
-        }
-
-        .placeholder-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: var(--light-gray);
-            font-style: italic;
-        }
-
-        /* Mobile Menu Toggle */
+        /* Mobile Menu Toggle - FIX: z-index di bawah sidebar */
         .menu-toggle {
             display: none;
             position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 200;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(15, 15, 15, 0.9);
+            top: 16px;
+            left: 16px;
+            /* FIX: Toggle z-index di bawah sidebar */
+            z-index: 1500;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             color: var(--gold);
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
         }
 
+        .menu-toggle:hover, .menu-toggle:active {
+            background: rgba(212, 175, 55, 0.15);
+            transform: scale(1.05);
+        }
+
+        .menu-toggle.active {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        /* Sidebar Overlay */
         .sidebar-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 99;
+            background: rgba(0, 0, 0, 0.3);
+            /* FIX: Overlay di bawah sidebar tapi di atas content */
+            z-index: 1999;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -586,7 +553,8 @@
             border-radius: 2px;
         }
 
-        /* Responsive */
+        /* ==================== RESPONSIVE ==================== */
+
         @media (max-width: 1200px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -596,10 +564,13 @@
         @media (max-width: 900px) {
             .sidebar {
                 transform: translateX(-100%);
+                box-shadow: none;
+                width: 280px;
             }
 
             .sidebar.open {
                 transform: translateX(0);
+                box-shadow: 4px 0 30px rgba(0, 0, 0, 0.5);
             }
 
             .main-content {
@@ -613,15 +584,11 @@
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                gap: 16px;
             }
 
-            .stat-link-card {
-                padding: 20px 18px;
-            }
-
-            .stat-link-value {
-                font-size: 28px;
+            .stat-card {
+                height: 300px;
             }
 
             .page-title {
@@ -640,35 +607,32 @@
         @media (max-width: 480px) {
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .stat-card {
+                height: 280px;
+                border-radius: 20px;
+            }
+
+            .stat-content {
+                padding: 16px;
+            }
+
+            .stat-title {
+                font-size: 15px;
+            }
+
+            .stat-subtitle {
+                font-size: 11px;
             }
 
             .main-content {
                 padding: 80px 16px 16px;
             }
 
-            .stat-link-card {
-                padding: 18px 16px;
-                border-radius: 16px;
-            }
-
-            .stat-icon-wrap {
-                width: 42px;
-                height: 42px;
-                font-size: 20px;
-                margin-bottom: 14px;
-            }
-
-            .stat-link-value {
-                font-size: 24px;
-            }
-
-            .stat-link-label {
-                font-size: 12px;
-            }
-
-            .stat-link-card::after {
-                display: none;
+            .sidebar {
+                width: 260px;
             }
         }
 
@@ -680,18 +644,6 @@
             }
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .animate-in {
             animation: fadeInUp 0.6s ease forwards;
         }
@@ -700,17 +652,25 @@
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
         .delay-3 { animation-delay: 0.3s; opacity: 0; }
         .delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <button class="menu-toggle" id="menuToggle">☰</button>
+    <!-- Menu Toggle: z-index 1500, DI BAWAH sidebar -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    
+    <!-- Overlay: z-index 1999, di bawah sidebar (2000) -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="app-container">
-        <!-- Sidebar -->
+        <!-- Sidebar: z-index 2000, PALING ATAS -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-brand">
@@ -724,36 +684,38 @@
                 </div>
             </div>
 
-            <nav class="sidebar-nav">
+            <nav class="sidebar-nav" id="sidebarNav">
                 <div class="nav-section">
                     <div class="nav-label">Menu Utama</div>
-                    <button class="nav-item active" data-section="dashboard" onclick="switchSection(this, 'dashboard')">
+                    <a href="../templates/dashboard.html" class="nav-item active">
                         <span class="nav-icon">◈</span>
                         <span>Dashboard</span>
-                    </button>
-                    <button class="nav-item" data-section="kenangan" onclick="switchSection(this, 'kenangan')">
+                    </a>
+                    <a href="#" class="nav-item">
                         <span class="nav-icon">✦</span>
                         <span>Kenangan</span>
-                    </button>
-                    <button class="nav-item" data-section="cerita" onclick="switchSection(this, 'cerita')">
+                    </a>
+                    <a href="#" class="nav-item">
                         <span class="nav-icon">✧</span>
                         <span>Cerita Kita</span>
-                    </button>
-                    <button class="nav-item" data-section="dunia" onclick="switchSection(this, 'dunia')">
+                    </a>
+                    <a href="#" class="nav-item">
                         <span class="nav-icon">✶</span>
                         <span>Dunia Impian</span>
-                    </button>
+                    </a>
                 </div>
             </nav>
 
             <div class="sidebar-footer">
-                <div class="user-card">
-                    <div class="user-avatar">💝</div>
-                    <div class="user-info">
-                        <div class="user-name">Sang Penulis</div>
-                        <div class="user-role">Hati yang Tersembunyi</div>
+                <a href="profil.html" class="user-card">
+                    <div class="user-avatar">
+                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Avatar" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'avatar-fallback\'>AF</div>';">
                     </div>
-                </div>
+                    <div class="user-info">
+                        <div class="user-name">Afdal Adha F.</div>
+                        <div class="user-role">Sang Penulis</div>
+                    </div>
+                </a>
             </div>
         </aside>
 
@@ -776,65 +738,59 @@
                 <p class="quote-author">— Mr. Ashar</p>
             </div>
 
-            <!-- DASHBOARD SECTION -->
-            <div class="content-section active" id="dashboard">
-                <!-- Stats as Link Cards -->
-                <div class="stats-grid">
-                    <a href="#" class="stat-link-card animate-in delay-1">
-                        <div class="stat-icon-wrap">💭</div>
-                        <div class="stat-link-value">∞</div>
-                        <div class="stat-link-label">Kali Memikirkanmu</div>
-                        <div class="stat-link-desc">Setiap detik, tanpa henti</div>
-                    </a>
-                    <a href="#" class="stat-link-card animate-in delay-2">
-                        <div class="stat-icon-wrap">📖</div>
-                        <div class="stat-link-value">1</div>
-                        <div class="stat-link-label">Cerita Utama</div>
-                        <div class="stat-link-desc">Kamu dan aku, di dunia ini</div>
-                    </a>
-                    <a href="#" class="stat-link-card animate-in delay-3">
-                        <div class="stat-icon-wrap">🌍</div>
-                        <div class="stat-link-value">1</div>
-                        <div class="stat-link-label">Dunia yang Kubuat</div>
-                        <div class="stat-link-desc">Tempat kita bisa bersama</div>
-                    </a>
-                    <a href="#" class="stat-link-card animate-in delay-4">
-                        <div class="stat-icon-wrap">💖</div>
-                        <div class="stat-link-value">100%</div>
-                        <div class="stat-link-label">Isi Hatiku</div>
-                        <div class="stat-link-desc">Hanya untukmu, selamanya</div>
-                    </a>
-                </div>
-            </div>
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <!-- Card 1: Karakter -->
+                <a href="karakter.html" class="stat-card animate-in delay-1">
+                    <div class="stat-visual">
+                        <img src="../assets/images/character.jpg" alt="Karakter" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
+                        <div class="stat-visual-overlay"></div>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">Karakter</h3>
+                        <p class="stat-subtitle">Jiwa-jiwa yang hidup di dunia fiksi, masing-masing punya cerita dan takdirnya sendiri.</p>
+                        <span class="stat-arrow">→</span>
+                    </div>
+                </a>
 
-            <!-- KENANGAN SECTION -->
-            <div class="content-section" id="kenangan">
-                <h2 class="section-title">Kenangan</h2>
-                <p class="section-desc">Momen-momen yang tersimpan dalam ingatan.</p>
-                <div class="placeholder-card">
-                    <div class="placeholder-icon">✦</div>
-                    <p class="placeholder-text">Halaman ini sedang ditulis...</p>
-                </div>
-            </div>
+                <!-- Card 2: Imajinasi Penulis -->
+                <a href="cerita.html" class="stat-card animate-in delay-2">
+                    <div class="stat-visual">
+                        <img src="../assets/images/story.jpg" alt="Cerita" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
+                        <div class="stat-visual-overlay"></div>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">Imajinasi Penulis</h3>
+                        <p class="stat-subtitle">Sang penulis menuangkan semua imajinasi dan perasaannya dalam dunia fiksi ini.</p>
+                        <span class="stat-arrow">→</span>
+                    </div>
+                </a>
 
-            <!-- CERITA KITA SECTION -->
-            <div class="content-section" id="cerita">
-                <h2 class="section-title">Cerita Kita</h2>
-                <p class="section-desc">Bab-bab perjalanan yang belum selesai.</p>
-                <div class="placeholder-card">
-                    <div class="placeholder-icon">✧</div>
-                    <p class="placeholder-text">Kisah ini masih berlanjut...</p>
-                </div>
-            </div>
+                <!-- Card 3: Halicarnas Academy -->
+                <a href="dunia.html" class="stat-card animate-in delay-3">
+                    <div class="stat-visual">
+                        <img src="../assets/images/world.jpg" alt="Dunia" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
+                        <div class="stat-visual-overlay"></div>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">Halicarnas Academy</h3>
+                        <p class="stat-subtitle">Where Logic Meets Purpose</p>
+                        <span class="stat-arrow">→</span>
+                    </div>
+                </a>
 
-            <!-- DUNIA IMPIAN SECTION -->
-            <div class="content-section" id="dunia">
-                <h2 class="section-title">Dunia Impian</h2>
-                <p class="section-desc">Tempat di mana semua menjadi mungkin.</p>
-                <div class="placeholder-card">
-                    <div class="placeholder-icon">✶</div>
-                    <p class="placeholder-text">Dunia baru akan segera terbentuk...</p>
-                </div>
+                <!-- Card 4: Koneksi -->
+                <a href="koneksi.html" class="stat-card animate-in delay-4">
+                    <div class="stat-visual">
+                        <img src="../assets/images/connection.jpg" alt="Koneksi" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
+                        <div class="stat-visual-overlay"></div>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">Koneksi</h3>
+                        <p class="stat-subtitle">Benang takdir yang terjalin antar karakter, menyisakan misteri terakhir.</p>
+                        <span class="stat-arrow">→</span>
+                    </div>
+                </a>
             </div>
         </main>
     </div>
@@ -843,62 +799,88 @@
         (function() {
             'use strict';
 
-            // Mobile menu toggle
             const menuToggle = document.getElementById('menuToggle');
             const sidebar = document.getElementById('sidebar');
             const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const sidebarNav = document.getElementById('sidebarNav');
 
-            function toggleSidebar() {
-                sidebar.classList.toggle('open');
-                sidebarOverlay.classList.toggle('active');
+            function openSidebar() {
+                sidebar.classList.add('open');
+                sidebarOverlay.classList.add('active');
+                menuToggle.classList.add('active');
+                menuToggle.textContent = '✕';
+                document.body.style.overflow = 'hidden';
             }
 
-            menuToggle.addEventListener('click', toggleSidebar);
-            sidebarOverlay.addEventListener('click', toggleSidebar);
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.textContent = '☰';
+                document.body.style.overflow = '';
+            }
 
-            // Section Switching
-            window.switchSection = function(element, sectionId) {
-                // Update nav active state
-                document.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                element.classList.add('active');
-
-                // Switch content section
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                document.getElementById(sectionId).classList.add('active');
-
-                // Close sidebar on mobile
-                if (window.innerWidth <= 900) {
-                    toggleSidebar();
+            function toggleSidebar() {
+                if (sidebar.classList.contains('open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
                 }
+            }
 
-                // Update page title
-                const titles = {
-                    dashboard: 'The Last One',
-                    kenangan: 'Kenangan',
-                    cerita: 'Cerita Kita',
-                    dunia: 'Dunia Impian'
-                };
-                const subtitles = {
-                    dashboard: 'Selamat datang di dunia yang kubuat hanya untukmu.',
-                    kenangan: 'Momen-momen yang tersimpan dalam ingatan.',
-                    cerita: 'Bab-bab perjalanan yang belum selesai.',
-                    dunia: 'Tempat di mana semua menjadi mungkin.'
-                };
-                document.querySelector('.page-title').textContent = titles[sectionId];
-                document.querySelector('.page-subtitle').textContent = subtitles[sectionId];
-            };
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleSidebar();
+            });
 
-            // Prevent double tap zoom
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth > 900) return;
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+
+            sidebarNav.addEventListener('click', function(e) {
+                const navItem = e.target.closest('.nav-item');
+                if (!navItem) return;
+                
+                if (window.innerWidth <= 900) {
+                    closeSidebar();
+                }
+            });
+
+            document.querySelector('.user-card').addEventListener('click', function(e) {
+                if (window.innerWidth <= 900) {
+                    closeSidebar();
+                }
+            });
+
             let lastTouchEnd = 0;
-            document.addEventListener('touchend', (e) => {
+            document.addEventListener('touchend', function(e) {
                 const now = Date.now();
-                if (now - lastTouchEnd <= 300) e.preventDefault();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
                 lastTouchEnd = now;
             }, { passive: false });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 900) {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                    document.body.style.overflow = '';
+                }
+            });
         })();
     </script>
 </body>
