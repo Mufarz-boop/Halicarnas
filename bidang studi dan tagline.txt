@@ -123,54 +123,32 @@ J. ILMU POLITIK INTERNASIONAL
 
 BIDANG STUDI DAN TAGLINENYA
 
-A. ILMU MATEMATIKA DAN TERAPAN
-"Mengasah kekuatan logika dan pemodelan matematika 
-untuk mengubah masalah kompleks menjadi solusi presisi 
-yang mendorong kemajuan ilmiah dan teknologi dunia nyata."
+A. Fakultas Matematika dan Terapan
+“Mengolah logika dan model matematika untuk solusi ilmiah yang presisi.”
 
-B. ILMU BAHASA DAN SASTRA
-"Menyelami kedalaman bahasa, makna, dan narasi manusia 
-untuk membangun komunikasi yang kuat, pemahaman lintas budaya, 
-serta kreasi sastra yang relevan di era digital."
+B. Fakultas Bahasa dan Sastra
+“Menggali bahasa dan sastra untuk komunikasi, budaya, dan kreativitas.”
 
-C. ILMU SOSIAL DAN HUMANIORA
-"Menganalisis dinamika manusia, masyarakat, dan budaya secara 
-mendalam untuk menciptakan pemahaman yang lebih baik dan solusi 
-humanis terhadap tantangan sosial kontemporer."
+C. Fakultas Ilmu Sosial dan Humaniora
+“Mengkaji manusia, masyarakat, dan budaya untuk solusi sosial yang humanis.”
 
-D. ILMU PENGETAHUAN ALAM
-"Mengungkap hukum-hukum alam semesta melalui pendekatan ilmiah yang 
-ketat, serta memanfaatkan pengetahuan tersebut untuk inovasi 
-berkelanjutan dan kemajuan peradaban manusia."
+D. Fakultas Ilmu Pengetahuan Alam Terapan
+“Menjelajahi sains alam untuk inovasi terapan dan kemajuan berkelanjutan.”
 
-E. ILMU KOMPUTER DAN INFORMATIKA
-"Membangun fondasi komputasi yang tangguh dan inovatif untuk 
-menciptakan teknologi cerdas, sistem aman, serta solusi digital yang 
-memberdayakan masyarakat di era kecerdasan buatan."
+E. Fakultas Ilmu Komputer dan Teknologi Informasi
+“Membangun teknologi cerdas dan sistem digital untuk masa depan yang aman.”
 
-F. ILMU SENI DAN DESAIN
-"Menggabungkan visi kreatif, estetika yang tajam, dan teknologi 
-modern untuk menghasilkan karya seni dan desain yang bermakna, 
-fungsional, serta berdampak budaya dan sosial."
+F. Fakultas Seni dan Desain
+“Mewujudkan kreativitas, estetika, dan teknologi dalam karya yang bermakna.”
 
-G. ILMU BISNIS DAN MANAJEMEN
-"Mencetak pemimpin strategis yang menguasai analitik, inovasi, dan 
-etika bisnis untuk menciptakan nilai berkelanjutan dan keunggulan 
-kompetitif di pasar global yang dinamis."
+G. Fakultas Ekonomi dan Bisnis
+“Mencetak pemimpin bisnis strategis untuk nilai dan pertumbuhan berkelanjutan.”
 
-H. ILMU KEDOKTERAN
-"Mengintegrasikan ilmu biomedis yang mendalam, keterampilan klinis 
-yang presisi, serta nilai kemanusiaan untuk memahami, mencegah, 
-menyembuhkan penyakit, dan meningkatkan kualitas kehidupan manusia 
-di tengah tantangan kesehatan global dan kemajuan teknologi medis."
+H. Fakultas Kedokteran
+“Menyatukan ilmu, keterampilan, dan empati untuk kesehatan manusia.”
 
-I. ILMU HUKUM
-"Mengembangkan pemahaman hukum yang komprehensif dan kritis untuk 
-menegakkan keadilan, melindungi hak asasi, serta menciptakan kerangka 
-regulasi yang adil di era digital dan hubungan internasional."
+I. Fakultas Hukum
+“Menegakkan keadilan melalui ilmu hukum yang kritis dan komprehensif.”
 
-J. ILMU POLITIK INTERNASIONAL
-"Menganalisis kekuasaan, geopolitik, dan dinamika global secara 
-mendalam untuk membentuk pemimpin yang visioner, diplomat yang handal, 
-serta pembuat kebijakan yang mampu membangun perdamaian dan kerjasama 
-internasional."
+J. Fakultas Ilmu Politik
+“Membentuk pemimpin dan kebijakan untuk diplomasi, perdamaian, dan perubahan.”

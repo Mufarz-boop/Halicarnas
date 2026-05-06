@@ -1,0 +1,21 @@
+kayaknya kamu belum ngerti tentang halicarnas, halicarnas adalah sebuah academy
+
+Halicarnas didirikan pada 11 November 2006 dan dicetuskan oleh tiga orang yaitu Mr. William, Ms. Celia dan Mr. Abraham.
+
+Akademi ini terdiri dari 10 Fakultas yaitu:
+1. Fakultas Matematika dan Terapan
+2. Fakultas Bahasa dan Sastra
+3. Fakultas Ilmu Sosial dan Humaniora
+4. Fakultas Ilmu Pengetahuan Alam Terapan
+5. Fakultas Ilmu Komputer dan Teknologi Informasi
+6. Fakultas Seni dan Desain
+7. Fakultas Ekonomi dan Bisnis
+8. Fakultas Kedokteran
+9. Fakultas Hukum
+10. Fakultas Ilmu Politik
+
+setiap fakultas memiliki Kelas bidang studinya dan setiap bidang studi memiliki 1 Kelas
+
+Terdapat 12 Kelas Murid, yang masing-masing kelas memiliki kapasitas maksimun 30 Murid
+
+Akademi ini sederajat dengan SMA/SMK

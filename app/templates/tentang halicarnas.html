@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
-    <title>The Last One — Fiction World</title>
+    <title>Tentang Halicarnas — The Last One</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -70,7 +70,7 @@
         }
 
         /* ============================================ */
-        /* SIDEBAR - Desktop only */
+        /* SIDEBAR - Desktop Only */
         /* ============================================ */
         .sidebar {
             width: var(--sidebar-width);
@@ -83,10 +83,8 @@
             position: fixed;
             height: 100dvh;
             z-index: 100;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            transform: translateX(0);
         }
 
         .sidebar-header {
@@ -206,7 +204,6 @@
             flex-shrink: 0;
         }
 
-        /* User Card */
         .user-card {
             display: flex;
             align-items: center;
@@ -294,43 +291,275 @@
             margin-left: var(--sidebar-width);
             padding: 32px;
             min-height: 100dvh;
-            transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Top Bar */
-        .top-bar {
-            margin-bottom: 28px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        /* ============================================ */
+        /* TENTANG HALICARNAS - ACADEMY STYLES */
+        /* ============================================ */
+
+        /* Hero Section */
+        .academy-hero {
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            margin-bottom: 40px;
         }
 
-        .page-title {
+        .academy-hero .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .academy-hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 48px;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--gold), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .page-subtitle {
+        .academy-hero .subtitle {
+            font-size: 16px;
+            color: var(--light-gray);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .academy-hero .established {
             font-size: 13px;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        /* Info Cards Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: rgba(20, 18, 14, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .info-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.05);
+        }
+
+        .info-card .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .info-card .label {
+            font-size: 13px;
+            color: var(--light-gray);
+            font-weight: 500;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.3), transparent);
+        }
+
+        /* Founders Section */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .founder-card {
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--pink));
+            opacity: 0.5;
+        }
+
+        .founder-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .founder-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 121, 168, 0.2));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 16px;
+            transition: all 0.3s ease;
+        }
+
+        .founder-card:hover .founder-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .founder-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .founder-role {
+            font-size: 12px;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        /* Faculties Section */
+        .faculties-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .faculty-card {
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .faculty-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(4px);
+        }
+
+        .faculty-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .faculty-card:hover .faculty-icon {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+        }
+
+        .faculty-info {
+            flex: 1;
+        }
+
+        .faculty-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .faculty-desc {
+            font-size: 12px;
             color: var(--light-gray);
         }
 
-        /* Hero Quote */
-        .hero-quote {
-            background: rgba(20, 18, 14, 0.4);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
+        .faculty-arrow {
+            color: var(--gold);
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.3s ease;
         }
 
-        .hero-quote::before {
+        .faculty-card:hover .faculty-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Class Info Section */
+        .class-info {
+            background: rgba(20, 18, 14, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-info::before {
             content: '';
             position: absolute;
             top: 0;
@@ -341,152 +570,90 @@
             opacity: 0.5;
         }
 
-        .quote-mark {
+        .class-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .class-stat {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .class-stat:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .class-stat .value {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 36px;
+            font-weight: 700;
             color: var(--gold);
-            opacity: 0.3;
             line-height: 1;
             margin-bottom: 8px;
         }
 
-        .quote-text {
+        .class-stat .text {
+            font-size: 13px;
+            color: var(--light-gray);
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: rgba(20, 18, 14, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-block::before,
+        .quote-block::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            line-height: 1;
+        }
+
+        .quote-block::before {
+            top: 10px;
+            left: 20px;
+        }
+
+        .quote-block::after {
+            bottom: -10px;
+            right: 20px;
+            transform: rotate(180deg);
+        }
+
+        .quote-block p {
             font-family: 'Playfair Display', serif;
             font-size: 20px;
             font-style: italic;
-            line-height: 1.8;
-            margin-bottom: 16px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.9);
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
-        .quote-author {
-            font-size: 12px;
+        .quote-block .author {
+            margin-top: 20px;
+            font-size: 13px;
             color: var(--gold);
             letter-spacing: 3px;
             text-transform: uppercase;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-
-        .stat-card {
-            display: flex;
-            flex-direction: column;
-            background: rgba(20, 18, 14, 0.5);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 24px;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            height: 320px;
-        }
-
-        .stat-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateY(-6px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.06);
-        }
-
-        .stat-card:active {
-            transform: translateY(-3px) scale(0.98);
-        }
-
-        .stat-visual {
-            height: 40%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .stat-card:hover .stat-visual img {
-            transform: scale(1.1);
-        }
-
-        .stat-visual-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.6) 100%);
-        }
-
-        .stat-content {
-            height: 60%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(212, 175, 55, 0.08);
-            position: relative;
-        }
-
-        .stat-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 20px;
-            right: 20px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .stat-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--white);
-            transition: color 0.3s ease;
-        }
-
-        .stat-card:hover .stat-title {
-            color: var(--gold);
-        }
-
-        .stat-subtitle {
-            font-size: 12px;
-            color: var(--light-gray);
-            line-height: 1.6;
-        }
-
-        .stat-arrow {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 12px;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover .stat-arrow {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         /* ============================================ */
@@ -599,7 +766,6 @@
             opacity: 0;
         }
 
-        /* FAB Menu Items */
         .fab-menu {
             display: flex;
             flex-direction: column;
@@ -690,7 +856,6 @@
             color: var(--white);
         }
 
-        /* Staggered animation for menu items */
         .fab-menu.open .fab-item:nth-child(1) { transition-delay: 0.05s; }
         .fab-menu.open .fab-item:nth-child(2) { transition-delay: 0.1s; }
         .fab-menu.open .fab-item:nth-child(3) { transition-delay: 0.15s; }
@@ -702,65 +867,94 @@
         /* ============================================ */
         @media (max-width: 900px) {
             .sidebar {
-                display: none; /* Hide sidebar on mobile */
+                display: none;
             }
 
             .main-content {
                 margin-left: 0;
-                padding: 32px 20px 100px; /* Extra bottom padding for FAB */
+                padding: 24px 20px 100px;
             }
 
             .fab-container {
                 display: flex;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .academy-hero h1 {
+                font-size: 36px;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+
+            .info-card .number {
+                font-size: 32px;
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
                 gap: 16px;
             }
 
-            .stat-card {
-                height: 300px;
+            .faculties-grid {
+                grid-template-columns: 1fr;
             }
 
-            .page-title {
-                font-size: 24px;
+            .class-info-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
 
-            .hero-quote {
-                padding: 24px;
-            }
-
-            .quote-text {
-                font-size: 16px;
+            .quote-block p {
+                font-size: 18px;
             }
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
+            .main-content {
+                padding: 20px 16px 100px;
+            }
+
+            .academy-hero {
+                padding: 30px 16px;
+            }
+
+            .academy-hero h1 {
+                font-size: 28px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
                 gap: 12px;
             }
 
-            .stat-card {
-                height: 280px;
-                border-radius: 20px;
+            .info-card {
+                padding: 20px;
             }
 
-            .stat-content {
-                padding: 16px;
+            .section-title {
+                font-size: 20px;
             }
 
-            .stat-title {
-                font-size: 15px;
+            .faculty-card {
+                padding: 18px;
             }
 
-            .stat-subtitle {
-                font-size: 11px;
+            .class-info {
+                padding: 24px;
             }
 
-            .main-content {
-                padding: 24px 16px 100px;
+            .quote-block {
+                padding: 28px 20px;
+            }
+
+            .quote-block p {
+                font-size: 16px;
             }
 
             .fab-container {
@@ -776,20 +970,6 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
-        .animate-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .delay-3 { animation-delay: 0.3s; opacity: 0; }
-        .delay-4 { animation-delay: 0.4s; opacity: 0; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
@@ -799,12 +979,8 @@
     <!-- Overlay Backdrop -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- ============================================ -->
-    <!-- FLOATING ACTION BUTTON (FAB) MENU -->
-    <!-- Muncul di mobile, hidden di desktop -->
-    <!-- ============================================ -->
+    <!-- FAB Menu -->
     <div class="fab-container" id="fabContainer">
-        <!-- Menu Items (muncul pas FAB diklik) -->
         <div class="fab-menu" id="fabMenu">
             <a href="../templates/dashboard.html" class="fab-item">
                 <span class="fab-item-label">Dashboard</span>
@@ -827,8 +1003,6 @@
                 <span class="fab-item-btn">👤</span>
             </a>
         </div>
-
-        <!-- Main FAB Button -->
         <button class="fab-main" id="fabMain" aria-label="Toggle menu" aria-expanded="false">
             <div class="fab-icon">
                 <span></span>
@@ -889,26 +1063,184 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar -->
-            <div class="top-bar animate-in">
-                <h1 class="page-title">The Last One</h1>
-                <p class="page-subtitle">“Here, the Faceless Writer unleashes all my imagination and deepest feelings.”</p>
+            <!-- Hero Section -->
+            <div class="academy-hero">
+                <div class="badge">Akademi Sederajat SMA/SMK</div>
+                <h1>HALICARNAS</h1>
+                <p class="subtitle">Where Logic Meets Purpose</p>
+                <p class="established">Didirikan 11 November 2006</p>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="number">10</div>
+                    <div class="label">Fakultas</div>
+                </div>
+                <div class="info-card">
+                    <div class="number">12</div>
+                    <div class="label">Kelas</div>
+                </div>
+                <div class="info-card">
+                    <div class="number">30</div>
+                    <div class="label">Murid per Kelas</div>
+                </div>
+            </div>
+
+            <!-- Founders Section -->
+            <div class="section-title">
+                Para Pendiri
+                <span class="line"></span>
+            </div>
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-avatar">👨‍🏫</div>
+                    <div class="founder-name">Mr. William</div>
+                    <div class="founder-role">Co-Founder</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-avatar">👩‍🏫</div>
+                    <div class="founder-name">Ms. Celia</div>
+                    <div class="founder-role">Co-Founder</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-avatar">👨‍🏫</div>
+                    <div class="founder-name">Mr. Abraham</div>
+                    <div class="founder-role">Co-Founder</div>
+                </div>
+            </div>
+
+            <!-- Faculties Section -->
+            <div class="section-title">
+                10 Fakultas
+                <span class="line"></span>
+            </div>
+            <div class="faculties-grid">
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">📐</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Matematika dan Terapan</div>
+                        <div class="faculty-desc">“Mengolah logika dan model matematika untuk solusi ilmiah yang presisi.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">📚</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Bahasa dan Sastra</div>
+                        <div class="faculty-desc">“Menggali bahasa dan sastra untuk komunikasi, budaya, dan kreativitas.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">🌍</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Ilmu Sosial dan Humaniora</div>
+                        <div class="faculty-desc">“Mengkaji manusia, masyarakat, dan budaya untuk solusi sosial yang humanis.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">🔬</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Ilmu Pengetahuan Alam Terapan</div>
+                        <div class="faculty-desc">“Menjelajahi sains alam untuk inovasi terapan dan kemajuan berkelanjutan.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">💻</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Ilmu Komputer dan Teknologi Informasi</div>
+                        <div class="faculty-desc">“Membangun teknologi cerdas dan sistem digital untuk masa depan yang aman.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">🎨</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Seni dan Desain</div>
+                        <div class="faculty-desc">“Mewujudkan kreativitas, estetika, dan teknologi dalam karya yang bermakna.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">📊</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Ekonomi dan Bisnis</div>
+                        <div class="faculty-desc">“Mencetak pemimpin bisnis strategis untuk nilai dan pertumbuhan berkelanjutan.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">🏥</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Kedokteran</div>
+                        <div class="faculty-desc">“Menyatukan ilmu, keterampilan, dan empati untuk kesehatan manusia.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">⚖️</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Hukum</div>
+                        <div class="faculty-desc">“Menegakkan keadilan melalui ilmu hukum yang kritis dan komprehensif.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+                <a href="#" class="faculty-card">
+                    <div class="faculty-icon">🏛️</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Fakultas Ilmu Politik</div>
+                        <div class="faculty-desc">“Membentuk pemimpin dan kebijakan untuk diplomasi, perdamaian, dan perubahan.”</div>
+                    </div>
+                    <span class="faculty-arrow">→</span>
+                </a>
+            </div>
+
+            <!-- Class Info Section -->
+            <div class="class-info">
+                <div class="section-title" style="margin-bottom: 8px;">
+                    Informasi Kelas
+                    <span class="line"></span>
+                </div>
+                <p style="font-size: 14px; color: var(--light-gray); margin-bottom: 8px;">
+                    Setiap fakultas memiliki kelas bidang studinya masing-masing. Total terdapat 12 kelas murid dengan kapasitas maksimum 30 murid per kelas.
+                </p>
+                <div class="class-info-grid">
+                    <div class="class-stat">
+                        <div class="value">12</div>
+                        <div class="text">Total Kelas</div>
+                    </div>
+                    <div class="class-stat">
+                        <div class="value">30</div>
+                        <div class="text">Kapasitas per Kelas</div>
+                    </div>
+                    <div class="class-stat">
+                        <div class="value">360</div>
+                        <div class="text">Total Kapasitas Murid</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quote Block -->
+            <div class="quote-block">
+                <p>
+                    Di Halicarnas, kami percaya bahwa setiap murid memiliki potensi unik. 
+                    Dengan 10 fakultas yang beragam, kami memberikan ruang bagi setiap jiwa 
+                    untuk menemukan jalan mereka sendiri — tempat logika bertemu dengan tujuan.
+                </p>
+                <div class="author">— Para Pendiri Halicarnas</div>
             </div>
         </main>
     </div>
 
-    <!-- ============================================ -->
-    <!-- JAVASCRIPT - FAB MENU LOGIC -->
-    <!-- ============================================ -->
     <script>
         (function() {
             const fabMain = document.getElementById('fabMain');
             const fabMenu = document.getElementById('fabMenu');
             const overlay = document.getElementById('sidebarOverlay');
 
-            // ============================================
-            // FUNCTION: Open FAB Menu
-            // ============================================
             function openFabMenu() {
                 fabMain.classList.add('open');
                 fabMenu.classList.add('open');
@@ -917,9 +1249,6 @@
                 document.body.style.overflow = 'hidden';
             }
 
-            // ============================================
-            // FUNCTION: Close FAB Menu
-            // ============================================
             function closeFabMenu() {
                 fabMain.classList.remove('open');
                 fabMenu.classList.remove('open');
@@ -928,9 +1257,6 @@
                 document.body.style.overflow = '';
             }
 
-            // ============================================
-            // FUNCTION: Toggle FAB Menu
-            // ============================================
             function toggleFabMenu() {
                 if (fabMain.classList.contains('open')) {
                     closeFabMenu();
@@ -939,26 +1265,16 @@
                 }
             }
 
-            // ============================================
-            // EVENT: Click FAB Button
-            // ============================================
             fabMain.addEventListener('click', function(e) {
                 e.stopPropagation();
                 toggleFabMenu();
             });
 
-            // ============================================
-            // EVENT: Click Overlay Backdrop
-            // ============================================
             overlay.addEventListener('click', function(e) {
                 e.stopPropagation();
                 closeFabMenu();
             });
 
-            // ============================================
-            // EVENT: Click FAB Menu Items
-            // Auto-close menu pas klik link
-            // ============================================
             const fabItems = fabMenu.querySelectorAll('a');
             fabItems.forEach(function(item) {
                 item.addEventListener('click', function() {
@@ -966,19 +1282,12 @@
                 });
             });
 
-            // ============================================
-            // EVENT: Escape Key
-            // ============================================
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && fabMain.classList.contains('open')) {
                     closeFabMenu();
                 }
             });
 
-            // ============================================
-            // EVENT: Click Inside FAB Menu
-            // Don't close when clicking inside menu
-            // ============================================
             fabMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
