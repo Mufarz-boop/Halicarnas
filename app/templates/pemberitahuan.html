@@ -8,10 +8,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
-    <title>The Last One — Fiction World</title>
+    <title>Pemberitahuan — The Last One</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -317,176 +317,485 @@
             color: var(--light-gray);
         }
 
-        /* Hero Quote */
-        .hero-quote {
-            background: rgba(20, 18, 14, 0.4);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
+        /* ============================================ */
+        /* NOTIFICATION / LETTER STYLES */
+        /* ============================================ */
+
+        /* Intro Section */
+        .intro-section {
             text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        .hero-quote::before {
+        .intro-section::before {
+            content: '❦';
+            font-size: 32px;
+            color: var(--gold);
+            opacity: 0.4;
+            display: block;
+            margin-bottom: 20px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .intro-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .intro-text {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
+            opacity: 0.3;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+        }
+
+        /* Letter Card */
+        .letter-card {
+            position: relative;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .letter-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .letter-card:nth-child(even) .letter-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .letter-card:nth-child(even) .letter-content {
+                margin-left: 40px;
+                margin-right: 0;
+            }
+        }
+
+        .letter-dot {
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--dark);
+            border: 2px solid var(--gold);
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .letter-card:hover .letter-dot {
+            background: var(--gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            transform: translateX(-50%) scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .letter-dot {
+                left: 20px;
+            }
+        }
+
+        .letter-content {
+            width: calc(50% - 40px);
+            background: rgba(20, 18, 14, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .letter-content::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .letter-content:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.06);
+        }
+
+        .letter-content:hover::before {
+            opacity: 0.5;
+        }
+
+        .letter-content.unread {
+            border-color: rgba(232, 121, 168, 0.3);
+        }
+
+        .letter-content.unread::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 10px rgba(232, 121, 168, 0.5);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @media (max-width: 768px) {
+            .letter-content {
+                width: calc(100% - 40px);
+                margin-left: 40px !important;
+            }
+        }
+
+        .letter-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .letter-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .letter-meta {
+            flex: 1;
+        }
+
+        .letter-date {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .letter-type {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--white);
+            line-height: 1.4;
+        }
+
+        .letter-preview {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .letter-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+        }
+
+        .letter-sender {
+            font-family: 'Caveat', cursive;
+            font-size: 16px;
+            color: var(--pink);
+            opacity: 0.8;
+        }
+
+        .letter-action {
+            font-size: 12px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s ease;
+        }
+
+        .letter-content:hover .letter-action {
+            gap: 10px;
+        }
+
+        /* Expanded Letter Modal */
+        .letter-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(5, 5, 5, 0.92);
+            backdrop-filter: blur(30px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .letter-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .letter-modal-content {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 0 24px;
+            position: relative;
+            transform: translateY(40px);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .letter-modal.active .letter-modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-close:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-paper {
+            background: rgba(20, 18, 14, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
             opacity: 0.5;
         }
 
-        .quote-mark {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
+        .modal-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .modal-date {
+            font-size: 11px;
             color: var(--gold);
-            opacity: 0.3;
-            line-height: 1;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             margin-bottom: 8px;
         }
 
-        .quote-text {
+        .modal-title {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-style: italic;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--white);
         }
 
-        .quote-author {
-            font-size: 12px;
+        .modal-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--pink);
+            opacity: 0.8;
+        }
+
+        .modal-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 40px;
+        }
+
+        .modal-body p {
+            margin-bottom: 16px;
+        }
+
+        .modal-body .highlight {
             color: var(--gold);
-            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        .modal-body .secret {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--pink);
+            text-align: center;
+            margin: 32px 0;
+            padding: 20px;
+            background: rgba(232, 121, 168, 0.05);
+            border: 1px solid rgba(232, 121, 168, 0.15);
+            border-radius: 16px;
+            line-height: 1.8;
+        }
+
+        .modal-footer {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .modal-signature {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .modal-closing {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-
-        .stat-card {
-            display: flex;
-            flex-direction: column;
-            background: rgba(20, 18, 14, 0.5);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 24px;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            height: 320px;
-        }
-
-        .stat-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateY(-6px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.06);
-        }
-
-        .stat-card:active {
-            transform: translateY(-3px) scale(0.98);
-        }
-
-        .stat-visual {
-            height: 40%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .stat-card:hover .stat-visual img {
-            transform: scale(1.1);
-        }
-
-        .stat-visual-overlay {
+        .modal-stamp {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.6) 100%);
-        }
-
-        .stat-content {
-            height: 60%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(212, 175, 55, 0.08);
-            position: relative;
-        }
-
-        .stat-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 20px;
-            right: 20px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .stat-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--white);
-            transition: color 0.3s ease;
-        }
-
-        .stat-card:hover .stat-title {
-            color: var(--gold);
-        }
-
-        .stat-subtitle {
-            font-size: 12px;
-            color: var(--light-gray);
-            line-height: 1.6;
-        }
-
-        .stat-arrow {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gold);
-            font-size: 12px;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.3s ease;
+            font-size: 24px;
+            opacity: 0.3;
+            transform: rotate(-15deg);
         }
 
-        .stat-card:hover .stat-arrow {
-            opacity: 1;
-            transform: translateX(0);
+        /* Floating Hearts Animation */
+        .floating-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 16px;
+            color: var(--pink);
+            opacity: 0;
+            animation: floatUp 8s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+            }
         }
 
         /* ============================================ */
@@ -702,63 +1011,44 @@
         /* ============================================ */
         @media (max-width: 900px) {
             .sidebar {
-                display: none; /* Hide sidebar on mobile */
+                display: none;
             }
 
             .main-content {
                 margin-left: 0;
-                padding: 32px 20px 100px; /* Extra bottom padding for FAB */
+                padding: 32px 20px 100px;
             }
 
             .fab-container {
                 display: flex;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .stat-card {
-                height: 300px;
-            }
-
             .page-title {
                 font-size: 24px;
             }
 
-            .hero-quote {
-                padding: 24px;
+            .modal-paper {
+                padding: 32px 24px;
             }
 
-            .quote-text {
-                font-size: 16px;
+            .modal-title {
+                font-size: 22px;
+            }
+
+            .modal-body {
+                font-size: 14px;
+            }
+
+            .intro-title {
+                font-size: 18px;
+            }
+
+            .intro-text {
+                font-size: 17px;
             }
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-
-            .stat-card {
-                height: 280px;
-                border-radius: 20px;
-            }
-
-            .stat-content {
-                padding: 16px;
-            }
-
-            .stat-title {
-                font-size: 15px;
-            }
-
-            .stat-subtitle {
-                font-size: 11px;
-            }
-
             .main-content {
                 padding: 24px 16px 100px;
             }
@@ -766,6 +1056,29 @@
             .fab-container {
                 bottom: 20px;
                 right: 20px;
+            }
+
+            .modal-paper {
+                padding: 24px 20px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+
+            .letter-content {
+                padding: 20px;
+            }
+
+            .letter-title {
+                font-size: 16px;
+            }
+
+            .modal-close {
+                top: 16px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
             }
         }
 
@@ -777,18 +1090,22 @@
             }
         }
 
-        .animate-in {
-            animation: fadeInUp 0.6s ease forwards;
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
 
-        .delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .delay-3 { animation-delay: 0.3s; opacity: 0; }
-        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.5);
         }
     </style>
 </head>
@@ -796,15 +1113,38 @@
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
     <!-- Overlay Backdrop -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <!-- Letter Modal -->
+    <div class="letter-modal" id="letterModal">
+        <button class="modal-close" id="modalClose">✕</button>
+        <div class="letter-modal-content">
+            <div class="modal-paper">
+                <div class="modal-header">
+                    <div class="modal-date" id="modalDate">— 13 November 2024 —</div>
+                    <h2 class="modal-title" id="modalTitle">Judul Surat</h2>
+                    <div class="modal-subtitle" id="modalSubtitle">Untuk seseorang yang spesial</div>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Content injected by JS -->
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-signature" id="modalSignature">— Faceless Author</div>
+                    <div class="modal-closing">Dengan segala perasaan yang tersimpan</div>
+                </div>
+                <div class="modal-stamp">💝</div>
+            </div>
+        </div>
+    </div>
+
     <!-- ============================================ -->
     <!-- FLOATING ACTION BUTTON (FAB) MENU -->
-    <!-- Muncul di mobile, hidden di desktop -->
     <!-- ============================================ -->
     <div class="fab-container" id="fabContainer">
-        <!-- Menu Items (muncul pas FAB diklik) -->
         <div class="fab-menu" id="fabMenu">
             <a href="../templates/dashboard.html" class="fab-item">
                 <span class="fab-item-label">Dashboard</span>
@@ -828,7 +1168,6 @@
             </a>
         </div>
 
-        <!-- Main FAB Button -->
         <button class="fab-main" id="fabMain" aria-label="Toggle menu" aria-expanded="false">
             <div class="fab-icon">
                 <span></span>
@@ -890,25 +1229,276 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Top Bar -->
-            <div class="top-bar animate-in">
-                <h1 class="page-title">The Last One</h1>
-                <p class="page-subtitle">“Here, the Faceless Writer unleashes all my imagination and deepest feelings.”</p>
+            <div class="top-bar">
+                <h1 class="page-title">Pemberitahuan</h1>
+                <p class="page-subtitle">Surat-surat rahasia dari dunia fiksi yang tak pernah berani diucapkan langsung.</p>
+            </div>
+
+            <!-- Intro Section -->
+            <div class="intro-section">
+                <h2 class="intro-title">Pesan dari Kedalaman Jiwa</h2>
+                <p class="intro-text">
+                    "Di balik setiap kata yang kutulis di sini, ada perasaan yang tak bisa kusebutkan namanya. 
+                    Mungkin kamu akan mengerti, mungkin juga tidak. Tapi setidaknya, aku sudah mencoba."
+                </p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="timeline-container" id="timelineContainer">
+                <div class="timeline-line"></div>
+                <!-- Letters will be populated by JS -->
             </div>
         </main>
     </div>
 
     <!-- ============================================ -->
-    <!-- JAVASCRIPT - FAB MENU LOGIC -->
+    <!-- JAVASCRIPT -->
     <!-- ============================================ -->
     <script>
         (function() {
+            // ============================================
+            // LETTERS DATA - Pesan-pesan rahasia
+            // ============================================
+            const lettersData = [
+                {
+                    id: 1,
+                    date: '13 November 2024',
+                    type: 'Surat Pertama',
+                    title: 'Saat Mata Pertama Kali Bertemu',
+                    preview: 'Aku masih ingat hari itu. Bukan karena sesuatu yang besar, tapi karena ada sesuatu yang berbeda...',
+                    icon: '💌',
+                    unread: true,
+                    subtitle: 'Untuk R, yang tak pernah tahu',
+                    body: `
+                        <p>Aku masih ingat hari itu dengan sangat jelas. Bukan karena ada kejadian besar yang terjadi, tapi karena ada sesuatu yang berbeda saat mata kita pertama kali bertemu.</p>
+                        <p>Seperti ada <span class="highlight">kilatan cahaya kecil</span> yang menyala di sudut hatiku yang sudah lama gelap. Aku tidak tahu apa itu waktu itu. Aku pikir itu hanya imajinasiku yang terlalu liar.</p>
+                        <p>Tapi semakin hari, semakin aku yakin bahwa perasaan ini nyata. Bahwa ada sesuatu yang istimewa tentang dirimu yang membuatku ingin menulis, ingin bercerita, ingin <span class="highlight">menciptakan seluruh dunia fiksi</span> hanya untuk menyimpan perasaanku di dalamnya.</p>
+                        <div class="secret">
+                            "Mungkin aku tidak bisa mengatakannya langsung kepadamu. Tapi di dunia ini, di Halicarnas, aku bisa menjadi siapapun yang berani menyatakan perasaan."
+                        </div>
+                        <p>Maaf kalau aku terlalu berlebihan. Maaf kalau semua ini terdengar seperti cerita fiksi. Tapi bagiku, kamu adalah <span class="highlight">fiksi terindah</span> yang pernah menjadi nyata.</p>
+                    `,
+                    signature: '— Faceless Author'
+                },
+                {
+                    id: 2,
+                    date: '24 Desember 2024',
+                    type: 'Renungan Malam',
+                    title: 'Ketika Semua Orang Tidur, Aku Menulis Tentangmu',
+                    preview: 'Malam-malam seperti ini, aku sering terjaga. Bukan karena insomnia, tapi karena pikiranku terlalu sibuk...',
+                    icon: '🌙',
+                    unread: true,
+                    subtitle: 'Untuk yang sering muncul di mimpi',
+                    body: `
+                        <p>Malam-malam seperti ini, aku sering terjaga. Bukan karena insomnia, tapi karena pikiranku terlalu sibuk mengingat hal-hal kecil tentangmu.</p>
+                        <p>Cara kamu tertawa. Cara kamu menyipitkan mata saat bingung. Cara kamu mengatakan "hmm" saat sedang berpikir. Hal-hal sepele yang seharusnya tidak berarti apa-apa, tapi bagiku <span class="highlight">itu adalah seluruh dunia</span>.</p>
+                        <p>Aku sering bertanya-tanya: apa kamu juga pernah memikirkanku? Apa namaku pernah melintas di benakmu, sekalipun?</p>
+                        <div class="secret">
+                            "Aku tahu aku bukan siapa-siapa. Aku tahu mungkin aku hanya bayangan yang lewat. Tapi bayangan ini ingin sekali tinggal sedikit lebih lama di hidupmu."
+                        </div>
+                        <p>Di dunia Halicarnas ini, aku bisa jadi pahlawan yang berani. Tapi di dunia nyata, aku hanya cowok biasa yang terlalu takut untuk mengatakan bahwa <span class="highlight">kamu adalah alasan aku tersenyum</span>.</p>
+                    `,
+                    signature: '— Seseorang yang diam-diam mengagumi'
+                },
+                {
+                    id: 3,
+                    date: '1 Januari 2025',
+                    type: 'Harapan Baru',
+                    title: 'Semoga Tahun Ini Berbeda',
+                    preview: 'Aku tidak berharap banyak. Hanya satu hal: semoga suatu hari nanti, kamu tahu bahwa ada seseorang...',
+                    icon: '✨',
+                    unread: false,
+                    subtitle: 'Doa di awal tahun',
+                    body: `
+                        <p>Tahun baru, harapan baru. Tapi harapanku tetap sama seperti tahun lalu: <span class="highlight">semoga suatu hari kamu tahu</span>.</p>
+                        <p>Aku tidak berharap banyak. Aku tidak meminta kamu mencintaiku balik. Aku hanya ingin kamu tahu bahwa ada seseorang di luar sana yang benar-benar peduli. Yang benar-benar mengagumi dirimu apa adanya.</p>
+                        <p>Aku tahu mungkin ini terdengar menyedihkan. Menulis surat-surat yang tidak pernah akan terkirim. Membangun dunia fiksi hanya untuk menyimpan perasaan. Tapi bagiku, ini adalah <span class="highlight">cara terbaik yang bisa kulakukan</span>.</p>
+                        <div class="secret">
+                            "Kamu mungkin tidak akan pernah membaca ini. Tapi kalau suatu hari kamu menemukan website ini dan bertanya-tanya siapa yang membuatnya... jawabannya adalah seseorang yang pernah sangat, sangat menyukaimu."
+                        </div>
+                        <p>Semoga tahun ini membawa kebahagiaan untukmu. Semoga kamu selalu tersenyum. Dan semoga, suatu hari nanti, kita bisa bertemu lagi dengan cara yang lebih baik.</p>
+                    `,
+                    signature: '— Tetap berharap, tetap menunggu'
+                },
+                {
+                    id: 4,
+                    date: '14 Februari 2025',
+                    type: 'Hari Kasih Sayang',
+                    title: 'Aku Bukan Pahlawan, Tapi Aku Bisa Mencintaimu',
+                    preview: 'Hari ini semua orang sibuk memberi bunga dan cokelat. Aku hanya bisa memberikan kata-kata...',
+                    icon: '💝',
+                    unread: false,
+                    subtitle: 'Untuk yang tak pernah kumiliki',
+                    body: `
+                        <p>Hari ini semua orang sibuk memberi bunga, cokelat, dan kata-kata manis. Aku hanya bisa duduk di depan layar, menulis hal-hal yang mungkin tidak akan pernah kamu baca.</p>
+                        <p>Tapi tahu tidak? <span class="highlight">Aku tidak iri</span>. Aku bahagia melihatmu bahagia, meskipun bukan denganku. Itu terdengar klise, tapi itu benar.</p>
+                        <p>Aku bukan pahlawan dalam kisahmu. Aku bukan tokoh utama. Aku mungkin hanya nama yang terlupakan di daftar kontakmu. Tapi percayalah, perasaanku adalah <span class="highlight">yang paling tulus</span> di antara semua yang pernah kamu temui.</p>
+                        <div class="secret">
+                            "Kalau aku bisa memilih, aku ingin jadi angin yang menyentuh pipimu. Atau jadi lagu yang kamu dengar saat sedih. Atau jadi apa pun yang membuatmu merasa tidak sendirian."
+                        </div>
+                        <p>Selamat hari kasih sayang. Semoga kamu mendapatkan cinta yang setimpal dengan kebaikan hatimu. Dan kalau suatu hari kamu butuh seseorang yang benar-benar mengenalmu... aku akan selalu ada di sini, di balik layar, di balik kata-kata, di balik seluruh dunia fiksi yang kuciptakan untukmu.</p>
+                    `,
+                    signature: '— Selamanya, diam-diam'
+                },
+                {
+                    id: 5,
+                    date: '6 Mei 2026',
+                    type: 'Pengakuan',
+                    title: 'Semua Ini Tentang Kamu',
+                    preview: 'Aku sudah tidak bisa menyembunyikannya lagi. Seluruh website ini, seluruh dunia Halicarnas, semua tentang kamu...',
+                    icon: '🔮',
+                    unread: true,
+                    subtitle: 'Pengakuan terakhir',
+                    body: `
+                        <p>Ini mungkin surat terakhir yang kutulis di sini. Bukan karena perasaanku sudah berubah, tapi karena aku sudah tidak bisa menyembunyikannya lagi.</p>
+                        <p><span class="highlight">Semua ini tentang kamu.</span> Seluruh website ini. Seluruh dunia Halicarnas. Setiap karakter, setiap lokasi, setiap kata yang kutulis — semuanya memiliki bayangan dirimu di dalamnya.</p>
+                        <p>Karakter perempuan yang kuat dan lembut? Itu kamu. Kota yang indah tapi misterius? Itu perasaan yang kurasakan setiap kali melihatmu. Setiap petualangan, setiap konflik, setiap happy ending yang kuciptakan — semuanya adalah <span class="highlight">cara hatiku berbicara</span> dalam bahasa yang hanya aku mengerti.</p>
+                        <div class="secret">
+                            "Aku membuat seluruh dunia fiksi hanya untuk bisa mengatakannya: Aku sangat, sangat menyukaimu. Tanpa syarat. Tanpa batas waktu. Tanpa harapan balasan."
+                        </div>
+                        <p>Aku tidak tahu apa yang akan terjadi setelah ini. Mungkin kamu akan menemukan website ini dan tersenyum. Mungkin kamu akan bingung. Mungkin kamu tidak akan pernah menemukannya sama sekali.</p>
+                        <p>Tapi tidak apa-apa. Karena bagiku, <span class="highlight">mencintaimu dalam diam</span> sudah cukup membuat hidupku berarti. Kamu adalah inspirasi terindah yang pernah kumiliki. Dan aku akan selalu berterima kasih atas itu.</p>
+                        <p>Terima kasih sudah menjadi alasan aku menulis. Terima kasih sudah menjadi alasan aku tersenyum. Terima kasih sudah ada, meskipun mungkin tidak pernah untukku.</p>
+                    `,
+                    signature: '— Dengan seluruh perasaanku, A'
+                }
+            ];
+
+            // ============================================
+            // RENDER LETTERS
+            // ============================================
+            const timelineContainer = document.getElementById('timelineContainer');
+
+            function renderLetters() {
+                lettersData.forEach((letter, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'letter-card';
+                    card.style.animationDelay = `${index * 0.15}s`;
+                    
+                    card.innerHTML = `
+                        <div class="letter-dot"></div>
+                        <div class="letter-content ${letter.unread ? 'unread' : ''}" data-id="${letter.id}">
+                            <div class="letter-header">
+                                <div class="letter-icon">${letter.icon}</div>
+                                <div class="letter-meta">
+                                    <div class="letter-date">${letter.date}</div>
+                                    <div class="letter-type">${letter.type}</div>
+                                </div>
+                            </div>
+                            <h3 class="letter-title">${letter.title}</h3>
+                            <p class="letter-preview">${letter.preview}</p>
+                            <div class="letter-footer">
+                                <span class="letter-sender">${letter.subtitle}</span>
+                                <span class="letter-action">Baca selengkapnya →</span>
+                            </div>
+                        </div>
+                    `;
+
+                    card.querySelector('.letter-content').addEventListener('click', () => openModal(letter));
+                    timelineContainer.appendChild(card);
+                });
+            }
+
+            renderLetters();
+
+            // ============================================
+            // SCROLL ANIMATION
+            // ============================================
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.letter-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // ============================================
+            // MODAL FUNCTIONALITY
+            // ============================================
+            const letterModal = document.getElementById('letterModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalDate = document.getElementById('modalDate');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalSignature = document.getElementById('modalSignature');
+
+            function openModal(letter) {
+                modalDate.textContent = `— ${letter.date} —`;
+                modalTitle.textContent = letter.title;
+                modalSubtitle.textContent = letter.subtitle;
+                modalBody.innerHTML = letter.body;
+                modalSignature.textContent = letter.signature;
+                
+                letterModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Mark as read
+                const card = document.querySelector(`.letter-content[data-id="${letter.id}"]`);
+                if (card) card.classList.remove('unread');
+            }
+
+            function closeModal() {
+                letterModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            
+            letterModal.addEventListener('click', function(e) {
+                if (e.target === letterModal) closeModal();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && letterModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // ============================================
+            // FLOATING HEARTS
+            // ============================================
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heartEmojis = ['💗', '💖', '💝', '💘', '💕', '✨', '🌙'];
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (12 + Math.random() * 16) + 'px';
+                heartsContainer.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 12000);
+            }
+
+            // Create hearts periodically
+            setInterval(createHeart, 2000);
+            // Create initial hearts
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createHeart, i * 500);
+            }
+
+            // ============================================
+            // FAB MENU LOGIC
+            // ============================================
             const fabMain = document.getElementById('fabMain');
             const fabMenu = document.getElementById('fabMenu');
             const overlay = document.getElementById('sidebarOverlay');
 
-            // ============================================
-            // FUNCTION: Open FAB Menu
-            // ============================================
             function openFabMenu() {
                 fabMain.classList.add('open');
                 fabMenu.classList.add('open');
@@ -917,9 +1507,6 @@
                 document.body.style.overflow = 'hidden';
             }
 
-            // ============================================
-            // FUNCTION: Close FAB Menu
-            // ============================================
             function closeFabMenu() {
                 fabMain.classList.remove('open');
                 fabMenu.classList.remove('open');
@@ -928,9 +1515,6 @@
                 document.body.style.overflow = '';
             }
 
-            // ============================================
-            // FUNCTION: Toggle FAB Menu
-            // ============================================
             function toggleFabMenu() {
                 if (fabMain.classList.contains('open')) {
                     closeFabMenu();
@@ -939,26 +1523,16 @@
                 }
             }
 
-            // ============================================
-            // EVENT: Click FAB Button
-            // ============================================
             fabMain.addEventListener('click', function(e) {
                 e.stopPropagation();
                 toggleFabMenu();
             });
 
-            // ============================================
-            // EVENT: Click Overlay Backdrop
-            // ============================================
             overlay.addEventListener('click', function(e) {
                 e.stopPropagation();
                 closeFabMenu();
             });
 
-            // ============================================
-            // EVENT: Click FAB Menu Items
-            // Auto-close menu pas klik link
-            // ============================================
             const fabItems = fabMenu.querySelectorAll('a');
             fabItems.forEach(function(item) {
                 item.addEventListener('click', function() {
@@ -966,19 +1540,12 @@
                 });
             });
 
-            // ============================================
-            // EVENT: Escape Key
-            // ============================================
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && fabMain.classList.contains('open')) {
                     closeFabMenu();
                 }
             });
 
-            // ============================================
-            // EVENT: Click Inside FAB Menu
-            // Don't close when clicking inside menu
-            // ============================================
             fabMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
