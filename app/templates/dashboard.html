@@ -11,7 +11,7 @@
     <title>The Last One — Fiction World</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -206,7 +206,6 @@
             flex-shrink: 0;
         }
 
-        /* User Card */
         .user-card {
             display: flex;
             align-items: center;
@@ -288,7 +287,6 @@
             opacity: 0.7;
         }
 
-        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
@@ -297,7 +295,6 @@
             transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Top Bar */
         .top-bar {
             margin-bottom: 28px;
             padding-bottom: 20px;
@@ -368,125 +365,142 @@
             text-transform: uppercase;
         }
 
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+        /* ============================================ */
+        /* BUTTERFLY GARDEN */
+        /* ============================================ */
+        .butterfly-garden {
+            position: relative;
+            width: 100%;
+            height: 550px;
             margin-bottom: 32px;
-        }
-
-        .stat-card {
-            display: flex;
-            flex-direction: column;
-            background: rgba(20, 18, 14, 0.5);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
             border-radius: 24px;
             overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            height: 320px;
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .stat-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateY(-6px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.06);
-        }
-
-        .stat-card:active {
-            transform: translateY(-3px) scale(0.98);
-        }
-
-        .stat-visual {
-            height: 40%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .stat-card:hover .stat-visual img {
-            transform: scale(1.1);
-        }
-
-        .stat-visual-overlay {
+        .garden-canvas {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.6) 100%);
+            width: 100%;
+            height: 100%;
         }
 
-        .stat-content {
-            height: 60%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(212, 175, 55, 0.08);
-            position: relative;
-        }
-
-        .stat-content::before {
-            content: '';
+        .garden-overlay {
             position: absolute;
-            top: 0;
-            left: 20px;
-            right: 20px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
+            inset: 0;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(232, 121, 168, 0.06) 0%, transparent 50%);
         }
 
-        .stat-title {
+        .garden-title {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--white);
-            transition: color 0.3s ease;
+            font-size: 13px;
+            color: rgba(212, 175, 55, 0.5);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .stat-card:hover .stat-title {
-            color: var(--gold);
-        }
-
-        .stat-subtitle {
-            font-size: 12px;
-            color: var(--light-gray);
-            line-height: 1.6;
-        }
-
-        .stat-arrow {
+        .garden-hint {
             position: absolute;
-            bottom: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 12px;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.3s ease;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 10;
+            pointer-events: none;
+            animation: pulse-hint 3s ease-in-out infinite;
         }
 
-        .stat-card:hover .stat-arrow {
+        @keyframes pulse-hint {
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Portal Cards - appear when butterflies gather */
+        .portal-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .portal-card {
+            position: absolute;
+            width: 200px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .portal-card.active {
             opacity: 1;
-            transform: translateX(0);
+            transform: scale(1) translateY(0);
+        }
+
+        .portal-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .portal-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .portal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--gold), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portal-desc {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .portal-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .portal-card:hover .portal-arrow {
+            gap: 10px;
         }
 
         /* ============================================ */
@@ -599,7 +613,6 @@
             opacity: 0;
         }
 
-        /* FAB Menu Items */
         .fab-menu {
             display: flex;
             flex-direction: column;
@@ -690,7 +703,6 @@
             color: var(--white);
         }
 
-        /* Staggered animation for menu items */
         .fab-menu.open .fab-item:nth-child(1) { transition-delay: 0.05s; }
         .fab-menu.open .fab-item:nth-child(2) { transition-delay: 0.1s; }
         .fab-menu.open .fab-item:nth-child(3) { transition-delay: 0.15s; }
@@ -702,25 +714,33 @@
         /* ============================================ */
         @media (max-width: 900px) {
             .sidebar {
-                display: none; /* Hide sidebar on mobile */
+                display: none;
             }
 
             .main-content {
                 margin-left: 0;
-                padding: 32px 20px 100px; /* Extra bottom padding for FAB */
+                padding: 32px 20px 100px;
             }
 
             .fab-container {
                 display: flex;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
+            .butterfly-garden {
+                height: 450px;
             }
 
-            .stat-card {
-                height: 300px;
+            .portal-card {
+                width: 160px;
+                padding: 16px;
+            }
+
+            .portal-icon {
+                font-size: 28px;
+            }
+
+            .portal-title {
+                font-size: 14px;
             }
 
             .page-title {
@@ -737,26 +757,28 @@
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
+            .butterfly-garden {
+                height: 400px;
+                border-radius: 16px;
             }
 
-            .stat-card {
-                height: 280px;
-                border-radius: 20px;
+            .portal-card {
+                width: 140px;
+                padding: 14px;
+                border-radius: 16px;
             }
 
-            .stat-content {
-                padding: 16px;
+            .portal-icon {
+                font-size: 24px;
+                margin-bottom: 8px;
             }
 
-            .stat-title {
-                font-size: 15px;
+            .portal-title {
+                font-size: 13px;
             }
 
-            .stat-subtitle {
-                font-size: 11px;
+            .portal-desc {
+                font-size: 10px;
             }
 
             .main-content {
@@ -782,13 +804,27 @@
         }
 
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .delay-3 { animation-delay: 0.3s; opacity: 0; }
-        .delay-4 { animation-delay: 0.4s; opacity: 0; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.5);
         }
     </style>
 </head>
@@ -796,15 +832,9 @@
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <!-- Overlay Backdrop -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- ============================================ -->
-    <!-- FLOATING ACTION BUTTON (FAB) MENU -->
-    <!-- Muncul di mobile, hidden di desktop -->
-    <!-- ============================================ -->
     <div class="fab-container" id="fabContainer">
-        <!-- Menu Items (muncul pas FAB diklik) -->
         <div class="fab-menu" id="fabMenu">
             <a href="../templates/dashboard.html" class="fab-item">
                 <span class="fab-item-label">Dashboard</span>
@@ -828,7 +858,6 @@
             </a>
         </div>
 
-        <!-- Main FAB Button -->
         <button class="fab-main" id="fabMain" aria-label="Toggle menu" aria-expanded="false">
             <div class="fab-icon">
                 <span></span>
@@ -838,12 +867,11 @@
     </div>
 
     <div class="app-container">
-        <!-- Sidebar - Desktop Only -->
         <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
             <div class="sidebar-header">
                 <div class="sidebar-brand">
                     <div class="sidebar-logo">
-                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Logo" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--gold), var(--pink))'; this.parentElement.innerHTML='<span style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:16px;\'>💝</span>';">
+                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Logo" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--gold), var(--pink))'; this.parentElement.innerHTML='<span style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:16px;\\'>💝</span>';">
                     </div>
                     <div>
                         <div class="sidebar-title">The Last One</div>
@@ -877,7 +905,7 @@
             <div class="sidebar-footer">
                 <a href="../templates/profile.html" class="user-card">
                     <div class="user-avatar">
-                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Avatar" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'avatar-fallback\'>AF</div>';">
+                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Avatar" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'avatar-fallback\\'>AF</div>';">
                     </div>
                     <div class="user-info">
                         <div class="user-name">Muhammad Arafat Firnansyah</div>
@@ -887,15 +915,12 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar -->
             <div class="top-bar animate-in">
                 <h1 class="page-title">The Last One</h1>
-                <p class="page-subtitle">“Here, the Faceless Writer unleashes all my imagination and deepest feelings.”</p>
+                <p class="page-subtitle">"Here, the Faceless Writer unleashes all my imagination and deepest feelings."</p>
             </div>
 
-            <!-- Hero Quote -->
             <div class="hero-quote animate-in delay-1">
                 <div class="quote-mark">"</div>
                 <p class="quote-text">
@@ -906,75 +931,415 @@
                 <p class="quote-author">— Mr. Ashar</p>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <!-- Card 1: Karakter -->
-                <a href="../templates/karakter.html" class="stat-card animate-in delay-1">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 19.jpg" alt="Karakter" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Karakter</h3>
-                        <p class="stat-subtitle">Jiwa-jiwa yang hidup di dunia fiksi, masing-masing punya cerita dan takdirnya sendiri.</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
+            <!-- ============================================ -->
+            <!-- BUTTERFLY GARDEN -->
+            <!-- ============================================ -->
+            <div class="butterfly-garden animate-in delay-1" id="butterflyGarden">
+                <div class="garden-title">The Butterfly Garden</div>
+                <canvas class="garden-canvas" id="gardenCanvas"></canvas>
+                <div class="garden-overlay"></div>
+                <div class="garden-hint">Move your cursor to attract the butterflies</div>
 
-                <!-- Card 2: Imajinasi Penulis -->
-                <a href="../templates/imajinasi penulis.html" class="stat-card animate-in delay-2">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 23.jpg" alt="Imajinasi Penulis" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Imajinasi Penulis</h3>
-                        <p class="stat-subtitle">Sang penulis menuangkan semua imajinasi dan perasaannya dalam dunia fiksi ini.</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
-
-                <!-- Card 3: Halicarnas Academy -->
-                <a href="../templates/halicarnas academy.html" class="stat-card animate-in delay-3">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 9.jpeg" alt="Halicarnas Academy" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Halicarnas Academy</h3>
-                        <p class="stat-subtitle">Where Logic Meets Purpose</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
-
-                <!-- Card 4: Catatan Penulis -->
-                <a href="../templates/catatan penulis.html" class="stat-card animate-in delay-4">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 12.jpg" alt="Catatan Penulis" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Catatan Penulis</h3>
-                        <p class="stat-subtitle">Tempat dimana sang penulis menyimpan ringkasan</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
+                <div class="portal-container" id="portalContainer">
+                    <a href="../templates/karakter.html" class="portal-card" id="portal-karakter" style="left: 10%; top: 20%;">
+                        <span class="portal-icon">👤</span>
+                        <h3 class="portal-title">Karakter</h3>
+                        <p class="portal-desc">Jiwa-jiwa yang hidup di dunia fiksi</p>
+                        <span class="portal-arrow">Explore →</span>
+                    </a>
+                    <a href="../templates/imajinasi penulis.html" class="portal-card" id="portal-imajinasi" style="right: 10%; top: 15%;">
+                        <span class="portal-icon">✨</span>
+                        <h3 class="portal-title">Imajinasi</h3>
+                        <p class="portal-desc">Dunia yang dibangun dari mimpi</p>
+                        <span class="portal-arrow">Explore →</span>
+                    </a>
+                    <a href="../templates/halicarnas academy.html" class="portal-card" id="portal-academy" style="left: 50%; top: 55%; transform: translateX(-50%);">
+                        <span class="portal-icon">🏛️</span>
+                        <h3 class="portal-title">Academy</h3>
+                        <p class="portal-desc">Where Logic Meets Purpose</p>
+                        <span class="portal-arrow">Explore →</span>
+                    </a>
+                    <a href="../templates/catatan penulis.html" class="portal-card" id="portal-catatan" style="left: 10%; bottom: 20%;">
+                        <span class="portal-icon">📖</span>
+                        <h3 class="portal-title">Catatan</h3>
+                        <p class="portal-desc">Jejak perjalanan sang penulis</p>
+                        <span class="portal-arrow">Explore →</span>
+                    </a>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- ============================================ -->
-    <!-- JAVASCRIPT - FAB MENU LOGIC -->
-    <!-- ============================================ -->
     <script>
         (function() {
+            // ============================================
+            // BUTTERFLY GARDEN
+            // ============================================
+            const canvas = document.getElementById('gardenCanvas');
+            const ctx = canvas.getContext('2d');
+            const garden = document.getElementById('butterflyGarden');
+            
+            let width, height;
+            let mouse = { x: -1000, y: -1000, active: false };
+            let time = 0;
+
+            // Portal activation
+            const portals = {
+                karakter: { el: document.getElementById('portal-karakter'), active: false, x: 0.15, y: 0.25 },
+                imajinasi: { el: document.getElementById('portal-imajinasi'), active: false, x: 0.85, y: 0.2 },
+                academy: { el: document.getElementById('portal-academy'), active: false, x: 0.5, y: 0.6 },
+                catatan: { el: document.getElementById('portal-catatan'), active: false, x: 0.15, y: 0.75 }
+            };
+
+            const butterflyCount = 45;
+            const butterflies = [];
+
+            // Butterfly wing path data (simplified SVG-like)
+            const wingPaths = [
+                // Upper wing
+                [0, 0, -8, -15, -20, -25, -15, -35, -5, -30, 0, -20],
+                // Lower wing  
+                [0, 0, -6, 10, -15, 20, -10, 28, -3, 22, 0, 12]
+            ];
+
+            class Butterfly {
+                constructor() {
+                    this.reset();
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                }
+
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 1.5;
+                    this.vy = (Math.random() - 0.5) * 1.5;
+                    this.size = Math.random() * 8 + 6;
+                    this.wingSpeed = Math.random() * 0.15 + 0.1;
+                    this.wingPhase = Math.random() * Math.PI * 2;
+                    this.color = Math.random() > 0.5 ? '#d4af37' : '#e879a8';
+                    this.color2 = Math.random() > 0.5 ? '#e879a8' : '#d4af37';
+                    this.opacity = Math.random() * 0.4 + 0.6;
+                    this.trail = [];
+                    this.maxTrail = 8;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.targetX = null;
+                    this.targetY = null;
+                    this.attracted = false;
+                    this.type = Math.floor(Math.random() * 3); // 0: normal, 1: fast, 2: slow glow
+                }
+
+                update() {
+                    // Trail
+                    this.trail.push({ x: this.x, y: this.y, opacity: this.opacity });
+                    if (this.trail.length > this.maxTrail) this.trail.shift();
+
+                    // Mouse attraction
+                    if (mouse.active) {
+                        const dx = mouse.x - this.x;
+                        const dy = mouse.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 200) {
+                            this.attracted = true;
+                            const force = (200 - dist) / 200 * 0.03;
+                            this.vx += dx * force;
+                            this.vy += dy * force;
+                        } else {
+                            this.attracted = false;
+                        }
+                    } else {
+                        this.attracted = false;
+                    }
+
+                    // Natural movement
+                    this.angle += (Math.random() - 0.5) * 0.1;
+                    this.vx += Math.cos(this.angle) * 0.02;
+                    this.vy += Math.sin(this.angle) * 0.02;
+
+                    // Speed limit
+                    const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    const maxSpeed = this.attracted ? 4 : 2;
+                    if (speed > maxSpeed) {
+                        this.vx = (this.vx / speed) * maxSpeed;
+                        this.vy = (this.vy / speed) * maxSpeed;
+                    }
+
+                    // Apply velocity
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    // Wrap around
+                    if (this.x < -50) this.x = width + 50;
+                    if (this.x > width + 50) this.x = -50;
+                    if (this.y < -50) this.y = height + 50;
+                    if (this.y > height + 50) this.y = -50;
+
+                    // Wing animation
+                    this.wingPhase += this.wingSpeed;
+                }
+
+                draw() {
+                    const wingScale = Math.abs(Math.sin(this.wingPhase));
+                    const flutter = Math.sin(time * 0.01 + this.wingPhase) * 2;
+
+                    ctx.save();
+                    ctx.translate(this.x, this.y + flutter);
+                    
+                    // Calculate rotation based on velocity
+                    const rotation = Math.atan2(this.vy, this.vx) + Math.PI / 2;
+                    ctx.rotate(rotation);
+
+                    // Glow for special butterflies
+                    if (this.type === 2) {
+                        ctx.shadowBlur = 15;
+                        ctx.shadowColor = this.color + '60';
+                    }
+
+                    // Draw trail
+                    this.trail.forEach((point, i) => {
+                        const trailOpacity = (i / this.trail.length) * 0.15 * this.opacity;
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, this.size * 0.3 * (i / this.trail.length), 0, Math.PI * 2);
+                        ctx.fillStyle = this.color + Math.floor(trailOpacity * 255).toString(16).padStart(2, '0');
+                        ctx.fill();
+                    });
+
+                    // Draw butterfly body
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size * 0.15, this.size * 0.4, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Draw wings
+                    this.drawWing(ctx, wingScale, 1);  // Right wing
+                    this.drawWing(ctx, wingScale, -1); // Left wing
+
+                    ctx.restore();
+                }
+
+                drawWing(ctx, scale, side) {
+                    const wingWidth = this.size * scale;
+                    const wingHeight = this.size * 1.2;
+
+                    ctx.save();
+                    ctx.scale(side, 1);
+
+                    // Upper wing
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size * 0.2);
+                    ctx.bezierCurveTo(
+                        wingWidth * 0.5, -wingHeight * 0.8,
+                        wingWidth, -wingHeight * 0.6,
+                        wingWidth * 0.8, -wingHeight * 0.2
+                    );
+                    ctx.bezierCurveTo(
+                        wingWidth * 0.6, 0,
+                        wingWidth * 0.3, -this.size * 0.1,
+                        0, 0
+                    );
+                    ctx.closePath();
+
+                    const upperGrad = ctx.createRadialGradient(0, -wingHeight * 0.4, 0, 0, -wingHeight * 0.4, wingWidth);
+                    upperGrad.addColorStop(0, this.color + 'CC');
+                    upperGrad.addColorStop(0.7, this.color + '66');
+                    upperGrad.addColorStop(1, this.color + '11');
+                    ctx.fillStyle = upperGrad;
+                    ctx.fill();
+                    ctx.strokeStyle = this.color + '44';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+
+                    // Lower wing
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.bezierCurveTo(
+                        wingWidth * 0.4, wingHeight * 0.3,
+                        wingWidth * 0.7, wingHeight * 0.5,
+                        wingWidth * 0.5, wingHeight * 0.7
+                    );
+                    ctx.bezierCurveTo(
+                        wingWidth * 0.3, wingHeight * 0.6,
+                        wingWidth * 0.1, wingHeight * 0.3,
+                        0, this.size * 0.2
+                    );
+                    ctx.closePath();
+
+                    const lowerGrad = ctx.createRadialGradient(0, wingHeight * 0.4, 0, 0, wingHeight * 0.4, wingWidth);
+                    lowerGrad.addColorStop(0, this.color2 + 'AA');
+                    lowerGrad.addColorStop(0.7, this.color2 + '44');
+                    lowerGrad.addColorStop(1, this.color2 + '11');
+                    ctx.fillStyle = lowerGrad;
+                    ctx.fill();
+                    ctx.strokeStyle = this.color2 + '33';
+                    ctx.stroke();
+
+                    // Wing patterns (dots)
+                    ctx.fillStyle = this.color + '88';
+                    ctx.beginPath();
+                    ctx.arc(wingWidth * 0.5, -wingHeight * 0.3, this.size * 0.12, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.restore();
+                }
+            }
+
+            // Floating petals/particles
+            const petals = [];
+            const petalCount = 15;
+
+            class Petal {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = -20;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = Math.random() * 0.8 + 0.3;
+                    this.size = Math.random() * 4 + 2;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotSpeed = (Math.random() - 0.5) * 0.02;
+                    this.color = Math.random() > 0.5 ? 'rgba(212, 175, 55,' : 'rgba(232, 121, 168,';
+                    this.opacity = Math.random() * 0.3 + 0.2;
+                }
+
+                update() {
+                    this.x += this.vx + Math.sin(time * 0.001 + this.y * 0.01) * 0.3;
+                    this.y += this.vy;
+                    this.rotation += this.rotSpeed;
+
+                    if (this.y > height + 20) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
+                    ctx.fillStyle = this.color + this.opacity + ')';
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            function resize() {
+                width = garden.offsetWidth;
+                height = garden.offsetHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+
+            function init() {
+                resize();
+                butterflies.length = 0;
+                for (let i = 0; i < butterflyCount; i++) {
+                    butterflies.push(new Butterfly());
+                }
+                petals.length = 0;
+                for (let i = 0; i < petalCount; i++) {
+                    petals.push(new Petal());
+                }
+            }
+
+            function checkPortalProximity() {
+                Object.keys(portals).forEach(key => {
+                    const portal = portals[key];
+                    const px = portal.x * width;
+                    const py = portal.y * height;
+                    
+                    let nearCount = 0;
+                    butterflies.forEach(b => {
+                        const dist = Math.sqrt((b.x - px) ** 2 + (b.y - py) ** 2);
+                        if (dist < 100) nearCount++;
+                    });
+
+                    if (nearCount > 5 && !portal.active) {
+                        portal.active = true;
+                        portal.el.classList.add('active');
+                    } else if (nearCount <= 2 && portal.active) {
+                        portal.active = false;
+                        portal.el.classList.remove('active');
+                    }
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                time += 16;
+
+                // Draw ambient glow spots
+                const glow1 = ctx.createRadialGradient(width * 0.3, height * 0.4, 0, width * 0.3, height * 0.4, 150);
+                glow1.addColorStop(0, 'rgba(212, 175, 55, 0.03)');
+                glow1.addColorStop(1, 'transparent');
+                ctx.fillStyle = glow1;
+                ctx.fillRect(0, 0, width, height);
+
+                const glow2 = ctx.createRadialGradient(width * 0.7, height * 0.6, 0, width * 0.7, height * 0.6, 150);
+                glow2.addColorStop(0, 'rgba(232, 121, 168, 0.03)');
+                glow2.addColorStop(1, 'transparent');
+                ctx.fillStyle = glow2;
+                ctx.fillRect(0, 0, width, height);
+
+                // Update and draw petals
+                petals.forEach(petal => {
+                    petal.update();
+                    petal.draw();
+                });
+
+                // Update and draw butterflies
+                butterflies.forEach(butterfly => {
+                    butterfly.update();
+                    butterfly.draw();
+                });
+
+                checkPortalProximity();
+                requestAnimationFrame(animate);
+            }
+
+            // Mouse events
+            garden.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+                mouse.active = true;
+            });
+
+            garden.addEventListener('mouseleave', () => {
+                mouse.active = false;
+            });
+
+            garden.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.touches[0];
+                mouse.x = touch.clientX - rect.left;
+                mouse.y = touch.clientY - rect.top;
+                mouse.active = true;
+            });
+
+            garden.addEventListener('touchend', () => {
+                mouse.active = false;
+            });
+
+            window.addEventListener('resize', () => {
+                resize();
+            });
+
+            init();
+            animate();
+
+            // ============================================
+            // FAB MENU LOGIC
+            // ============================================
             const fabMain = document.getElementById('fabMain');
             const fabMenu = document.getElementById('fabMenu');
             const overlay = document.getElementById('sidebarOverlay');
 
-            // ============================================
-            // FUNCTION: Open FAB Menu
-            // ============================================
             function openFabMenu() {
                 fabMain.classList.add('open');
                 fabMenu.classList.add('open');
@@ -983,9 +1348,6 @@
                 document.body.style.overflow = 'hidden';
             }
 
-            // ============================================
-            // FUNCTION: Close FAB Menu
-            // ============================================
             function closeFabMenu() {
                 fabMain.classList.remove('open');
                 fabMenu.classList.remove('open');
@@ -994,9 +1356,6 @@
                 document.body.style.overflow = '';
             }
 
-            // ============================================
-            // FUNCTION: Toggle FAB Menu
-            // ============================================
             function toggleFabMenu() {
                 if (fabMain.classList.contains('open')) {
                     closeFabMenu();
@@ -1005,26 +1364,16 @@
                 }
             }
 
-            // ============================================
-            // EVENT: Click FAB Button
-            // ============================================
             fabMain.addEventListener('click', function(e) {
                 e.stopPropagation();
                 toggleFabMenu();
             });
 
-            // ============================================
-            // EVENT: Click Overlay Backdrop
-            // ============================================
             overlay.addEventListener('click', function(e) {
                 e.stopPropagation();
                 closeFabMenu();
             });
 
-            // ============================================
-            // EVENT: Click FAB Menu Items
-            // Auto-close menu pas klik link
-            // ============================================
             const fabItems = fabMenu.querySelectorAll('a');
             fabItems.forEach(function(item) {
                 item.addEventListener('click', function() {
@@ -1032,19 +1381,12 @@
                 });
             });
 
-            // ============================================
-            // EVENT: Escape Key
-            // ============================================
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && fabMain.classList.contains('open')) {
                     closeFabMenu();
                 }
             });
 
-            // ============================================
-            // EVENT: Click Inside FAB Menu
-            // Don't close when clicking inside menu
-            // ============================================
             fabMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
