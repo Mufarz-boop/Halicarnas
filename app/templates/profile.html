@@ -1104,7 +1104,7 @@
                 </div>
                 <div class="profile-avatar-container">
                     <div class="profile-avatar">
-                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Profile" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold),var(--pink));font-size:40px;font-weight:700;color:var(--dark);font-family:Playfair Display;\'>AF</div>';">
+                        <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Profile Author" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold),var(--pink));font-size:40px;font-weight:700;color:var(--dark);font-family:Playfair Display;\'>AF</div>';">
                         <div class="profile-avatar-status"></div>
                     </div>
                     <div class="profile-header-info">
@@ -1119,8 +1119,8 @@
                     </div>
                 </div>
                 <div class="profile-actions">
-                    <p style="font-family: 'Rubik', cursive; font-size: 18px; color: rgba(255, 255, 255, 0.6); font-style: italic; text-align: center; width: 100%;">
-                        "Some stories are meant to be felt, not told."
+                    <p style="font-family: 'Rubik', cursive; font-size: 15px; color: rgba(255, 255, 255, 0.6); font-style: italic; text-align: center; width: 100%;">
+                        “The Faceless Author, a creator who pours all his feelings into words.”
                     </p>
                 </div>
             </div>
@@ -1185,7 +1185,7 @@
             // ============================================
             // DAYS COUNTER
             // ============================================
-            const startDate = new Date('2024-11-13'); // Tanggal pertama kali bertemu/merasa sesuatu
+            const startDate = new Date('2025-08-05'); // Tanggal pertama kali bertemu/merasa sesuatu
             const daysCounter = document.getElementById('daysCounter');
             
             function updateDays() {
@@ -1200,11 +1200,11 @@
             // ============================================
             const heartbeatCounter = document.getElementById('heartbeatCounter');
             let heartbeat = 0;
-            const targetHeartbeat = 1432; // Angka simbolis
+            const targetHeartbeat = 1409; // Angka simbolis
             
             function animateHeartbeat() {
                 if (heartbeat < targetHeartbeat) {
-                    heartbeat += Math.ceil((targetHeartbeat - heartbeat) / 50);
+                    heartbeat += Math.ceil((targetHeartbeat - heartbeat) / 100); // Tambahkan dengan kecepatan yang semakin lambat
                     heartbeatCounter.textContent = heartbeat.toLocaleString();
                     requestAnimationFrame(animateHeartbeat);
                 } else {
