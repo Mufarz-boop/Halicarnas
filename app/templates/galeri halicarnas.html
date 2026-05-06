@@ -316,178 +316,6 @@
             color: var(--light-gray);
         }
 
-        /* Hero Quote */
-        .hero-quote {
-            background: rgba(20, 18, 14, 0.4);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .hero-quote::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
-            opacity: 0.5;
-        }
-
-        .quote-mark {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            color: var(--gold);
-            opacity: 0.3;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-style: italic;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .quote-author {
-            font-size: 12px;
-            color: var(--gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-
-        .stat-card {
-            display: flex;
-            flex-direction: column;
-            background: rgba(20, 18, 14, 0.5);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 24px;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            height: 320px;
-        }
-
-        .stat-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateY(-6px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.06);
-        }
-
-        .stat-card:active {
-            transform: translateY(-3px) scale(0.98);
-        }
-
-        .stat-visual {
-            height: 40%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .stat-card:hover .stat-visual img {
-            transform: scale(1.1);
-        }
-
-        .stat-visual-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.6) 100%);
-        }
-
-        .stat-content {
-            height: 60%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(212, 175, 55, 0.08);
-            position: relative;
-        }
-
-        .stat-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 20px;
-            right: 20px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .stat-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--white);
-            transition: color 0.3s ease;
-        }
-
-        .stat-card:hover .stat-title {
-            color: var(--gold);
-        }
-
-        .stat-subtitle {
-            font-size: 12px;
-            color: var(--light-gray);
-            line-height: 1.6;
-        }
-
-        .stat-arrow {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 12px;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover .stat-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
         /* Mobile Menu Toggle - FIX: z-index di bawah sidebar */
         .menu-toggle {
             display: none;
@@ -644,7 +472,7 @@
             <nav class="sidebar-nav" id="sidebarNav">
                 <div class="nav-section">
                     <div class="nav-label">Menu Utama</div>
-                    <a href="../templates/dashboard.html" class="nav-item active">
+                    <a href="../templates/dashboard.html" class="nav-item">
                         <span class="nav-icon">◈</span>
                         <span>Dashboard</span>
                     </a>
@@ -652,7 +480,7 @@
                         <span class="nav-icon">✦</span>
                         <span>Tentang Halicarnas</span>
                     </a>
-                    <a href="../templates/galeri halicarnas.html" class="nav-item">
+                    <a href="../templates/galeri halicarnas.html" class="nav-item active">
                         <span class="nav-icon">✧</span>
                         <span>Galeri Halicarnas</span>
                     </a>
@@ -669,8 +497,8 @@
                         <img src="../assets/icons/Afdal Adha Firnansyah.png" alt="Avatar" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'avatar-fallback\'>AF</div>';">
                     </div>
                     <div class="user-info">
-                        <div class="user-name">Muhammad Arafat Firnansyah</div>
-                        <div class="user-role">Faceless Author</div>
+                        <div class="user-name">Afdal Adha F.</div>
+                        <div class="user-role">Sang Penulis</div>
                     </div>
                 </a>
             </div>
@@ -682,72 +510,6 @@
             <div class="top-bar animate-in">
                 <h1 class="page-title">The Last One</h1>
                 <p class="page-subtitle">Selamat datang di dunia fiksi ku, silahkan menjelajahi dunia ini.</p>
-            </div>
-
-            <!-- Hero Quote -->
-            <div class="hero-quote animate-in delay-1">
-                <div class="quote-mark">"</div>
-                <p class="quote-text">
-                    Di mana mimpi membangun imajinasi dan kreativitas dengan gemuruh angin beraroma bunga api mistis,
-                    menghancurkan tembok logika hingga berkeping-keping, meledakkan warna pelangi liar di mata,
-                    dan rasa manis pahit kebebasan abadi di lidah jiwa petualang.
-                </p>
-                <p class="quote-author">— Mr. Ashar</p>
-            </div>
-
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <!-- Card 1: Karakter -->
-                <a href="../templates/karakter.html" class="stat-card animate-in delay-1">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 19.jpg" alt="Karakter" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Karakter</h3>
-                        <p class="stat-subtitle">Jiwa-jiwa yang hidup di dunia fiksi, masing-masing punya cerita dan takdirnya sendiri.</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
-
-                <!-- Card 2: Imajinasi Penulis -->
-                <a href="../templates/iamjinasi penulis.html" class="stat-card animate-in delay-2">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 23.jpg" alt="Imajinasi Penulis" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Imajinasi Penulis</h3>
-                        <p class="stat-subtitle">Sang penulis menuangkan semua imajinasi dan perasaannya dalam dunia fiksi ini.</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
-
-                <!-- Card 3: Halicarnas Academy -->
-                <a href="../templates/halicarnas academy.html" class="stat-card animate-in delay-3">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 9.jpeg" alt="Halicarnas Academy" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Halicarnas Academy</h3>
-                        <p class="stat-subtitle">Where Logic Meets Purpose</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
-
-                <!-- Card 4: Catatan Penulis -->
-                <a href="../templates/catatan penulis.html" class="stat-card animate-in delay-4">
-                    <div class="stat-visual">
-                        <img src="../assets/halicarnas/halicarnas 12.jpg" alt="Catatan Penulis" onerror="this.src='../assets/halicarnas/halicarnas 1.jpg'; this.onerror=null;">
-                        <div class="stat-visual-overlay"></div>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-title">Catatan Penulis</h3>
-                        <p class="stat-subtitle">Tempat dimana sang penulis menyimpan ringkasan</p>
-                        <span class="stat-arrow">→</span>
-                    </div>
-                </a>
             </div>
         </main>
     </div>
