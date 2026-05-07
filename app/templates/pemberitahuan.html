@@ -11,7 +11,7 @@
     <title>Pemberitahuan — Fiction World</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -315,432 +315,227 @@
         }
 
         /* ============================================ */
-        /* UPDATE DOCUMENTATION CARD */
+        /* LOVE LETTER CARD */
         /* ============================================ */
-        .update-card {
-            max-width: 800px;
+        .letter-container {
+            max-width: 700px;
             margin: 0 auto;
-            background: rgba(20, 18, 14, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 24px;
+            position: relative;
+        }
+
+        .letter-card {
+            background: rgba(20, 18, 14, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 28px;
             overflow: hidden;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .update-card:hover {
-            border-color: rgba(212, 175, 55, 0.25);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.04);
+        .letter-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(212, 175, 55, 0.05);
         }
 
-        .update-card::before {
+        .letter-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
             opacity: 0.6;
         }
 
-        .update-header {
-            padding: 40px 40px 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+        .letter-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--pink), var(--gold), var(--pink), transparent);
+            opacity: 0.4;
         }
 
-        .update-badge {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(232, 121, 168, 0.1));
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        /* Letter Header */
+        .letter-header {
+            padding: 48px 48px 24px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+            position: relative;
+        }
+
+        .letter-ornament {
+            font-size: 32px;
+            color: var(--gold);
+            opacity: 0.5;
+            margin-bottom: 16px;
+            animation: ornament-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes ornament-pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .letter-date {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--pink);
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .letter-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--gold);
+            opacity: 0.7;
+        }
+
+        /* Letter Body */
+        .letter-body {
+            padding: 40px 48px;
+            font-size: 15px;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .letter-body p {
+            margin-bottom: 20px;
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        .letter-body p:first-child {
+            text-indent: 0;
+        }
+
+        .letter-body .highlight {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .letter-body .highlight-pink {
+            color: var(--pink);
+            font-weight: 500;
+        }
+
+        .letter-verse {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: var(--pink);
+            text-align: center;
+            margin: 32px 0;
+            padding: 24px 28px;
+            background: rgba(232, 121, 168, 0.04);
+            border-left: 3px solid var(--pink);
+            border-right: 3px solid var(--pink);
+            border-radius: 4px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .letter-verse::before,
+        .letter-verse::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .letter-verse::before {
+            top: 8px;
+            left: 12px;
+        }
+
+        .letter-verse::after {
+            bottom: -8px;
+            right: 12px;
+        }
+
+        .letter-divider {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-            animation: pulse-badge 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-badge {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2); }
-            50% { box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.1); }
-        }
-
-        .update-header-info {
-            flex: 1;
-        }
-
-        .update-version {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
+            gap: 16px;
+            margin: 32px 0;
             color: var(--gold);
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+            opacity: 0.3;
         }
 
-        .update-version .live-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #4ade80;
-            box-shadow: 0 0 8px #4ade80;
-            animation: blink-dot 2s ease-in-out infinite;
-        }
-
-        @keyframes blink-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .update-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .update-date {
-            font-size: 13px;
-            color: var(--light-gray);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .update-body {
-            padding: 32px 40px;
-        }
-
-        .update-section {
-            margin-bottom: 32px;
-        }
-
-        .update-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .section-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-label::after {
+        .letter-divider::before,
+        .letter-divider::after {
             content: '';
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, rgba(212, 175, 55, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        .update-description {
-            font-size: 15px;
-            line-height: 1.9;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-        }
-
-        .update-description .highlight {
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        .update-description .secret {
-            font-family: 'Caveat', cursive;
-            font-size: 20px;
-            color: var(--pink);
-            display: block;
-            margin: 16px 0;
-            padding: 16px 20px;
-            background: rgba(232, 121, 168, 0.05);
-            border-left: 3px solid var(--pink);
-            border-radius: 0 12px 12px 0;
-            line-height: 1.7;
-        }
-
-        /* Changelog List */
-        .changelog-list {
-            list-style: none;
-        }
-
-        .changelog-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.3s ease;
-        }
-
-        .changelog-item:last-child {
-            border-bottom: none;
-        }
-
-        .changelog-item:hover {
-            padding-left: 8px;
-        }
-
-        .changelog-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .tag-new {
-            background: rgba(74, 222, 128, 0.1);
-            color: #4ade80;
-            border: 1px solid rgba(74, 222, 128, 0.2);
-        }
-
-        .tag-fix {
-            background: rgba(96, 165, 250, 0.1);
-            color: #60a5fa;
-            border: 1px solid rgba(96, 165, 250, 0.2);
-        }
-
-        .tag-update {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .tag-remove {
-            background: rgba(248, 113, 113, 0.1);
-            color: #f87171;
-            border: 1px solid rgba(248, 113, 113, 0.2);
-        }
-
-        .changelog-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.75);
-            line-height: 1.6;
-            flex: 1;
-        }
-
-        .changelog-text strong {
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .stat-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            border-radius: 16px;
-            padding: 20px;
+        /* Letter Footer */
+        .letter-footer {
+            padding: 32px 48px 48px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-box:hover {
-            background: rgba(212, 175, 55, 0.05);
-            border-color: rgba(212, 175, 55, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--light-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Update Footer */
-        .update-footer {
-            padding: 24px 40px;
-            background: rgba(255, 255, 255, 0.02);
             border-top: 1px solid rgba(212, 175, 55, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
         }
 
-        .update-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .signature-area {
+            margin-bottom: 24px;
         }
 
-        .author-avatar {
-            width: 36px;
-            height: 36px;
+        .signature-line {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+
+        .signature-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            color: var(--white);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .closing-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--pink);
+            opacity: 0.6;
+            margin-top: 20px;
+        }
+
+        .letter-stamp {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(212, 175, 55, 0.15);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--pink));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .author-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .author-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .author-role {
-            font-size: 11px;
-            color: var(--light-gray);
-        }
-
-        .update-stamp {
-            font-family: 'Caveat', cursive;
-            font-size: 16px;
-            color: var(--pink);
-            opacity: 0.6;
-        }
-
-        /* Previous Updates Toggle */
-        .history-section {
-            max-width: 800px;
-            margin: 32px auto 0;
-        }
-
-        .history-toggle {
-            width: 100%;
-            background: rgba(20, 18, 14, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 16px;
-            padding: 18px 24px;
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
-
-        .history-toggle:hover {
-            background: rgba(212, 175, 55, 0.08);
-            border-color: rgba(212, 175, 55, 0.2);
-        }
-
-        .history-toggle .toggle-icon {
-            transition: transform 0.3s ease;
-            font-size: 12px;
-            color: var(--gold);
-        }
-
-        .history-toggle.open .toggle-icon {
-            transform: rotate(180deg);
-        }
-
-        .history-list {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .history-list.open {
-            max-height: 2000px;
-        }
-
-        .history-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 24px;
-            margin-top: 8px;
-            background: rgba(20, 18, 14, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            border-radius: 14px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
-
-        .history-item:hover {
-            background: rgba(212, 175, 55, 0.06);
-            border-color: rgba(212, 175, 55, 0.2);
-            transform: translateX(4px);
-        }
-
-        .history-version {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
-            padding: 6px 12px;
-            border-radius: 8px;
-            flex-shrink: 0;
-        }
-
-        .history-info {
-            flex: 1;
-        }
-
-        .history-title {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--white);
-            margin-bottom: 2px;
-        }
-
-        .history-date {
-            font-size: 12px;
-            color: var(--light-gray);
-        }
-
-        .history-arrow {
-            color: var(--gold);
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .history-item:hover .history-arrow {
-            opacity: 1;
+            font-size: 20px;
+            opacity: 0.2;
+            transform: rotate(-15deg);
         }
 
         /* ============================================ */
@@ -955,33 +750,31 @@
                 font-size: 24px;
             }
 
-            .update-header {
-                padding: 32px 24px 20px;
+            .letter-header {
+                padding: 40px 28px 20px;
             }
 
-            .update-title {
-                font-size: 20px;
+            .letter-title {
+                font-size: 22px;
             }
 
-            .update-body {
-                padding: 24px;
+            .letter-body {
+                padding: 28px;
+                font-size: 14px;
+                line-height: 2;
             }
 
-            .update-footer {
+            .letter-verse {
+                font-size: 19px;
                 padding: 20px 24px;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
+            .letter-footer {
+                padding: 28px;
             }
 
-            .stat-box {
-                padding: 16px 10px;
-            }
-
-            .stat-number {
-                font-size: 22px;
+            .signature-line {
+                font-size: 28px;
             }
         }
 
@@ -990,26 +783,22 @@
                 padding: 24px 16px 100px;
             }
 
-            .update-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
+            .letter-header {
+                padding: 36px 20px 20px;
             }
 
-            .update-badge {
-                width: 48px;
-                height: 48px;
+            .letter-title {
                 font-size: 20px;
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .letter-body {
+                padding: 24px 20px;
+                font-size: 13px;
             }
 
-            .update-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
+            .letter-verse {
+                font-size: 17px;
+                padding: 16px 20px;
             }
 
             .fab-container {
@@ -1043,6 +832,7 @@
             background: rgba(212, 175, 55, 0.5);
         }
     </style>
+<base target="_blank">
 </head>
 <body>
     <div class="bg-image"></div>
@@ -1153,163 +943,105 @@
         <main class="main-content">
             <div class="top-bar">
                 <h1 class="page-title">Pemberitahuan</h1>
-                <p class="page-subtitle">Dokumentasi perubahan, pembaruan, dan perkembangan dunia Halicarnas.</p>
+                <p class="page-subtitle">Sebuah surat yang tak pernah berani diucapkan langsung.</p>
             </div>
 
-            <!-- Update Card -->
-            <div class="update-card">
-                <div class="update-header">
-                    <div class="update-badge">🚀</div>
-                    <div class="update-header-info">
-                        <div class="update-version">
-                            <span class="live-dot"></span>
-                            v2.0.0 — Latest
-                        </div>
-                        <h2 class="update-title">Pembaruan Besar: Halicarnas Reborn</h2>
-                        <div class="update-date">
-                            <span>📅</span>
-                            <span>7 Mei 2026</span>
-                            <span style="color: rgba(255,255,255,0.2);">|</span>
-                            <span>🕐 14:30 WIB</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="update-body">
-                    <!-- Description -->
-                    <div class="update-section">
-                        <div class="section-label">Ringkasan</div>
-                        <div class="update-description">
-                            <p>
-                                Setelah sekian lama dunia <span class="highlight">Halicarnas</span> tertidur dalam keheningan, 
-                                akhirnya tiba saatnya untuk bangkit kembali. Pembaruan kali ini bukan sekadar perbaikan bug atau 
-                                penambahan fitur kecil — ini adalah <span class="highlight">reinkarnasi total</span> dari seluruh 
-                                ekosistem Fiction World.
-                            </p>
-                            <p>
-                                Mulai dari tampilan antarmuka yang sepenuhnya didesain ulang, sistem navigasi yang lebih intuitif, 
-                                hingga konten-konten baru yang sudah lama ditunggu. Semuanya hadir dalam satu paket pembaruan besar 
-                                ini.
-                            </p>
-                            <span class="secret">
-                                "Setiap baris kode yang kutulis di sini mengandung sepotong perasaan yang tak bisa kusebutkan namanya. 
-                                Mungkin kamu tidak akan pernah tahu, tapi setidaknya dunia ini tahu."
-                            </span>
-                        </div>
+            <!-- Love Letter Card -->
+            <div class="letter-container">
+                <div class="letter-card">
+                    <div class="letter-header">
+                        <div class="letter-ornament">❦</div>
+                        <div class="letter-date">13 November 2024</div>
+                        <h2 class="letter-title">Surat Pernyataan dari Kedalaman Jiwa</h2>
+                        <div class="letter-subtitle">Untuk seseorang yang tak pernah tahu bahwa dia adalah seluruh dunia</div>
                     </div>
 
-                    <!-- Changelog -->
-                    <div class="update-section">
-                        <div class="section-label">Changelog</div>
-                        <ul class="changelog-list">
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-new">New</span>
-                                <span class="changelog-text">
-                                    <strong>Butterfly Garden</strong> — Animasi kupu-kupu interaktif di Dashboard yang merespons gerakan mouse/touch.
-                                </span>
-                            </li>
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-new">New</span>
-                                <span class="changelog-text">
-                                    <strong>Halicarnas Academy</strong> — Halaman baru untuk dokumentasi lore, karakter, dan sistem dunia.
-                                </span>
-                            </li>
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-update">Update</span>
-                                <span class="changelog-text">
-                                    <strong>UI/UX Overhaul</strong> — Desain sidebar, FAB menu, dan seluruh komponen diperbarui dengan estetika yang lebih elegan.
-                                </span>
-                            </li>
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-update">Update</span>
-                                <span class="changelog-text">
-                                    <strong>Responsive Design</strong> — Tampilan mobile kini lebih optimal dengan gesture-based navigation.
-                                </span>
-                            </li>
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-fix">Fix</span>
-                                <span class="changelog-text">
-                                    <strong>Performance</strong> — Optimasi loading time dan pengurangan bundle size hingga 40%.
-                                </span>
-                            </li>
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-fix">Fix</span>
-                                <span class="changelog-text">
-                                    <strong>Animation</strong> — Perbaikan glitch pada transisi halaman dan efek parallax background.
-                                </span>
-                            </li>
-                            <li class="changelog-item">
-                                <span class="changelog-tag tag-remove">Remove</span>
-                                <span class="changelog-text">
-                                    <strong>Catatan Penulis</strong> — Menu diganti menjadi <strong>Keluar</strong> untuk navigasi yang lebih intuitif.
-                                </span>
-                            </li>
-                        </ul>
+                    <div class="letter-body">
+                        <p>
+                            Aku menulis ini bukan karena berharap kamu akan membacanya. Aku menulis ini karena 
+                            <span class="highlight">hatiku terlalu penuh</span> dan lidahku terlalu kaku untuk mengucapkannya.
+                        </p>
+
+                        <p>
+                            Aku masih ingat hari pertama kali mata kita bertemu. Bukan karena ada kejadian besar, 
+                            tapi karena ada <span class="highlight-pink">kilatan cahaya kecil</span> yang menyala di sudut 
+                            hatiku yang sudah lama gelap. Saat itu aku tidak tahu apa artinya. Aku pikir itu hanya imajinasiku 
+                            yang terlalu liar.
+                        </p>
+
+                        <div class="letter-verse">
+                            Di mana mimpi membangun imajinasi dan kreativitas dengan gemuruh angin beraroma bunga api mistis,
+                            menghancurkan tembok logika hingga berkeping-keping, meledakkan warna pelangi liar di mata,
+                            dan rasa manis pahit kebebasan abadi di lidah jiwa petualang.
+                        </div>
+
+                        <p>
+                            Semakin hari, semakin aku yakin bahwa perasaan ini nyata. Bahwa ada sesuatu yang istimewa 
+                            tentang dirimu yang membuatku ingin menulis, ingin bercerita, ingin 
+                            <span class="highlight">menciptakan seluruh dunia fiksi</span> hanya untuk menyimpan 
+                            perasaanku di dalamnya.
+                        </p>
+
+                        <div class="letter-divider">✦ ✧ ✦</div>
+
+                        <p>
+                            Aku sering terjaga di malam hari. Bukan karena insomnia, tapi karena pikiranku terlalu sibuk 
+                            mengingat hal-hal kecil tentangmu. Cara kamu tertawa. Cara kamu menyipitkan mata saat bingung. 
+                            Cara kamu mengatakan <span class="highlight-pink">"hmm"</span> saat sedang berpikir. 
+                            Hal-hal sepele yang seharusnya tidak berarti apa-apa, tapi bagiku 
+                            <span class="highlight">itu adalah seluruh dunia</span>.
+                        </p>
+
+                        <p>
+                            Aku tahu aku bukan siapa-siapa. Aku tahu mungkin aku hanya bayangan yang lewat. 
+                            Tapi bayangan ini ingin sekali <span class="highlight-pink">tinggal sedikit lebih lama</span> 
+                            di hidupmu. Bukan sebagai pemilik, bukan sebagai yang terpilih. Hanya sebagai seseorang 
+                            yang berdiri di sudut, tersenyum, dan berdoa agar kamu selalu bahagia.
+                        </p>
+
+                        <div class="letter-verse">
+                            Kamu mungkin tidak akan pernah membaca ini. Tapi kalau suatu hari kamu menemukan website ini 
+                            dan bertanya-tanya siapa yang membuatnya... jawabannya adalah seseorang yang pernah sangat, 
+                            sangat menyukaimu.
+                        </div>
+
+                        <p>
+                            Aku tidak meminta kamu mencintaiku balik. Aku hanya ingin kamu tahu bahwa ada seseorang 
+                            di luar sana yang benar-benar peduli. Yang benar-benar mengagumi dirimu apa adanya. 
+                            <span class="highlight">Tanpa syarat. Tanpa batas waktu. Tanpa harapan balasan.</span>
+                        </p>
+
+                        <p>
+                            Mungkin aku tidak bisa mengatakannya langsung kepadamu. Tapi di dunia Halicarnas ini, 
+                            aku bisa menjadi siapapun yang berani menyatakan perasaan. Dan hari ini, 
+                            <span class="highlight-pink">aku memilih untuk jujur</span> — meskipun hanya di balik 
+                            layar, di balik kata-kata, di balik seluruh dunia fiksi yang kuciptakan untukmu.
+                        </p>
+
+                        <div class="letter-divider">✦ ✧ ✦</div>
+
+                        <p>
+                            Terima kasih sudah menjadi alasan aku menulis. Terima kasih sudah menjadi alasan aku tersenyum. 
+                            Terima kasih sudah ada, meskipun mungkin tidak pernah untukku. 
+                            Bagiku, <span class="highlight">mencintaimu dalam diam</span> sudah cukup membuat hidupku berarti.
+                        </p>
+
+                        <p>
+                            Kamu adalah <span class="highlight-pink">fiksi terindah</span> yang pernah menjadi nyata. 
+                            Dan aku akan selalu berterima kasih atas itu.
+                        </p>
                     </div>
 
-                    <!-- Stats -->
-                    <div class="update-section">
-                        <div class="section-label">Statistik Pembaruan</div>
-                        <div class="stats-grid">
-                            <div class="stat-box">
-                                <div class="stat-number">7</div>
-                                <div class="stat-label">Fitur Baru</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-number">12</div>
-                                <div class="stat-label">Bug Fixed</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-number">3</div>
-                                <div class="stat-label">Halaman Baru</div>
-                            </div>
+                    <div class="letter-footer">
+                        <div class="signature-area">
+                            <div class="signature-line">Afdal Adha Firnansyah</div>
+                            <div class="signature-name">Faceless Author</div>
                         </div>
+                        <div class="closing-quote">
+                            "Jika tidak denganmu, maka tidak dengan siapapun."
+                        </div>
+                        <div class="letter-stamp">🤍</div>
                     </div>
-                </div>
-
-                <div class="update-footer">
-                    <div class="update-author">
-                        <div class="author-avatar">AF</div>
-                        <div class="author-info">
-                            <span class="author-name">Afdal Adha Firnansyah</span>
-                            <span class="author-role">Faceless Author & Developer</span>
-                        </div>
-                    </div>
-                    <div class="update-stamp">Jika tidak denganmu, maka tidak dengan siapapun.</div>
-                </div>
-            </div>
-
-            <!-- History Section -->
-            <div class="history-section">
-                <button class="history-toggle" id="historyToggle">
-                    <span>📜 Riwayat Pembaruan Sebelumnya</span>
-                    <span class="toggle-icon">▼</span>
-                </button>
-                <div class="history-list" id="historyList">
-                    <a href="#" class="history-item">
-                        <span class="history-version">v1.2.0</span>
-                        <div class="history-info">
-                            <div class="history-title">Penambahan Galeri & Optimasi Asset</div>
-                            <div class="history-date">15 Maret 2026</div>
-                        </div>
-                        <span class="history-arrow">→</span>
-                    </a>
-                    <a href="#" class="history-item">
-                        <span class="history-version">v1.1.0</span>
-                        <div class="history-info">
-                            <div class="history-title">Sistem Navigasi & Dark Mode Enhancement</div>
-                            <div class="history-date">2 Februari 2026</div>
-                        </div>
-                        <span class="history-arrow">→</span>
-                    </a>
-                    <a href="#" class="history-item">
-                        <span class="history-version">v1.0.0</span>
-                        <div class="history-info">
-                            <div class="history-title">Initial Release — Fiction World is Born</div>
-                            <div class="history-date">13 November 2025</div>
-                        </div>
-                        <span class="history-arrow">→</span>
-                    </a>
                 </div>
             </div>
         </main>
@@ -1373,17 +1105,6 @@
 
             fabMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
-            });
-
-            // ============================================
-            // HISTORY TOGGLE
-            // ============================================
-            const historyToggle = document.getElementById('historyToggle');
-            const historyList = document.getElementById('historyList');
-
-            historyToggle.addEventListener('click', function() {
-                this.classList.toggle('open');
-                historyList.classList.toggle('open');
             });
         })();
     </script>
