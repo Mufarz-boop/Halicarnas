@@ -13,7 +13,7 @@
 
     <title>Fiction World</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -36,6 +36,7 @@
             --white: #ffffff;
             --red: #ef4444;
             --green: #22c55e;
+            --pink: #e879a8;
         }
 
         html {
@@ -54,6 +55,9 @@
             overflow-y: auto;
         }
 
+        /* ============================================ */
+        /* BACKGROUND LAYERS */
+        /* ============================================ */
         .bg-image {
             position: fixed;
             top: 0;
@@ -67,9 +71,15 @@
             background-color: var(--dark);
             z-index: 0;
             will-change: transform;
+            filter: brightness(0.5) saturate(1.3);
+            animation: bgPulse 8s ease-in-out infinite;
         }
 
-        /* Background luar card — lebih pekat & berwarna */
+        @keyframes bgPulse {
+            0%, 100% { transform: scale(1); filter: brightness(0.5) saturate(1.3); }
+            50% { transform: scale(1.05); filter: brightness(0.55) saturate(1.4); }
+        }
+
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -77,12 +87,68 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(135deg, rgba(5,5,5,0.92) 0%, rgba(15,10,5,0.85) 50%, rgba(5,5,5,0.92) 100%),
-                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
+                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(232, 121, 168, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(5,5,5,0.95) 0%, rgba(15,10,5,0.88) 50%, rgba(5,5,5,0.95) 100%);
             z-index: 1;
         }
 
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 2;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--gold-glow), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(232, 121, 168, 0.3), transparent);
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Particle Canvas */
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* ============================================ */
+        /* MAIN CONTAINER */
+        /* ============================================ */
         .container {
             position: relative;
             z-index: 10;
@@ -98,10 +164,9 @@
             overflow-x: hidden;
         }
 
-        /* 
-         * CARD UTAMA — efek pinggiran tajam, tengah transparan
-         * Menggunakan multiple background layers untuk efek frame
-         */
+        /* ============================================ */
+        /* SPLIT CARD - Premium Glassmorphism */
+        /* ============================================ */
         .split-card {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -110,34 +175,32 @@
             position: relative;
             border-radius: 24px;
             overflow: hidden;
-            
-            /* Border luar tajam dengan glow */
             border: 1px solid rgba(212, 175, 55, 0.25);
             box-shadow: 
-                /* Glow luar lembut */
-                0 0 60px rgba(212, 175, 55, 0.08),
-                0 0 120px rgba(212, 175, 55, 0.04),
-                /* Shadow dasar */
-                0 25px 80px rgba(0, 0, 0, 0.7);
+                0 0 80px rgba(212, 175, 55, 0.1),
+                0 0 160px rgba(212, 175, 55, 0.05),
+                0 30px 100px rgba(0, 0, 0, 0.6);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
         }
 
-        /* 
-         * FRAME/PINGGIRAN — layer terpisah untuk efek tajam di border
-         */
+        /* Animated Border Frame */
         .split-card::before {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: 24px;
-            padding: 1.5px; /* ketebalan frame */
+            padding: 2px;
             background: linear-gradient(
                 135deg,
-                rgba(212, 175, 55, 0.6) 0%,
-                rgba(212, 175, 55, 0.1) 25%,
-                rgba(184, 148, 31, 0.3) 50%,
-                rgba(212, 175, 55, 0.1) 75%,
-                rgba(212, 175, 55, 0.6) 100%
+                rgba(212, 175, 55, 0.8) 0%,
+                rgba(232, 121, 168, 0.4) 25%,
+                rgba(212, 175, 55, 0.2) 50%,
+                rgba(59, 130, 246, 0.4) 75%,
+                rgba(212, 175, 55, 0.8) 100%
             );
+            background-size: 300% 300%;
+            animation: borderMove 4s ease infinite;
             -webkit-mask: 
                 linear-gradient(#fff 0 0) content-box, 
                 linear-gradient(#fff 0 0);
@@ -147,40 +210,38 @@
             z-index: 10;
         }
 
-        /* 
-         * INNER SHADOW — memberikan efek "tebal" di pinggiran dalam
-         */
+        @keyframes borderMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Inner Shadow */
         .split-card::after {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: 24px;
             box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.4),
-                inset 0 0 60px rgba(0, 0, 0, 0.2);
+                inset 0 0 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 80px rgba(0, 0, 0, 0.3);
             pointer-events: none;
             z-index: 9;
         }
 
-        /* 
-         * BACKGROUND CARD — transparan dengan warna berbeda dari luar
-         * Menggunakan backdrop-filter untuk efek glass
-         */
+        /* Card Background */
         .card-bg {
             position: absolute;
             inset: 0;
             background: 
-                /* Warna dasar transparan — lebih terang & warm dibanding bg luar */
-                rgba(20, 18, 14, 0.35),
-                /* Subtle gradient warm untuk beda dengan luar */
-                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 60%);
-            backdrop-filter: blur(16px) saturate(1.2);
-            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+                rgba(20, 18, 14, 0.4),
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+            backdrop-filter: blur(20px) saturate(1.3);
+            -webkit-backdrop-filter: blur(20px) saturate(1.3);
             z-index: 1;
         }
 
-        /* Noise texture untuk kesan premium */
         .card-noise {
             position: absolute;
             inset: 0;
@@ -192,7 +253,7 @@
             background-size: 128px;
         }
 
-        /* Separator tengah */
+        /* Glowing Separator */
         .card-separator {
             position: absolute;
             top: 10%;
@@ -203,16 +264,24 @@
             background: linear-gradient(
                 180deg,
                 transparent 0%,
-                rgba(212, 175, 55, 0.2) 20%,
-                rgba(212, 175, 55, 0.35) 50%,
-                rgba(212, 175, 55, 0.2) 80%,
+                rgba(212, 175, 55, 0.3) 20%,
+                rgba(232, 121, 168, 0.5) 50%,
+                rgba(212, 175, 55, 0.3) 80%,
                 transparent 100%
             );
             z-index: 5;
             pointer-events: none;
+            animation: separatorPulse 3s ease-in-out infinite;
         }
 
-        /* Left Side - Branding */
+        @keyframes separatorPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* ============================================ */
+        /* LEFT SIDE - Branding */
+        /* ============================================ */
         .left-side {
             padding: 48px 40px;
             display: flex;
@@ -224,22 +293,22 @@
             z-index: 3;
         }
 
-        /* Subtle gradient di left side */
         .left-side::before {
             content: '';
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 180deg,
-                rgba(212, 175, 55, 0.03) 0%,
+                rgba(212, 175, 55, 0.04) 0%,
                 transparent 40%,
                 transparent 60%,
-                rgba(59, 130, 246, 0.02) 100%
+                rgba(59, 130, 246, 0.03) 100%
             );
             pointer-events: none;
             z-index: -1;
         }
 
+        /* Logo with enhanced glow */
         .logo-container {
             width: 160px;
             height: 160px;
@@ -247,10 +316,11 @@
             position: relative;
             border-radius: 50%;
             padding: 4px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--blue) 100%);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--pink) 100%);
             box-shadow: 
-                0 0 60px rgba(212, 175, 55, 0.35),
-                0 0 120px rgba(59, 130, 246, 0.12);
+                0 0 60px rgba(212, 175, 55, 0.4),
+                0 0 120px rgba(232, 121, 168, 0.15),
+                0 0 180px rgba(212, 175, 55, 0.05);
             animation: logo-pulse 3s ease-in-out infinite;
             aspect-ratio: 1 / 1;
         }
@@ -264,8 +334,23 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 2px solid rgba(212, 175, 55, 0.25);
+            border: 2px solid rgba(212, 175, 55, 0.3);
             aspect-ratio: 1 / 1;
+            position: relative;
+        }
+
+        .logo-inner::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, transparent 40%, rgba(212, 175, 55, 0.3) 50%, transparent 60%);
+            animation: logoRotate 4s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .logo-inner img {
@@ -275,6 +360,8 @@
             object-position: center;
             border-radius: 50%;
             display: block;
+            position: relative;
+            z-index: 1;
         }
 
         .logo-placeholder {
@@ -286,29 +373,42 @@
             justify-content: center;
             width: 100%;
             height: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes logo-pulse {
             0%, 100% { 
                 box-shadow: 
-                    0 0 60px rgba(212, 175, 55, 0.35),
-                    0 0 120px rgba(59, 130, 246, 0.12);
+                    0 0 60px rgba(212, 175, 55, 0.4),
+                    0 0 120px rgba(232, 121, 168, 0.15);
             }
             50% { 
                 box-shadow: 
-                    0 0 80px rgba(212, 175, 55, 0.55),
-                    0 0 140px rgba(59, 130, 246, 0.22);
+                    0 0 90px rgba(212, 175, 55, 0.6),
+                    0 0 160px rgba(232, 121, 168, 0.25),
+                    0 0 220px rgba(212, 175, 55, 0.1);
             }
         }
 
         .brand-title {
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 700;
+            font-size: 38px;
+            font-weight: 900;
             color: var(--white);
             margin-bottom: 10px;
             letter-spacing: 5px;
             text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, var(--white), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
 
         .brand-subtitle {
@@ -317,37 +417,50 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 500;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
             margin-bottom: 24px;
+            animation: subtitleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes subtitleGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
         }
 
         .divider {
-            width: 60px;
+            width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
             margin: 0 auto 24px;
-            opacity: 0.6;
+            opacity: 0.8;
+            animation: dividerExpand 2s ease-in-out infinite;
         }
 
-        /* Tagline Box — transparan dengan border glow */
+        @keyframes dividerExpand {
+            0%, 100% { width: 60px; opacity: 0.6; }
+            50% { width: 100px; opacity: 1; }
+        }
+
+        /* Tagline Box - Enhanced */
         .tagline-box {
             background: rgba(212, 175, 55, 0.04);
             border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 16px;
-            padding: 20px 24px;
+            padding: 24px;
             margin-top: 8px;
             position: relative;
             overflow: hidden;
             max-width: 320px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: all 0.4s ease;
         }
 
         .tagline-box:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.06);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.35);
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.12);
+            transform: translateY(-2px);
         }
 
         .tagline-box::before {
@@ -357,20 +470,31 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.5;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
+            animation: taglineGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes taglineGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
 
         .tagline-icon {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 12px;
             display: block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .tagline-text {
             color: var(--light-gray);
             font-size: 13px;
-            line-height: 1.7;
+            line-height: 1.8;
             font-style: italic;
             letter-spacing: 0.3px;
         }
@@ -378,14 +502,15 @@
         .tagline-author {
             color: var(--gold);
             font-size: 11px;
-            margin-top: 10px;
+            margin-top: 12px;
             letter-spacing: 2px;
-            text-transform: none;
-            font-weight: 500;
-            opacity: 0.7;
+            font-weight: 600;
+            opacity: 0.8;
         }
 
-        /* Right Side - Question */
+        /* ============================================ */
+        /* RIGHT SIDE - Question */
+        /* ============================================ */
         .right-side {
             padding: 48px 40px;
             display: flex;
@@ -407,12 +532,18 @@
             letter-spacing: 3px;
             margin-bottom: 12px;
             display: block;
+            animation: labelBlink 2s ease-in-out infinite;
+        }
+
+        @keyframes labelBlink {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
         .question-number {
             color: rgba(212, 175, 55, 0.3);
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 8px;
             display: block;
@@ -424,51 +555,86 @@
             font-weight: 500;
             line-height: 1.7;
             letter-spacing: 0.3px;
+            min-height: 60px;
+        }
+
+        .question-text.typing::after {
+            content: '|';
+            animation: cursorBlink 0.7s infinite;
+            color: var(--gold);
+        }
+
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .question-divider {
-            width: 40px;
+            width: 60px;
             height: 2px;
-            background: linear-gradient(90deg, var(--gold), transparent);
+            background: linear-gradient(90deg, var(--gold), var(--pink), transparent);
             margin: 20px 0;
-            opacity: 0.6;
+            opacity: 0.8;
+            animation: dividerPulse 2s ease-in-out infinite;
         }
 
-        /* Options Grid */
+        @keyframes dividerPulse {
+            0%, 100% { width: 40px; opacity: 0.5; }
+            50% { width: 80px; opacity: 1; }
+        }
+
+        /* Options Grid - Enhanced */
         .options-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 12px;
         }
 
         .option-btn {
             width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1.5px solid rgba(212, 175, 55, 0.1);
-            border-radius: 12px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1.5px solid rgba(212, 175, 55, 0.12);
+            border-radius: 14px;
             color: var(--white);
             font-size: 14px;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: left;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             -webkit-appearance: none;
             touch-action: manipulation;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .option-btn:hover::before {
+            left: 100%;
         }
 
         .option-btn:hover {
-            border-color: rgba(212, 175, 55, 0.35);
-            background: rgba(212, 175, 55, 0.06);
-            transform: translateX(4px);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.08);
+            transform: translateX(6px) scale(1.02);
+            box-shadow: 
+                0 8px 30px rgba(212, 175, 55, 0.12),
+                0 0 20px rgba(212, 175, 55, 0.05);
         }
 
         .option-btn:active {
@@ -476,61 +642,71 @@
         }
 
         .option-btn .option-letter {
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
-            border-radius: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1.5px solid rgba(212, 175, 55, 0.2);
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1.5px solid rgba(212, 175, 55, 0.25);
             color: var(--gold);
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .option-btn:hover .option-letter {
-            background: rgba(212, 175, 55, 0.15);
-            border-color: rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
         .option-btn .option-text {
             flex: 1;
-            line-height: 1.4;
+            line-height: 1.5;
             font-size: 13px;
+            position: relative;
+            z-index: 1;
         }
 
         /* States */
         .option-btn.selected {
             border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.08);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
         }
 
         .option-btn.selected .option-letter {
             background: var(--gold);
             color: var(--dark);
             border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
 
         .option-btn.correct {
             border-color: var(--green);
-            background: rgba(34, 197, 94, 0.08);
-            animation: correct-pulse 0.5s ease;
+            background: rgba(34, 197, 94, 0.1);
+            animation: correct-pulse 0.6s ease;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.2);
         }
 
         .option-btn.correct .option-letter {
             background: var(--green);
             color: var(--white);
             border-color: var(--green);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
         }
 
         .option-btn.wrong {
             border-color: var(--red);
-            background: rgba(239, 68, 68, 0.08);
+            background: rgba(239, 68, 68, 0.1);
             animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
         }
 
         .option-btn.wrong .option-letter {
@@ -541,20 +717,20 @@
 
         @keyframes correct-pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
         @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
         }
 
         .options-grid.disabled .option-btn {
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .options-grid.disabled .option-btn.selected,
@@ -566,64 +742,24 @@
         .hint-text {
             color: rgba(255, 255, 255, 0.2);
             font-size: 11px;
-            margin-top: 20px;
+            margin-top: 24px;
             letter-spacing: 0.5px;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-style: italic;
         }
 
         .footer {
             text-align: center;
-            margin-top: 24px;
+            margin-top: 28px;
             color: rgba(255, 255, 255, 0.25);
             font-size: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
-        /* Loading Overlay */
+        /* ============================================ */
+        /* LOADING OVERLAY - Sound Wave */
+        /* ============================================ */
         .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .loading-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(212, 175, 55, 0.2);
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 16px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-overlay p {
-            color: var(--light-gray);
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        /* Success Overlay */
-        .success-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -637,8 +773,77 @@
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .sound-wave {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 24px;
+            height: 40px;
+        }
+
+        .wave-bar {
+            width: 4px;
+            background: linear-gradient(to top, var(--gold), var(--pink));
+            border-radius: 2px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .wave-bar:nth-child(1) { height: 20%; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { height: 40%; animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { height: 80%; animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { height: 100%; animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { height: 80%; animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { height: 60%; animation-delay: 0.6s; }
+        .wave-bar:nth-child(8) { height: 40%; animation-delay: 0.7s; }
+        .wave-bar:nth-child(9) { height: 20%; animation-delay: 0.8s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        .loading-overlay p {
+            color: var(--light-gray);
+            font-size: 14px;
+            letter-spacing: 2px;
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* ============================================ */
+        /* SUCCESS OVERLAY - Confetti */
+        /* ============================================ */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
             padding: 20px;
+            overflow: hidden;
         }
 
         .success-overlay.active {
@@ -646,16 +851,25 @@
             pointer-events: all;
         }
 
+        /* Confetti Canvas */
+        #confetti {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .success-ring {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border: 3px solid rgba(212, 175, 55, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
+            z-index: 1;
         }
 
         .success-ring::before {
@@ -665,7 +879,8 @@
             border-radius: 50%;
             border: 3px solid transparent;
             border-top-color: var(--gold);
-            animation: ring-rotate 1s linear infinite;
+            border-right-color: var(--pink);
+            animation: ring-rotate 1.5s linear infinite;
         }
 
         @keyframes ring-rotate {
@@ -673,10 +888,10 @@
         }
 
         .success-icon {
-            font-size: 40px;
+            font-size: 48px;
             color: var(--gold);
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            animation: success-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            animation: success-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             transform: scale(0);
         }
 
@@ -686,11 +901,19 @@
 
         .success-overlay h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 32px;
             color: var(--white);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            margin-bottom: 12px;
+            letter-spacing: 3px;
             text-align: center;
+            z-index: 1;
+            animation: successTitle 1s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes successTitle {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .success-overlay p {
@@ -698,16 +921,25 @@
             font-size: 14px;
             letter-spacing: 1px;
             text-align: center;
+            z-index: 1;
         }
 
         .success-line {
-            width: 60px;
+            width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
+            margin: 24px auto;
+            animation: lineExpand 1s ease forwards;
+            transform: scaleX(0);
         }
 
-        /* Scrollbar */
+        @keyframes lineExpand {
+            to { transform: scaleX(1); }
+        }
+
+        /* ============================================ */
+        /* SCROLLBAR */
+        /* ============================================ */
         ::-webkit-scrollbar {
             width: 4px;
         }
@@ -721,7 +953,13 @@
             border-radius: 2px;
         }
 
-        /* Tablet */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.5);
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE */
+        /* ============================================ */
         @media (max-width: 900px) {
             .container {
                 max-width: 100%;
@@ -777,7 +1015,6 @@
             }
         }
 
-        /* Mobile */
         @media (max-width: 480px) {
             .container {
                 padding: 16px;
@@ -877,12 +1114,17 @@
     </style>
 </head>
 <body>
+    <!-- Background Effects -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <canvas id="particles"></canvas>
 
     <div class="container">
         <div class="split-card" id="splitCard">
-            <!-- Background layers card -->
+            <!-- Background layers -->
             <div class="card-bg"></div>
             <div class="card-noise"></div>
             <div class="card-separator"></div>
@@ -895,7 +1137,7 @@
                     </div>
                 </div>
                 <h1 class="brand-title">Fiction World</h1>
-                <p class="brand-subtitle"></p>
+                <p class="brand-subtitle">The Last World</p>
                 <div class="divider"></div>
                 
                 <div class="tagline-box">
@@ -903,7 +1145,7 @@
                     <p class="tagline-text">
                         "Di mana mimpi membangun imajinasi dan kreativitas dengan gemuruh angin beraroma bunga api mistis, menghancurkan tembok logika hingga berkeping-keping yang berderit tajam di kulit, meledakkan warna pelangi liar di mata, bisikan rahasia dewa di telinga, dan rasa manis pahit kebebasan abadi di lidah jiwa petualang."
                     </p>
-                    <p class="tagline-author">Mr. Ashar</p>
+                    <p class="tagline-author">— Mr. Ashar</p>
                 </div>
             </div>
 
@@ -912,7 +1154,7 @@
                 <div class="question-header">
                     <span class="question-number" id="questionNumber">#01</span>
                     <span class="question-label">Pertanyaan dari Mr. Ashar</span>
-                    <p class="question-text" id="questionText">Memuat pertanyaan...</p>
+                    <p class="question-text typing" id="questionText">Memuat pertanyaan...</p>
                     <div class="question-divider"></div>
                 </div>
 
@@ -931,12 +1173,25 @@
         </div>
     </div>
 
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+        <div class="sound-wave">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
         <p>Memuat pertanyaan baru...</p>
     </div>
 
+    <!-- Success Overlay -->
     <div class="success-overlay" id="successOverlay">
+        <canvas id="confetti"></canvas>
         <div class="success-ring">
             <div class="success-icon">⚜</div>
         </div>
@@ -1018,6 +1273,194 @@
             let currentQuestion = null;
             let isProcessing = false;
 
+            // ==========================================
+            // PARTICLE SYSTEM - Fireflies
+            // ==========================================
+            const particleCanvas = document.getElementById('particles');
+            const pCtx = particleCanvas.getContext('2d');
+            let fireflies = [];
+            const fireflyCount = 60;
+
+            function resizeParticleCanvas() {
+                particleCanvas.width = window.innerWidth;
+                particleCanvas.height = window.innerHeight;
+            }
+            resizeParticleCanvas();
+            window.addEventListener('resize', resizeParticleCanvas);
+
+            class Firefly {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * particleCanvas.width;
+                    this.y = Math.random() * particleCanvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = (Math.random() - 0.5) * 1;
+                    this.speedY = (Math.random() - 0.5) * 1;
+                    this.opacity = Math.random() * 0.6 + 0.2;
+                    this.color = Math.random() > 0.5 ? '212, 175, 55' : '232, 121, 168';
+                    this.pulse = Math.random() * Math.PI * 2;
+                    this.pulseSpeed = Math.random() * 0.02 + 0.01;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.pulse += this.pulseSpeed;
+
+                    if (this.x < -50) this.x = particleCanvas.width + 50;
+                    if (this.x > particleCanvas.width + 50) this.x = -50;
+                    if (this.y < -50) this.y = particleCanvas.height + 50;
+                    if (this.y > particleCanvas.height + 50) this.y = -50;
+                }
+
+                draw() {
+                    const pulseOpacity = this.opacity * (0.5 + 0.5 * Math.sin(this.pulse));
+                    const glowSize = this.size * 3;
+                    
+                    // Glow
+                    const gradient = pCtx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, glowSize
+                    );
+                    gradient.addColorStop(0, `rgba(${this.color}, ${pulseOpacity})`);
+                    gradient.addColorStop(0.5, `rgba(${this.color}, ${pulseOpacity * 0.3})`);
+                    gradient.addColorStop(1, `rgba(${this.color}, 0)`);
+                    
+                    pCtx.beginPath();
+                    pCtx.arc(this.x, this.y, glowSize, 0, Math.PI * 2);
+                    pCtx.fillStyle = gradient;
+                    pCtx.fill();
+
+                    // Core
+                    pCtx.beginPath();
+                    pCtx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                    pCtx.fillStyle = `rgba(255, 255, 255, ${pulseOpacity})`;
+                    pCtx.fill();
+                }
+            }
+
+            for (let i = 0; i < fireflyCount; i++) {
+                fireflies.push(new Firefly());
+            }
+
+            function animateFireflies() {
+                pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+                fireflies.forEach(f => {
+                    f.update();
+                    f.draw();
+                });
+                requestAnimationFrame(animateFireflies);
+            }
+            animateFireflies();
+
+            // ==========================================
+            // CONFETTI SYSTEM
+            // ==========================================
+            const confettiCanvas = document.getElementById('confetti');
+            const cCtx = confettiCanvas.getContext('2d');
+            let confetti = [];
+
+            function resizeConfettiCanvas() {
+                confettiCanvas.width = window.innerWidth;
+                confettiCanvas.height = window.innerHeight;
+            }
+            resizeConfettiCanvas();
+            window.addEventListener('resize', resizeConfettiCanvas);
+
+            class ConfettiPiece {
+                constructor() {
+                    this.x = Math.random() * confettiCanvas.width;
+                    this.y = -20;
+                    this.size = Math.random() * 8 + 4;
+                    this.speedY = Math.random() * 3 + 2;
+                    this.speedX = (Math.random() - 0.5) * 2;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = (Math.random() - 0.5) * 10;
+                    this.color = ['#d4af37', '#e879a8', '#3b82f6', '#f4e4ba', '#22c55e'][Math.floor(Math.random() * 5)];
+                    this.opacity = 1;
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    this.rotation += this.rotationSpeed;
+                    this.speedY += 0.05;
+                }
+
+                draw() {
+                    cCtx.save();
+                    cCtx.translate(this.x, this.y);
+                    cCtx.rotate(this.rotation * Math.PI / 180);
+                    cCtx.globalAlpha = this.opacity;
+                    cCtx.fillStyle = this.color;
+                    cCtx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+                    cCtx.restore();
+                }
+            }
+
+            function startConfetti() {
+                confetti = [];
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        confetti.push(new ConfettiPiece());
+                    }, i * 20);
+                }
+            }
+
+            function animateConfetti() {
+                cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                confetti = confetti.filter(c => c.y < confettiCanvas.height + 20);
+                confetti.forEach(c => {
+                    c.update();
+                    c.draw();
+                });
+                if (confetti.length > 0) {
+                    requestAnimationFrame(animateConfetti);
+                }
+            }
+
+            // ==========================================
+            // TYPING EFFECT
+            // ==========================================
+            function typeText(element, text, speed = 30) {
+                element.textContent = '';
+                element.classList.add('typing');
+                let i = 0;
+                
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        element.classList.remove('typing');
+                    }
+                }
+                type();
+            }
+
+            // ==========================================
+            // 3D TILT EFFECT
+            // ==========================================
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            if (!isTouchDevice) {
+                document.addEventListener('mousemove', (e) => {
+                    const x = (window.innerWidth - e.pageX * 2) / 100;
+                    const y = (window.innerHeight - e.pageY * 2) / 100;
+                    splitCard.style.transform = `perspective(1000px) rotateY(${x * 0.03}deg) rotateX(${y * 0.03}deg)`;
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    splitCard.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
+                });
+            }
+
+            // ==========================================
+            // QUESTION LOGIC
+            // ==========================================
             function getRandomQuestion() {
                 const randomIndex = Math.floor(Math.random() * QUESTIONS.length);
                 return {
@@ -1030,7 +1473,7 @@
                 optionsGrid.innerHTML = '';
                 const letters = ['A', 'B', 'C', 'D', 'E'];
                 
-                letters.forEach(letter => {
+                letters.forEach((letter, index) => {
                     const btn = document.createElement('button');
                     btn.className = 'option-btn';
                     btn.setAttribute('data-letter', letter);
@@ -1038,6 +1481,7 @@
                         <span class="option-letter">${letter}</span>
                         <span class="option-text">${options[letter]}</span>
                     `;
+                    btn.style.animationDelay = `${index * 0.1}s`;
                     btn.addEventListener('click', () => handleOptionClick(letter, btn));
                     optionsGrid.appendChild(btn);
                 });
@@ -1045,18 +1489,9 @@
 
             function displayQuestion() {
                 currentQuestion = getRandomQuestion();
-                questionText.textContent = currentQuestion.question;
                 questionNumber.textContent = '#' + String(currentQuestion.index).padStart(2, '0');
+                typeText(questionText, currentQuestion.question);
                 renderOptions(currentQuestion.options);
-
-                questionText.style.opacity = '0';
-                questionText.style.transform = 'translateY(10px)';
-                questionText.style.transition = 'all 0.5s ease';
-
-                setTimeout(() => {
-                    questionText.style.opacity = '1';
-                    questionText.style.transform = 'translateY(0)';
-                }, 100);
             }
 
             function handleOptionClick(selectedLetter, btnElement) {
@@ -1087,28 +1522,16 @@
 
             function showSuccess() {
                 successOverlay.classList.add('active');
+                startConfetti();
+                animateConfetti();
                 setTimeout(() => {
                     window.location.href = 'app/templates/dashboard.html';
-                }, 2500);
+                }, 3000);
             }
 
             function showLoadingAndRefresh() {
                 loadingOverlay.classList.add('active');
-                setTimeout(() => window.location.reload(), 1200);
-            }
-
-            // 3D tilt effect for desktop
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            if (!isTouchDevice) {
-                document.addEventListener('mousemove', (e) => {
-                    const x = (window.innerWidth - e.pageX * 2) / 100;
-                    const y = (window.innerHeight - e.pageY * 2) / 100;
-                    splitCard.style.transform = `rotateY(${x * 0.05}deg) rotateX(${y * 0.05}deg)`;
-                });
-
-                document.addEventListener('mouseleave', () => {
-                    splitCard.style.transform = 'rotateY(0) rotateX(0)';
-                });
+                setTimeout(() => window.location.reload(), 1500);
             }
 
             // Prevent double tap zoom
