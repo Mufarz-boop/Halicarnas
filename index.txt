@@ -13,9 +13,3 @@ Akademi ini terdiri dari 10 Fakultas yaitu:
 8. Fakultas Kedokteran (FK)
 9. Fakultas Hukum (FH)
 10. Fakultas Ilmu Politik (FIP)
-
-setiap fakultas memiliki Kelas bidang studinya dan setiap bidang studi memiliki 1 Kelas
-
-Terdapat 12 Kelas Murid, yang masing-masing kelas memiliki kapasitas maksimun 30 Murid
-
-Akademi ini sederajat dengan SMA/SMK

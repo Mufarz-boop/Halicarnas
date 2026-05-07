@@ -8,10 +8,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
-    <title>Fiction World</title>
+    <title>Pemberitahuan — Fiction World</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         * {
             margin: 0;
@@ -70,7 +70,7 @@
         }
 
         /* ============================================ */
-        /* SIDEBAR - Desktop only */
+        /* SIDEBAR */
         /* ============================================ */
         .sidebar {
             width: var(--sidebar-width);
@@ -206,7 +206,6 @@
             flex-shrink: 0;
         }
 
-        /* User Card */
         .user-card {
             display: flex;
             align-items: center;
@@ -288,7 +287,6 @@
             opacity: 0.7;
         }
 
-        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
@@ -297,7 +295,6 @@
             transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Top Bar */
         .top-bar {
             margin-bottom: 28px;
             padding-bottom: 20px;
@@ -318,346 +315,26 @@
         }
 
         /* ============================================ */
-        /* NOTIFICATION / LETTER STYLES */
+        /* UPDATE DOCUMENTATION CARD */
         /* ============================================ */
-
-        /* Intro Section */
-        .intro-section {
-            text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .intro-section::before {
-            content: '❦';
-            font-size: 32px;
-            color: var(--gold);
-            opacity: 0.4;
-            display: block;
-            margin-bottom: 20px;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
-        }
-
-        .intro-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--gold);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        .intro-text {
-            font-family: 'Caveat', cursive;
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Timeline Container */
-        .timeline-container {
-            position: relative;
+        .update-card {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(180deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
-            opacity: 0.3;
-            transform: translateX(-50%);
-        }
-
-        @media (max-width: 768px) {
-            .timeline-line {
-                left: 20px;
-            }
-        }
-
-        /* Letter Card */
-        .letter-card {
-            position: relative;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .letter-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .letter-card:nth-child(even) .letter-content {
-            margin-left: auto;
-            margin-right: 0;
-        }
-
-        @media (max-width: 768px) {
-            .letter-card:nth-child(even) .letter-content {
-                margin-left: 40px;
-                margin-right: 0;
-            }
-        }
-
-        .letter-dot {
-            position: absolute;
-            left: 50%;
-            top: 24px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--dark);
-            border: 2px solid var(--gold);
-            transform: translateX(-50%);
-            z-index: 2;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .letter-card:hover .letter-dot {
-            background: var(--gold);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
-            transform: translateX(-50%) scale(1.3);
-        }
-
-        @media (max-width: 768px) {
-            .letter-dot {
-                left: 20px;
-            }
-        }
-
-        .letter-content {
-            width: calc(50% - 40px);
             background: rgba(20, 18, 14, 0.6);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 20px;
-            padding: 28px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-
-        .letter-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .letter-content:hover {
-            transform: translateY(-4px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.06);
-        }
-
-        .letter-content:hover::before {
-            opacity: 0.5;
-        }
-
-        .letter-content.unread {
-            border-color: rgba(232, 121, 168, 0.3);
-        }
-
-        .letter-content.unread::after {
-            content: '';
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--pink);
-            box-shadow: 0 0 10px rgba(232, 121, 168, 0.5);
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        @media (max-width: 768px) {
-            .letter-content {
-                width: calc(100% - 40px);
-                margin-left: 40px !important;
-            }
-        }
-
-        .letter-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .letter-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        .letter-meta {
-            flex: 1;
-        }
-
-        .letter-date {
-            font-size: 11px;
-            color: var(--gold);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-
-        .letter-type {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .letter-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--white);
-            line-height: 1.4;
-        }
-
-        .letter-preview {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.7;
-            margin-bottom: 16px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .letter-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 14px;
-            border-top: 1px solid rgba(212, 175, 55, 0.08);
-        }
-
-        .letter-sender {
-            font-family: 'Caveat', cursive;
-            font-size: 16px;
-            color: var(--pink);
-            opacity: 0.8;
-        }
-
-        .letter-action {
-            font-size: 12px;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: gap 0.3s ease;
-        }
-
-        .letter-content:hover .letter-action {
-            gap: 10px;
-        }
-
-        /* Expanded Letter Modal */
-        .letter-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(5, 5, 5, 0.92);
-            backdrop-filter: blur(30px);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .letter-modal.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .letter-modal-content {
-            max-width: 700px;
-            margin: 60px auto;
-            padding: 0 24px;
-            position: relative;
-            transform: translateY(40px);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .letter-modal.active .letter-modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-close {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 2001;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-close:hover {
-            background: rgba(212, 175, 55, 0.15);
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: rotate(90deg);
-        }
-
-        .modal-paper {
-            background: rgba(20, 18, 14, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 24px;
-            padding: 48px;
-            position: relative;
             overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .modal-paper::before {
+        .update-card:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.04);
+        }
+
+        .update-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -665,141 +342,409 @@
             right: 0;
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
-        .modal-header {
-            text-align: center;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        .update-header {
+            padding: 40px 40px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
         }
 
-        .modal-date {
-            font-size: 11px;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--white);
-        }
-
-        .modal-subtitle {
-            font-family: 'Caveat', cursive;
-            font-size: 18px;
-            color: var(--pink);
-            opacity: 0.8;
-        }
-
-        .modal-body {
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 40px;
-        }
-
-        .modal-body p {
-            margin-bottom: 16px;
-        }
-
-        .modal-body .highlight {
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        .modal-body .secret {
-            font-family: 'Caveat', cursive;
-            font-size: 20px;
-            color: var(--pink);
-            text-align: center;
-            margin: 32px 0;
-            padding: 20px;
-            background: rgba(232, 121, 168, 0.05);
-            border: 1px solid rgba(232, 121, 168, 0.15);
+        .update-badge {
+            width: 56px;
+            height: 56px;
             border-radius: 16px;
-            line-height: 1.8;
-        }
-
-        .modal-footer {
-            text-align: center;
-            padding-top: 24px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .modal-signature {
-            font-family: 'Caveat', cursive;
-            font-size: 24px;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-
-        .modal-closing {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .modal-stamp {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border: 2px solid rgba(212, 175, 55, 0.2);
-            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(232, 121, 168, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            opacity: 0.3;
-            transform: rotate(-15deg);
+            flex-shrink: 0;
+            animation: pulse-badge 3s ease-in-out infinite;
         }
 
-        /* Floating Hearts Animation */
-        .floating-hearts {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 5;
-            overflow: hidden;
+        @keyframes pulse-badge {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.1); }
         }
 
-        .heart {
-            position: absolute;
+        .update-header-info {
+            flex: 1;
+        }
+
+        .update-version {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .update-version .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 8px #4ade80;
+            animation: blink-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes blink-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .update-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .update-date {
+            font-size: 13px;
+            color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .update-body {
+            padding: 32px 40px;
+        }
+
+        .update-section {
+            margin-bottom: 32px;
+        }
+
+        .update-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.3), transparent);
+        }
+
+        .update-description {
+            font-size: 15px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .update-description .highlight {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .update-description .secret {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--pink);
+            display: block;
+            margin: 16px 0;
+            padding: 16px 20px;
+            background: rgba(232, 121, 168, 0.05);
+            border-left: 3px solid var(--pink);
+            border-radius: 0 12px 12px 0;
+            line-height: 1.7;
+        }
+
+        /* Changelog List */
+        .changelog-list {
+            list-style: none;
+        }
+
+        .changelog-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .changelog-item:last-child {
+            border-bottom: none;
+        }
+
+        .changelog-item:hover {
+            padding-left: 8px;
+        }
+
+        .changelog-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .tag-new {
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .tag-fix {
+            background: rgba(96, 165, 250, 0.1);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+
+        .tag-update {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .tag-remove {
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, 0.2);
+        }
+
+        .changelog-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .changelog-text strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(212, 175, 55, 0.05);
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Update Footer */
+        .update-footer {
+            padding: 24px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .update-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .author-role {
+            font-size: 11px;
+            color: var(--light-gray);
+        }
+
+        .update-stamp {
+            font-family: 'Caveat', cursive;
             font-size: 16px;
             color: var(--pink);
-            opacity: 0;
-            animation: floatUp 8s linear infinite;
+            opacity: 0.6;
         }
 
-        @keyframes floatUp {
-            0% {
-                opacity: 0;
-                transform: translateY(100vh) scale(0.5) rotate(0deg);
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-10vh) scale(1.2) rotate(360deg);
-            }
+        /* Previous Updates Toggle */
+        .history-section {
+            max-width: 800px;
+            margin: 32px auto 0;
+        }
+
+        .history-toggle {
+            width: 100%;
+            background: rgba(20, 18, 14, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            padding: 18px 24px;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .history-toggle:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .history-toggle .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+            color: var(--gold);
+        }
+
+        .history-toggle.open .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .history-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .history-list.open {
+            max-height: 2000px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            margin-top: 8px;
+            background: rgba(20, 18, 14, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            border-radius: 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(212, 175, 55, 0.06);
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateX(4px);
+        }
+
+        .history-version {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 6px 12px;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .history-info {
+            flex: 1;
+        }
+
+        .history-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .history-date {
+            font-size: 12px;
+            color: var(--light-gray);
+        }
+
+        .history-arrow {
+            color: var(--gold);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .history-item:hover .history-arrow {
+            opacity: 1;
         }
 
         /* ============================================ */
-        /* OVERLAY BACKDROP */
+        /* OVERLAY */
         /* ============================================ */
         .sidebar-overlay {
             display: none;
@@ -821,7 +766,7 @@
         }
 
         /* ============================================ */
-        /* FLOATING ACTION BUTTON (FAB) MENU */
+        /* FAB MENU */
         /* ============================================ */
         .fab-container {
             display: none;
@@ -898,17 +843,11 @@
             transform: translate(-50%, -50%);
         }
 
-        .fab-main.open .fab-icon span:nth-child(1) {
-            transform: translate(-50%, -50%) rotate(45deg);
-            opacity: 0;
-        }
-
+        .fab-main.open .fab-icon span:nth-child(1),
         .fab-main.open .fab-icon span:nth-child(2) {
-            transform: translate(-50%, -50%) rotate(45deg);
             opacity: 0;
         }
 
-        /* FAB Menu Items */
         .fab-menu {
             display: flex;
             flex-direction: column;
@@ -989,22 +928,11 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        .fab-item-btn:active {
-            transform: scale(0.95);
-        }
-
         .fab-item-btn.active {
             background: rgba(212, 175, 55, 0.2);
             border-color: var(--gold);
             color: var(--white);
         }
-
-        /* Staggered animation for menu items */
-        .fab-menu.open .fab-item:nth-child(1) { transition-delay: 0.05s; }
-        .fab-menu.open .fab-item:nth-child(2) { transition-delay: 0.1s; }
-        .fab-menu.open .fab-item:nth-child(3) { transition-delay: 0.15s; }
-        .fab-menu.open .fab-item:nth-child(4) { transition-delay: 0.2s; }
-        .fab-menu.open .fab-item:nth-child(5) { transition-delay: 0.25s; }
 
         /* ============================================ */
         /* RESPONSIVE */
@@ -1027,24 +955,33 @@
                 font-size: 24px;
             }
 
-            .modal-paper {
-                padding: 32px 24px;
+            .update-header {
+                padding: 32px 24px 20px;
             }
 
-            .modal-title {
+            .update-title {
+                font-size: 20px;
+            }
+
+            .update-body {
+                padding: 24px;
+            }
+
+            .update-footer {
+                padding: 20px 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .stat-box {
+                padding: 16px 10px;
+            }
+
+            .stat-number {
                 font-size: 22px;
-            }
-
-            .modal-body {
-                font-size: 14px;
-            }
-
-            .intro-title {
-                font-size: 18px;
-            }
-
-            .intro-text {
-                font-size: 17px;
             }
         }
 
@@ -1053,32 +990,31 @@
                 padding: 24px 16px 100px;
             }
 
-            .fab-container {
-                bottom: 20px;
-                right: 20px;
+            .update-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
             }
 
-            .modal-paper {
-                padding: 24px 20px;
-            }
-
-            .modal-title {
+            .update-badge {
+                width: 48px;
+                height: 48px;
                 font-size: 20px;
             }
 
-            .letter-content {
-                padding: 20px;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
 
-            .letter-title {
-                font-size: 16px;
+            .update-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
             }
 
-            .modal-close {
-                top: 16px;
-                right: 16px;
-                width: 40px;
-                height: 40px;
+            .fab-container {
+                bottom: 20px;
+                right: 20px;
             }
         }
 
@@ -1090,7 +1026,6 @@
             }
         }
 
-        /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -1113,37 +1048,9 @@
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <!-- Floating Hearts -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-
-    <!-- Overlay Backdrop -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Letter Modal -->
-    <div class="letter-modal" id="letterModal">
-        <button class="modal-close" id="modalClose">✕</button>
-        <div class="letter-modal-content">
-            <div class="modal-paper">
-                <div class="modal-header">
-                    <div class="modal-date" id="modalDate">— 01 Januari 2021 —</div>
-                    <h2 class="modal-title" id="modalTitle">Judul Surat</h2>
-                    <div class="modal-subtitle" id="modalSubtitle">Untuk seseorang yang spesial</div>
-                </div>
-                <div class="modal-body" id="modalBody">
-                    <!-- Content injected by JS -->
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-signature" id="modalSignature">— Mr. Ashar</div>
-                    <div class="modal-closing">Jika tidak denganmu maka tidak dengan siapapun.</div>
-                </div>
-                <div class="modal-stamp">🤍</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- FLOATING ACTION BUTTON (FAB) MENU -->
-    <!-- ============================================ -->
+    <!-- FAB Menu -->
     <div class="fab-container" id="fabContainer">
         <div class="fab-menu" id="fabMenu">
             <a href="../templates/dashboard.html" class="fab-item">
@@ -1185,7 +1092,7 @@
     </div>
 
     <div class="app-container">
-        <!-- Sidebar - Desktop Only -->
+        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
             <div class="sidebar-header">
                 <div class="sidebar-brand">
@@ -1244,270 +1151,172 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar -->
             <div class="top-bar">
                 <h1 class="page-title">Pemberitahuan</h1>
-                <p class="page-subtitle">Surat-surat rahasia dari dunia fiksi yang tak pernah berani diucapkan langsung.</p>
+                <p class="page-subtitle">Dokumentasi perubahan, pembaruan, dan perkembangan dunia Halicarnas.</p>
             </div>
 
-            <!-- Intro Section -->
-            <div class="intro-section">
-                <h2 class="intro-title">Pesan dari Kedalaman Jiwa</h2>
-                <p class="intro-text">
-                    "Di balik setiap kata yang kutulis di sini, ada perasaan yang tak bisa kusebutkan namanya. 
-                    Mungkin kamu akan mengerti, mungkin juga tidak. Tapi setidaknya, aku sudah mencoba."
-                </p>
+            <!-- Update Card -->
+            <div class="update-card">
+                <div class="update-header">
+                    <div class="update-badge">🚀</div>
+                    <div class="update-header-info">
+                        <div class="update-version">
+                            <span class="live-dot"></span>
+                            v2.0.0 — Latest
+                        </div>
+                        <h2 class="update-title">Pembaruan Besar: Halicarnas Reborn</h2>
+                        <div class="update-date">
+                            <span>📅</span>
+                            <span>7 Mei 2026</span>
+                            <span style="color: rgba(255,255,255,0.2);">|</span>
+                            <span>🕐 14:30 WIB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="update-body">
+                    <!-- Description -->
+                    <div class="update-section">
+                        <div class="section-label">Ringkasan</div>
+                        <div class="update-description">
+                            <p>
+                                Setelah sekian lama dunia <span class="highlight">Halicarnas</span> tertidur dalam keheningan, 
+                                akhirnya tiba saatnya untuk bangkit kembali. Pembaruan kali ini bukan sekadar perbaikan bug atau 
+                                penambahan fitur kecil — ini adalah <span class="highlight">reinkarnasi total</span> dari seluruh 
+                                ekosistem Fiction World.
+                            </p>
+                            <p>
+                                Mulai dari tampilan antarmuka yang sepenuhnya didesain ulang, sistem navigasi yang lebih intuitif, 
+                                hingga konten-konten baru yang sudah lama ditunggu. Semuanya hadir dalam satu paket pembaruan besar 
+                                ini.
+                            </p>
+                            <span class="secret">
+                                "Setiap baris kode yang kutulis di sini mengandung sepotong perasaan yang tak bisa kusebutkan namanya. 
+                                Mungkin kamu tidak akan pernah tahu, tapi setidaknya dunia ini tahu."
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Changelog -->
+                    <div class="update-section">
+                        <div class="section-label">Changelog</div>
+                        <ul class="changelog-list">
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-new">New</span>
+                                <span class="changelog-text">
+                                    <strong>Butterfly Garden</strong> — Animasi kupu-kupu interaktif di Dashboard yang merespons gerakan mouse/touch.
+                                </span>
+                            </li>
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-new">New</span>
+                                <span class="changelog-text">
+                                    <strong>Halicarnas Academy</strong> — Halaman baru untuk dokumentasi lore, karakter, dan sistem dunia.
+                                </span>
+                            </li>
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-update">Update</span>
+                                <span class="changelog-text">
+                                    <strong>UI/UX Overhaul</strong> — Desain sidebar, FAB menu, dan seluruh komponen diperbarui dengan estetika yang lebih elegan.
+                                </span>
+                            </li>
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-update">Update</span>
+                                <span class="changelog-text">
+                                    <strong>Responsive Design</strong> — Tampilan mobile kini lebih optimal dengan gesture-based navigation.
+                                </span>
+                            </li>
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-fix">Fix</span>
+                                <span class="changelog-text">
+                                    <strong>Performance</strong> — Optimasi loading time dan pengurangan bundle size hingga 40%.
+                                </span>
+                            </li>
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-fix">Fix</span>
+                                <span class="changelog-text">
+                                    <strong>Animation</strong> — Perbaikan glitch pada transisi halaman dan efek parallax background.
+                                </span>
+                            </li>
+                            <li class="changelog-item">
+                                <span class="changelog-tag tag-remove">Remove</span>
+                                <span class="changelog-text">
+                                    <strong>Catatan Penulis</strong> — Menu diganti menjadi <strong>Keluar</strong> untuk navigasi yang lebih intuitif.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="update-section">
+                        <div class="section-label">Statistik Pembaruan</div>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">7</div>
+                                <div class="stat-label">Fitur Baru</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Bug Fixed</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Halaman Baru</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="update-footer">
+                    <div class="update-author">
+                        <div class="author-avatar">AF</div>
+                        <div class="author-info">
+                            <span class="author-name">Afdal Adha Firnansyah</span>
+                            <span class="author-role">Faceless Author & Developer</span>
+                        </div>
+                    </div>
+                    <div class="update-stamp">Jika tidak denganmu, maka tidak dengan siapapun.</div>
+                </div>
             </div>
 
-            <!-- Timeline Container -->
-            <div class="timeline-container" id="timelineContainer">
-                <div class="timeline-line"></div>
-                <!-- Letters will be populated by JS -->
+            <!-- History Section -->
+            <div class="history-section">
+                <button class="history-toggle" id="historyToggle">
+                    <span>📜 Riwayat Pembaruan Sebelumnya</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="history-list" id="historyList">
+                    <a href="#" class="history-item">
+                        <span class="history-version">v1.2.0</span>
+                        <div class="history-info">
+                            <div class="history-title">Penambahan Galeri & Optimasi Asset</div>
+                            <div class="history-date">15 Maret 2026</div>
+                        </div>
+                        <span class="history-arrow">→</span>
+                    </a>
+                    <a href="#" class="history-item">
+                        <span class="history-version">v1.1.0</span>
+                        <div class="history-info">
+                            <div class="history-title">Sistem Navigasi & Dark Mode Enhancement</div>
+                            <div class="history-date">2 Februari 2026</div>
+                        </div>
+                        <span class="history-arrow">→</span>
+                    </a>
+                    <a href="#" class="history-item">
+                        <span class="history-version">v1.0.0</span>
+                        <div class="history-info">
+                            <div class="history-title">Initial Release — Fiction World is Born</div>
+                            <div class="history-date">13 November 2025</div>
+                        </div>
+                        <span class="history-arrow">→</span>
+                    </a>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- ============================================ -->
-    <!-- JAVASCRIPT -->
-    <!-- ============================================ -->
     <script>
         (function() {
-            // ============================================
-            // LETTERS DATA - Pesan-pesan rahasia
-            // ============================================
-            const lettersData = [
-                {
-                    id: 1,
-                    date: '13 November 2024',
-                    type: 'Surat Pertama',
-                    title: 'Saat Mata Pertama Kali Bertemu',
-                    preview: 'Aku masih ingat hari itu. Bukan karena sesuatu yang besar, tapi karena ada sesuatu yang berbeda...',
-                    icon: '💌',
-                    unread: true,
-                    subtitle: 'Untuk R, yang tak pernah tahu',
-                    body: `
-                        <p>Aku masih ingat hari itu dengan sangat jelas. Bukan karena ada kejadian besar yang terjadi, tapi karena ada sesuatu yang berbeda saat mata kita pertama kali bertemu.</p>
-                        <p>Seperti ada <span class="highlight">kilatan cahaya kecil</span> yang menyala di sudut hatiku yang sudah lama gelap. Aku tidak tahu apa itu waktu itu. Aku pikir itu hanya imajinasiku yang terlalu liar.</p>
-                        <p>Tapi semakin hari, semakin aku yakin bahwa perasaan ini nyata. Bahwa ada sesuatu yang istimewa tentang dirimu yang membuatku ingin menulis, ingin bercerita, ingin <span class="highlight">menciptakan seluruh dunia fiksi</span> hanya untuk menyimpan perasaanku di dalamnya.</p>
-                        <div class="secret">
-                            "Mungkin aku tidak bisa mengatakannya langsung kepadamu. Tapi di dunia ini, di Halicarnas, aku bisa menjadi siapapun yang berani menyatakan perasaan."
-                        </div>
-                        <p>Maaf kalau aku terlalu berlebihan. Maaf kalau semua ini terdengar seperti cerita fiksi. Tapi bagiku, kamu adalah <span class="highlight">fiksi terindah</span> yang pernah menjadi nyata.</p>
-                    `,
-                    signature: '— Faceless Author'
-                },
-                {
-                    id: 2,
-                    date: '24 Desember 2024',
-                    type: 'Renungan Malam',
-                    title: 'Ketika Semua Orang Tidur, Aku Menulis Tentangmu',
-                    preview: 'Malam-malam seperti ini, aku sering terjaga. Bukan karena insomnia, tapi karena pikiranku terlalu sibuk...',
-                    icon: '🌙',
-                    unread: true,
-                    subtitle: 'Untuk yang sering muncul di mimpi',
-                    body: `
-                        <p>Malam-malam seperti ini, aku sering terjaga. Bukan karena insomnia, tapi karena pikiranku terlalu sibuk mengingat hal-hal kecil tentangmu.</p>
-                        <p>Cara kamu tertawa. Cara kamu menyipitkan mata saat bingung. Cara kamu mengatakan "hmm" saat sedang berpikir. Hal-hal sepele yang seharusnya tidak berarti apa-apa, tapi bagiku <span class="highlight">itu adalah seluruh dunia</span>.</p>
-                        <p>Aku sering bertanya-tanya: apa kamu juga pernah memikirkanku? Apa namaku pernah melintas di benakmu, sekalipun?</p>
-                        <div class="secret">
-                            "Aku tahu aku bukan siapa-siapa. Aku tahu mungkin aku hanya bayangan yang lewat. Tapi bayangan ini ingin sekali tinggal sedikit lebih lama di hidupmu."
-                        </div>
-                        <p>Di dunia Halicarnas ini, aku bisa jadi pahlawan yang berani. Tapi di dunia nyata, aku hanya cowok biasa yang terlalu takut untuk mengatakan bahwa <span class="highlight">kamu adalah alasan aku tersenyum</span>.</p>
-                    `,
-                    signature: '— Seseorang yang diam-diam mengagumi'
-                },
-                {
-                    id: 3,
-                    date: '1 Januari 2025',
-                    type: 'Harapan Baru',
-                    title: 'Semoga Tahun Ini Berbeda',
-                    preview: 'Aku tidak berharap banyak. Hanya satu hal: semoga suatu hari nanti, kamu tahu bahwa ada seseorang...',
-                    icon: '✨',
-                    unread: false,
-                    subtitle: 'Doa di awal tahun',
-                    body: `
-                        <p>Tahun baru, harapan baru. Tapi harapanku tetap sama seperti tahun lalu: <span class="highlight">semoga suatu hari kamu tahu</span>.</p>
-                        <p>Aku tidak berharap banyak. Aku tidak meminta kamu mencintaiku balik. Aku hanya ingin kamu tahu bahwa ada seseorang di luar sana yang benar-benar peduli. Yang benar-benar mengagumi dirimu apa adanya.</p>
-                        <p>Aku tahu mungkin ini terdengar menyedihkan. Menulis surat-surat yang tidak pernah akan terkirim. Membangun dunia fiksi hanya untuk menyimpan perasaan. Tapi bagiku, ini adalah <span class="highlight">cara terbaik yang bisa kulakukan</span>.</p>
-                        <div class="secret">
-                            "Kamu mungkin tidak akan pernah membaca ini. Tapi kalau suatu hari kamu menemukan website ini dan bertanya-tanya siapa yang membuatnya... jawabannya adalah seseorang yang pernah sangat, sangat menyukaimu."
-                        </div>
-                        <p>Semoga tahun ini membawa kebahagiaan untukmu. Semoga kamu selalu tersenyum. Dan semoga, suatu hari nanti, kita bisa bertemu lagi dengan cara yang lebih baik.</p>
-                    `,
-                    signature: '— Tetap berharap, tetap menunggu'
-                },
-                {
-                    id: 4,
-                    date: '14 Februari 2025',
-                    type: 'Hari Kasih Sayang',
-                    title: 'Aku Bukan Pahlawan, Tapi Aku Bisa Mencintaimu',
-                    preview: 'Hari ini semua orang sibuk memberi bunga dan cokelat. Aku hanya bisa memberikan kata-kata...',
-                    icon: '💝',
-                    unread: false,
-                    subtitle: 'Untuk yang tak pernah kumiliki',
-                    body: `
-                        <p>Hari ini semua orang sibuk memberi bunga, cokelat, dan kata-kata manis. Aku hanya bisa duduk di depan layar, menulis hal-hal yang mungkin tidak akan pernah kamu baca.</p>
-                        <p>Tapi tahu tidak? <span class="highlight">Aku tidak iri</span>. Aku bahagia melihatmu bahagia, meskipun bukan denganku. Itu terdengar klise, tapi itu benar.</p>
-                        <p>Aku bukan pahlawan dalam kisahmu. Aku bukan tokoh utama. Aku mungkin hanya nama yang terlupakan di daftar kontakmu. Tapi percayalah, perasaanku adalah <span class="highlight">yang paling tulus</span> di antara semua yang pernah kamu temui.</p>
-                        <div class="secret">
-                            "Kalau aku bisa memilih, aku ingin jadi angin yang menyentuh pipimu. Atau jadi lagu yang kamu dengar saat sedih. Atau jadi apa pun yang membuatmu merasa tidak sendirian."
-                        </div>
-                        <p>Selamat hari kasih sayang. Semoga kamu mendapatkan cinta yang setimpal dengan kebaikan hatimu. Dan kalau suatu hari kamu butuh seseorang yang benar-benar mengenalmu... aku akan selalu ada di sini, di balik layar, di balik kata-kata, di balik seluruh dunia fiksi yang kuciptakan untukmu.</p>
-                    `,
-                    signature: '— Selamanya, diam-diam'
-                },
-                {
-                    id: 5,
-                    date: '6 Mei 2026',
-                    type: 'Pengakuan',
-                    title: 'Semua Ini Tentang Kamu',
-                    preview: 'Aku sudah tidak bisa menyembunyikannya lagi. Seluruh website ini, seluruh dunia Halicarnas, semua tentang kamu...',
-                    icon: '🔮',
-                    unread: true,
-                    subtitle: 'Pengakuan terakhir',
-                    body: `
-                        <p>Ini mungkin surat terakhir yang kutulis di sini. Bukan karena perasaanku sudah berubah, tapi karena aku sudah tidak bisa menyembunyikannya lagi.</p>
-                        <p><span class="highlight">Semua ini tentang kamu.</span> Seluruh website ini. Seluruh dunia Halicarnas. Setiap karakter, setiap lokasi, setiap kata yang kutulis — semuanya memiliki bayangan dirimu di dalamnya.</p>
-                        <p>Karakter perempuan yang kuat dan lembut? Itu kamu. Kota yang indah tapi misterius? Itu perasaan yang kurasakan setiap kali melihatmu. Setiap petualangan, setiap konflik, setiap happy ending yang kuciptakan — semuanya adalah <span class="highlight">cara hatiku berbicara</span> dalam bahasa yang hanya aku mengerti.</p>
-                        <div class="secret">
-                            "Aku membuat seluruh dunia fiksi hanya untuk bisa mengatakannya: Aku sangat, sangat menyukaimu. Tanpa syarat. Tanpa batas waktu. Tanpa harapan balasan."
-                        </div>
-                        <p>Aku tidak tahu apa yang akan terjadi setelah ini. Mungkin kamu akan menemukan website ini dan tersenyum. Mungkin kamu akan bingung. Mungkin kamu tidak akan pernah menemukannya sama sekali.</p>
-                        <p>Tapi tidak apa-apa. Karena bagiku, <span class="highlight">mencintaimu dalam diam</span> sudah cukup membuat hidupku berarti. Kamu adalah inspirasi terindah yang pernah kumiliki. Dan aku akan selalu berterima kasih atas itu.</p>
-                        <p>Terima kasih sudah menjadi alasan aku menulis. Terima kasih sudah menjadi alasan aku tersenyum. Terima kasih sudah ada, meskipun mungkin tidak pernah untukku.</p>
-                    `,
-                    signature: '— Dengan seluruh perasaanku, A'
-                }
-            ];
-
-            // ============================================
-            // RENDER LETTERS
-            // ============================================
-            const timelineContainer = document.getElementById('timelineContainer');
-
-            function renderLetters() {
-                lettersData.forEach((letter, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'letter-card';
-                    card.style.animationDelay = `${index * 0.15}s`;
-                    
-                    card.innerHTML = `
-                        <div class="letter-dot"></div>
-                        <div class="letter-content ${letter.unread ? 'unread' : ''}" data-id="${letter.id}">
-                            <div class="letter-header">
-                                <div class="letter-icon">${letter.icon}</div>
-                                <div class="letter-meta">
-                                    <div class="letter-date">${letter.date}</div>
-                                    <div class="letter-type">${letter.type}</div>
-                                </div>
-                            </div>
-                            <h3 class="letter-title">${letter.title}</h3>
-                            <p class="letter-preview">${letter.preview}</p>
-                            <div class="letter-footer">
-                                <span class="letter-sender">${letter.subtitle}</span>
-                                <span class="letter-action">Baca selengkapnya →</span>
-                            </div>
-                        </div>
-                    `;
-
-                    card.querySelector('.letter-content').addEventListener('click', () => openModal(letter));
-                    timelineContainer.appendChild(card);
-                });
-            }
-
-            renderLetters();
-
-            // ============================================
-            // SCROLL ANIMATION
-            // ============================================
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.letter-card').forEach(card => {
-                observer.observe(card);
-            });
-
-            // ============================================
-            // MODAL FUNCTIONALITY
-            // ============================================
-            const letterModal = document.getElementById('letterModal');
-            const modalClose = document.getElementById('modalClose');
-            const modalDate = document.getElementById('modalDate');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalSubtitle = document.getElementById('modalSubtitle');
-            const modalBody = document.getElementById('modalBody');
-            const modalSignature = document.getElementById('modalSignature');
-
-            function openModal(letter) {
-                modalDate.textContent = `— ${letter.date} —`;
-                modalTitle.textContent = letter.title;
-                modalSubtitle.textContent = letter.subtitle;
-                modalBody.innerHTML = letter.body;
-                modalSignature.textContent = letter.signature;
-                
-                letterModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Mark as read
-                const card = document.querySelector(`.letter-content[data-id="${letter.id}"]`);
-                if (card) card.classList.remove('unread');
-            }
-
-            function closeModal() {
-                letterModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            modalClose.addEventListener('click', closeModal);
-            
-            letterModal.addEventListener('click', function(e) {
-                if (e.target === letterModal) closeModal();
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && letterModal.classList.contains('active')) {
-                    closeModal();
-                }
-            });
-
-            // ============================================
-            // FLOATING HEARTS
-            // ============================================
-            const heartsContainer = document.getElementById('floatingHearts');
-            const heartEmojis = ['💗', '💖', '💝', '💘', '💕', '✨', '🌙'];
-
-            function createHeart() {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDuration = (6 + Math.random() * 6) + 's';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                heart.style.fontSize = (12 + Math.random() * 16) + 'px';
-                heartsContainer.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 12000);
-            }
-
-            // Create hearts periodically
-            setInterval(createHeart, 2000);
-            // Create initial hearts
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createHeart, i * 500);
-            }
-
             // ============================================
             // FAB MENU LOGIC
             // ============================================
@@ -1564,6 +1373,17 @@
 
             fabMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
+            });
+
+            // ============================================
+            // HISTORY TOGGLE
+            // ============================================
+            const historyToggle = document.getElementById('historyToggle');
+            const historyList = document.getElementById('historyList');
+
+            historyToggle.addEventListener('click', function() {
+                this.classList.toggle('open');
+                historyList.classList.toggle('open');
             });
         })();
     </script>
