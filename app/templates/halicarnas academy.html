@@ -11,7 +11,7 @@
     <title>Halicarnas Academy - Fiction World</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -22,7 +22,10 @@
 
         :root {
             --gold: #d4af37;
+            --gold-light: #f0d878;
+            --gold-dark: #b8941f;
             --pink: #e879a8;
+            --pink-light: #ffb3d1;
             --dark: #0a0a0a;
             --dark-gray: #1a1a1a;
             --light-gray: #888;
@@ -43,6 +46,14 @@
             color: var(--white);
         }
 
+        /* Particle Canvas */
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
         .bg-image {
             position: fixed;
             inset: 0;
@@ -50,16 +61,18 @@
             background-size: cover;
             background-position: center;
             z-index: 0;
+            filter: brightness(0.4) saturate(1.2);
         }
 
         .bg-overlay {
             position: fixed;
             inset: 0;
             background:
-                linear-gradient(135deg, rgba(5,5,5,0.95) 0%, rgba(15,10,5,0.90) 50%, rgba(5,5,5,0.95) 100%),
-                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(232, 121, 168, 0.04) 0%, transparent 50%);
-            z-index: 1;
+                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(232, 121, 168, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(5,5,5,0.97) 0%, rgba(10,8,5,0.95) 30%, rgba(5,5,5,0.98) 100%);
+            z-index: 2;
         }
 
         .app-container {
@@ -70,14 +83,14 @@
         }
 
         /* ============================================ */
-        /* SIDEBAR - Desktop only */
+        /* SIDEBAR - Glassmorphism Premium */
         /* ============================================ */
         .sidebar {
             width: var(--sidebar-width);
-            background: rgba(15, 15, 15, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(212, 175, 55, 0.1);
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(30px) saturate(1.2);
+            -webkit-backdrop-filter: blur(30px) saturate(1.2);
+            border-right: 1px solid rgba(212, 175, 55, 0.15);
             display: flex;
             flex-direction: column;
             position: fixed;
@@ -87,12 +100,25 @@
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             transform: translateX(0);
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            pointer-events: none;
         }
 
         .sidebar-header {
             padding: 32px 24px 24px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
             flex-shrink: 0;
+            position: relative;
         }
 
         .sidebar-brand {
@@ -102,21 +128,22 @@
         }
 
         .sidebar-logo {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold), var(--pink));
             padding: 2px;
             flex-shrink: 0;
             animation: heartbeat 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            14% { transform: scale(1.08); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.08); }
-            70% { transform: scale(1); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            14% { transform: scale(1.08); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+            28% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            42% { transform: scale(1.08); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+            70% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
         }
 
         .sidebar-logo img {
@@ -132,6 +159,10 @@
             font-size: 18px;
             font-weight: 700;
             letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--gold-light), var(--pink-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .sidebar-subtitle {
@@ -140,6 +171,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 2px;
+            opacity: 0.8;
         }
 
         .sidebar-nav {
@@ -177,17 +209,40 @@
             margin-bottom: 6px;
             position: relative;
             min-height: 48px;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold), var(--pink));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
 
         .nav-item:hover, .nav-item:active {
-            background: rgba(212, 175, 55, 0.12);
+            background: rgba(212, 175, 55, 0.1);
             color: var(--white);
+            transform: translateX(4px);
+        }
+
+        .nav-item:hover::before {
+            transform: scaleY(1);
         }
 
         .nav-item.active {
-            background: rgba(212, 175, 55, 0.15);
+            background: rgba(212, 175, 55, 0.12);
             color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-item.active::before {
+            transform: scaleY(1);
         }
 
         .nav-icon {
@@ -198,6 +253,11 @@
             justify-content: center;
             font-size: 16px;
             flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .nav-icon {
+            transform: scale(1.2);
         }
 
         .sidebar-footer {
@@ -220,11 +280,26 @@
             cursor: pointer;
             position: relative;
             min-height: 48px;
+            overflow: hidden;
+        }
+
+        .user-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(232, 121, 168, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .user-card:hover {
-            background: rgba(212, 175, 55, 0.08);
-            border-color: rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .user-card:hover::after {
+            opacity: 1;
         }
 
         .user-avatar {
@@ -235,11 +310,12 @@
             flex-shrink: 0;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1;
         }
 
         .user-card:hover .user-avatar {
-            transform: scale(1.08);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
 
         .user-avatar img {
@@ -266,6 +342,7 @@
         .user-info {
             flex: 1;
             min-width: 0;
+            z-index: 1;
         }
 
         .user-name {
@@ -299,34 +376,65 @@
             margin-bottom: 28px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        .top-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; width: 100px; }
+            50% { opacity: 1; width: 200px; }
         }
 
         .page-title {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--gold-light), var(--pink-light), var(--gold-light));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
         .page-subtitle {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--light-gray);
+            font-style: italic;
         }
 
         /* ============================================ */
-        /* ACADEMY SPECIFIC STYLES */
+        /* NOVEL HEADER - Cinematic */
         /* ============================================ */
         .novel-header {
-            background: rgba(20, 18, 14, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: rgba(20, 18, 14, 0.5);
+            backdrop-filter: blur(20px) saturate(1.2);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 24px;
-            padding: 40px;
+            padding: 50px 40px;
             margin-bottom: 40px;
             position: relative;
             overflow: hidden;
             text-align: center;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .novel-header::before {
@@ -337,18 +445,46 @@
             width: 100%;
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .novel-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .novel-title {
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--gold), var(--pink));
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--gold-light), var(--pink-light), var(--gold-light));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
+            animation: shine 4s linear infinite;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
         }
 
         .novel-meta {
@@ -357,7 +493,9 @@
             gap: 20px;
             justify-content: center;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
         }
 
         .meta-item {
@@ -367,23 +505,41 @@
             font-size: 14px;
             color: var(--gold);
             font-weight: 500;
+            padding: 6px 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .meta-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
         .novel-description {
             font-family: 'Playfair Display', serif;
             font-size: 18px;
             font-style: italic;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
+        /* ============================================ */
+        /* CHAPTERS GRID - 3D Cards */
+        /* ============================================ */
         .chapters-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 24px;
+            gap: 28px;
             margin-top: 40px;
+            perspective: 1000px;
         }
 
         .chapter-card {
@@ -391,14 +547,15 @@
             backdrop-filter: blur(16px);
             border: 1px solid rgba(212, 175, 55, 0.1);
             border-radius: 20px;
-            padding: 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 36px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
             text-decoration: none;
             color: inherit;
             display: block;
+            transform-style: preserve-3d;
         }
 
         .chapter-card::before {
@@ -407,67 +564,172 @@
             top: 0;
             left: 0;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(232, 121, 168, 0.1));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .chapter-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--pink));
+            background: linear-gradient(90deg, var(--gold), var(--pink), var(--gold));
+            background-size: 200% 100%;
             transform: scaleX(0);
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .chapter-card:hover::before {
+            opacity: 1;
+        }
+
+        .chapter-card:hover::after {
             transform: scaleX(1);
         }
 
         .chapter-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) rotateX(5deg);
             background: rgba(212, 175, 55, 0.08);
             border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(212, 175, 55, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .chapter-number {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--gold);
+            font-size: 56px;
+            font-weight: 900;
             line-height: 1;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--gold), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover .chapter-number {
+            opacity: 1;
+            transform: scale(1.1);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
 
         .chapter-title {
             font-family: 'Playfair Display', serif;
             font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            margin-bottom: 12px;
             color: var(--white);
             line-height: 1.3;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover .chapter-title {
+            color: var(--gold-light);
         }
 
         .chapter-subtitle {
             font-size: 15px;
             color: var(--light-gray);
-            line-height: 1.5;
+            line-height: 1.6;
             font-style: italic;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover .chapter-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .chapter-glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+            filter: blur(20px);
+        }
+
+        .chapter-card:hover .chapter-glow {
+            opacity: 1;
         }
 
         .chapter-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-right: 12px;
+            z-index: 1;
         }
 
         .status-new { 
             background: rgba(232, 121, 168, 0.2); 
-            color: var(--pink); 
+            color: var(--pink-light); 
             border: 1px solid rgba(232, 121, 168, 0.3); 
+            box-shadow: 0 0 10px rgba(232, 121, 168, 0.2);
         }
+        
         .status-updated { 
             background: rgba(212, 175, 55, 0.2); 
-            color: var(--gold); 
+            color: var(--gold-light); 
             border: 1px solid rgba(212, 175, 55, 0.3); 
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Floating particles inside card */
+        .card-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .card-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 3s ease-in-out infinite;
+        }
+
+        .chapter-card:hover .card-particle {
+            opacity: 0.6;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) scale(0); opacity: 0; }
+            50% { transform: translateY(-20px) scale(1); opacity: 0.6; }
         }
 
         /* ============================================ */
@@ -477,9 +739,9 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 500;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -507,8 +769,8 @@
         }
 
         .fab-main {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold), var(--pink));
             border: none;
@@ -516,15 +778,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(232, 121, 168, 0.15);
+            box-shadow: 
+                0 4px 20px rgba(212, 175, 55, 0.4), 
+                0 0 40px rgba(232, 121, 168, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.2);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             outline: none;
             position: relative;
         }
 
         .fab-main:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(232, 121, 168, 0.2);
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 
+                0 6px 30px rgba(212, 175, 55, 0.5), 
+                0 0 60px rgba(232, 121, 168, 0.3);
         }
 
         .fab-main:active {
@@ -602,14 +869,14 @@
         }
 
         .fab-item:hover {
-            transform: translateX(-4px);
+            transform: translateX(-8px);
         }
 
         .fab-item-label {
             background: rgba(15, 15, 15, 0.9);
             backdrop-filter: blur(10px);
             color: var(--white);
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 500;
@@ -618,6 +885,7 @@
             opacity: 0;
             transform: translateX(10px);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .fab-menu.open .fab-item-label {
@@ -626,8 +894,8 @@
         }
 
         .fab-item-btn {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: rgba(20, 18, 14, 0.9);
             backdrop-filter: blur(10px);
@@ -640,20 +908,21 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .fab-item-btn:hover {
-            background: rgba(212, 175, 55, 0.15);
+            background: rgba(212, 175, 55, 0.2);
             border-color: rgba(212, 175, 55, 0.4);
-            transform: scale(1.15);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
         .fab-item-btn.active {
-            background: rgba(212, 175, 55, 0.2);
+            background: rgba(212, 175, 55, 0.25);
             border-color: var(--gold);
             color: var(--white);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         /* ============================================ */
@@ -674,11 +943,11 @@
             }
 
             .page-title {
-                font-size: 24px;
+                font-size: 28px;
             }
 
             .novel-title {
-                font-size: 28px;
+                font-size: 32px;
             }
 
             .chapters-grid {
@@ -688,6 +957,10 @@
 
             .chapter-card {
                 padding: 28px;
+            }
+            
+            .chapter-card:hover {
+                transform: translateY(-4px);
             }
         }
 
@@ -702,11 +975,11 @@
             }
 
             .novel-header {
-                padding: 28px 20px;
+                padding: 32px 20px;
             }
 
             .novel-title {
-                font-size: 24px;
+                font-size: 26px;
             }
 
             .chapter-card {
@@ -714,7 +987,7 @@
             }
 
             .chapter-number {
-                font-size: 40px;
+                font-size: 44px;
             }
 
             .chapter-title {
@@ -731,14 +1004,15 @@
         }
 
         .animate-in {
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -761,6 +1035,9 @@
     </style>
 </head>
 <body>
+    <!-- Particle Canvas -->
+    <canvas id="particles"></canvas>
+
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
@@ -876,6 +1153,14 @@
                         <span>📅</span>
                         <span>Dipublikasikan 14 Feb 2025</span>
                     </div>
+                    <div class="meta-item">
+                        <span>📖</span>
+                        <span>8 Bab</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>✍️</span>
+                        <span>Mr. Ashar</span>
+                    </div>
                 </div>
                 <p class="novel-description">
                     Di bawah langit yang terbelah dua oleh garis kabut abadi, berdiri kastil kuno yang menyimpan rahasia 
@@ -885,67 +1170,112 @@
             </div>
 
             <div class="chapters-grid">
-                <a href="../templates/chapter-1.html" class="chapter-card animate-in delay-1">
+                <a href="../templates/chapter-1.html" class="chapter-card animate-in delay-1" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+                        <div class="card-particle" style="top: 60%; left: 80%; animation-delay: 0.5s;"></div>
+                        <div class="card-particle" style="top: 40%; left: 50%; animation-delay: 1s;"></div>
+                    </div>
+                    <span class="chapter-status status-new">Baru</span>
                     <div class="chapter-number">01</div>
                     <div class="chapter-title">Panggilan dari Kabut</div>
                     <div class="chapter-subtitle">
-                        Suara misterius memanggil dari balik kabut tebal...
+                        Suara misterius memanggil dari balik kabut tebal yang menyelimuti lembah sunyi...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-2.html" class="chapter-card animate-in delay-2">
+                <a href="../templates/chapter-2.html" class="chapter-card animate-in delay-2" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 30%; left: 20%; animation-delay: 0.2s;"></div>
+                        <div class="card-particle" style="top: 70%; left: 70%; animation-delay: 0.7s;"></div>
+                    </div>
                     <div class="chapter-number">02</div>
                     <div class="chapter-title">Gerbang yang Terlarang</div>
                     <div class="chapter-subtitle">
-                        Langkah pertama menuju dunia yang tak pernah terbayangkan...
+                        Langkah pertama menuju dunia yang tak pernah terbayangkan oleh akal manusia...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-3.html" class="chapter-card animate-in delay-1">
+                <a href="../templates/chapter-3.html" class="chapter-card animate-in delay-1" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 25%; left: 15%; animation-delay: 0.3s;"></div>
+                        <div class="card-particle" style="top: 65%; left: 85%; animation-delay: 0.8s;"></div>
+                    </div>
                     <div class="chapter-number">03</div>
                     <div class="chapter-title">Bayangan di Menara</div>
                     <div class="chapter-subtitle">
-                        Sesuatu mengawasi dari puncak menara kuno yang sunyi...
+                        Sesuatu mengawasi dari puncak menara kuno yang sunyi dalam kegelapan abadi...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-4.html" class="chapter-card animate-in delay-2">
+                <a href="../templates/chapter-4.html" class="chapter-card animate-in delay-2" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 35%; left: 25%; animation-delay: 0.1s;"></div>
+                        <div class="card-particle" style="top: 55%; left: 75%; animation-delay: 0.6s;"></div>
+                    </div>
+                    <span class="chapter-status status-updated">Update</span>
                     <div class="chapter-number">04</div>
                     <div class="chapter-title">Rahasia Sang Penjaga</div>
                     <div class="chapter-subtitle">
-                        Penjaga kastil menyimpan rahasia yang mengguncang...
+                        Penjaga kastil menyimpan rahasia yang mengguncang fondasi dunia yang dikenal...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-5.html" class="chapter-card animate-in delay-1">
+                <a href="../templates/chapter-5.html" class="chapter-card animate-in delay-1" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 15%; left: 35%; animation-delay: 0.4s;"></div>
+                        <div class="card-particle" style="top: 75%; left: 65%; animation-delay: 0.9s;"></div>
+                    </div>
                     <div class="chapter-number">05</div>
                     <div class="chapter-title">Lilin yang Tak Padam</div>
                     <div class="chapter-subtitle">
-                        Cahaya abadi yang menyimpan kenangan masa lalu...
+                        Cahaya abadi yang menyimpan kenangan masa lalu yang terlupakan oleh waktu...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-6.html" class="chapter-card animate-in delay-2">
+                <a href="../templates/chapter-6.html" class="chapter-card animate-in delay-2" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 45%; left: 10%; animation-delay: 0.2s;"></div>
+                        <div class="card-particle" style="top: 25%; left: 90%; animation-delay: 0.7s;"></div>
+                    </div>
                     <div class="chapter-number">06</div>
                     <div class="chapter-title">Peta Bintang yang Hilang</div>
                     <div class="chapter-subtitle">
-                        Petunjuk menuju harta karun yang tersembunyi...
+                        Petunjuk menuju harta karun yang tersembunyi di antara konstelasi kuno...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-7.html" class="chapter-card animate-in delay-1">
+                <a href="../templates/chapter-7.html" class="chapter-card animate-in delay-1" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 20%; left: 40%; animation-delay: 0.3s;"></div>
+                        <div class="card-particle" style="top: 80%; left: 60%; animation-delay: 0.8s;"></div>
+                    </div>
                     <div class="chapter-number">07</div>
                     <div class="chapter-title">Suara dari Kegelapan</div>
                     <div class="chapter-subtitle">
-                        Bisikan dari kegelapan mulai terdengar jelas...
+                        Bisikan dari kegelapan mulai terdengar jelas, memanggil nama yang tak dikenal...
                     </div>
                 </a>
 
-                <a href="../templates/chapter-8.html" class="chapter-card animate-in delay-2">
+                <a href="../templates/chapter-8.html" class="chapter-card animate-in delay-2" data-tilt>
+                    <div class="chapter-glow"></div>
+                    <div class="card-particles">
+                        <div class="card-particle" style="top: 30%; left: 30%; animation-delay: 0.1s;"></div>
+                        <div class="card-particle" style="top: 70%; left: 70%; animation-delay: 0.5s;"></div>
+                        <div class="card-particle" style="top: 50%; left: 50%; animation-delay: 1s;"></div>
+                    </div>
+                    <span class="chapter-status status-new">Baru</span>
                     <div class="chapter-number">08</div>
                     <div class="chapter-title">Pertemuan dengan Penyihir</div>
                     <div class="chapter-subtitle">
-                        Penyihir misterius muncul di persimpangan takdir...
+                        Penyihir misterius muncul di persimpangan takdir dengan ramalan yang menggetarkan jiwa...
                     </div>
                 </a>
             </div>
@@ -954,7 +1284,92 @@
 
     <script>
         (function() {
+            // ==========================================
+            // PARTICLE SYSTEM
+            // ==========================================
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleCount = 50;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                    this.color = Math.random() > 0.5 ? '212, 175, 55' : '232, 121, 168';
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            // ==========================================
+            // 3D TILT EFFECT
+            // ==========================================
+            const tiltCards = document.querySelectorAll('[data-tilt]');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+
+            // ==========================================
             // FAB MENU LOGIC
+            // ==========================================
             const fabMain = document.getElementById('fabMain');
             const fabMenu = document.getElementById('fabMenu');
             const overlay = document.getElementById('sidebarOverlay');
@@ -1008,6 +1423,23 @@
 
             fabMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
+            });
+
+            // ==========================================
+            // GLOW FOLLOW MOUSE ON CARDS
+            // ==========================================
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            chapterCards.forEach(card => {
+                const glow = card.querySelector('.chapter-glow');
+                
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    glow.style.left = x - 75 + 'px';
+                    glow.style.top = y - 75 + 'px';
+                });
             });
 
         })();

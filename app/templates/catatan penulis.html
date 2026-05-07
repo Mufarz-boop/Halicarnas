@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
     <title>Catatan Penulis - Fiction World</title>
@@ -371,39 +371,12 @@
             margin-bottom: 16px;
         }
 
-        .writer-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 16px 24px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 16px;
-        }
-
-        .stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--gold);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--light-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .notes-tabs {
             display: flex;
             gap: 8px;
             margin-bottom: 32px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            flex-wrap: wrap;
         }
 
         .tab-button {
@@ -416,6 +389,7 @@
             border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
             font-size: 14px;
+            font-family: 'Inter', sans-serif;
         }
 
         .tab-button.active {
@@ -423,10 +397,15 @@
             border-bottom-color: var(--gold);
         }
 
+        .tab-button:hover {
+            color: var(--white);
+        }
+
         .notes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 24px;
+            position: relative;
         }
 
         .note-card {
@@ -451,6 +430,7 @@
             background: linear-gradient(to bottom, var(--gold), var(--pink));
             transform: scaleY(0);
             transition: transform 0.4s ease;
+            transform-origin: top;
         }
 
         .note-card:hover::before {
@@ -464,6 +444,23 @@
             box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
         }
 
+        .note-card.expanded {
+            grid-column: 1 / -1;
+            background: rgba(20, 18, 14, 0.9);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            z-index: 50;
+            cursor: default;
+        }
+
+        .note-card.expanded:hover {
+            transform: none;
+        }
+
+        .note-card.expanded::before {
+            transform: scaleY(1);
+        }
+
         .note-date {
             font-size: 12px;
             color: var(--gold);
@@ -471,6 +468,9 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .note-title {
@@ -480,6 +480,12 @@
             margin-bottom: 16px;
             color: var(--white);
             line-height: 1.3;
+            transition: font-size 0.3s ease;
+        }
+
+        .note-card.expanded .note-title {
+            font-size: 28px;
+            margin-bottom: 24px;
         }
 
         .note-excerpt {
@@ -487,6 +493,24 @@
             line-height: 1.6;
             font-size: 14px;
             margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .note-full-content {
+            display: none;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 24px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .note-card.expanded .note-full-content {
+            display: block;
+        }
+
+        .note-card.expanded .note-excerpt {
+            display: none;
         }
 
         .note-tags {
@@ -503,6 +527,12 @@
             border-radius: 12px;
             font-size: 11px;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(212, 175, 55, 0.25);
+            transform: scale(1.05);
         }
 
         .floating-quote {
@@ -515,10 +545,61 @@
             pointer-events: none;
             z-index: 0;
             line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .note-card.expanded .floating-quote {
+            font-size: 72px;
+            color: rgba(232, 121, 168, 0.15);
+            top: -10px;
+            right: 20px;
+        }
+
+        .close-expand {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            font-size: 18px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .note-card.expanded .close-expand {
+            display: flex;
+        }
+
+        .close-expand:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .note-tagline {
+            display: none;
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--pink);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-style: italic;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .note-card.expanded .note-tagline {
+            display: block;
         }
 
         /* ============================================ */
-        /* FAB & OVERLAY (same as previous) */
+        /* FAB & OVERLAY */
         /* ============================================ */
         .sidebar-overlay {
             display: none;
@@ -549,13 +630,6 @@
             align-items: flex-end;
             gap: 12px;
         }
-
-        .fab-main, .fab-icon, .fab-menu, .fab-item, .fab-item-btn, .fab-item-label {
-            /* Same FAB styles as previous pages */
-            /* ... (copy from previous implementation) ... */
-        }
-
-        /* Simplified FAB - full styles in JS section */
 
         /* ============================================ */
         /* RESPONSIVE */
@@ -590,6 +664,24 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+
+            .note-card.expanded {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 2000;
+                border-radius: 0;
+                overflow-y: auto;
+                padding: 80px 24px 40px;
+            }
+
+            .note-card.expanded .close-expand {
+                top: 20px;
+                right: 20px;
+                position: fixed;
+            }
         }
 
         @media (max-width: 480px) {
@@ -617,6 +709,11 @@
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         ::-webkit-scrollbar {
@@ -756,24 +853,6 @@
                         "Di balik setiap cerita ada luka yang disembuhkan, mimpi yang dikejar, 
                         dan rahasia yang tak pernah terucap. Aku menulis untuk bernafas."
                     </p>
-                    <div class="writer-stats">
-                        <div class="stat-card">
-                            <span class="stat-number">127</span>
-                            <span class="stat-label">Catatan</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">89K</span>
-                            <span class="stat-label">Pembaca</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">2.4K</span>
-                            <span class="stat-label">Komentar</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Tahun Menulis</span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -786,14 +865,30 @@
 
             <div class="notes-grid" id="notesGrid">
                 <div class="note-card animate-in delay-1" data-tags="inspiration">
+                    <button class="close-expand" onclick="closeNote(this)">✕</button>
                     <div class="floating-quote">✦</div>
-                    <div class="note-date">14 Feb 2025</div>
+                    <div class="note-date">📅 14 Feb 2025</div>
                     <h4 class="note-title">Malam Pertama Menulis Kastil</h4>
+                    <p class="note-tagline">"Petir di tengah keheningan, fajar di balik kabut."</p>
                     <p class="note-excerpt">
                         Saat jam menunjukkan 02:37 dini hari, ide itu datang seperti petir. 
                         Kastil di ufuk malam yang terbelah kabut. Aku tahu ini akan menjadi 
                         cerita terbesarku. Tapi apakah dunia siap?
                     </p>
+                    <div class="note-full-content">
+                        <p style="margin-bottom: 16px;">
+                            Saat jam menunjukkan 02:37 dini hari, ide itu datang seperti petir yang menyambar tengah keheningan. Aku sedang duduk di depan jendela kamarku, menatap langit yang gelap pekat, tiba-tiba bayangan sebuah kastil muncul di benakku — bukan kastil biasa, tapi kastil di ufuk malam yang terbelah kabut tebal.
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Aku langsung meraih pena dan buku catatanku yang sudah usang. Tangan ini gemetar, bukan karena dingin, tapi karena sesuatu yang lebih besar dari sekadar ide. Ini adalah momen yang kutunggu-tunggu selama bertahun-tahun menulis. Aku tahu, dalam lubuk hatiku yang paling dalam, ini akan menjadi cerita terbesarku.
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Tapi kemudian keraguan datang. Apakah dunia siap untuk cerita ini? Apakah pembaca akan mengerti luka yang kusematkan di antara baris-barisnya? Apakah mereka akan merasakan detak jantung karakter-karakterku sebagaimana aku merasakannya?
+                        </p>
+                        <p>
+                            Aku menulis hingga fajar menyingsing. Dan ketika sinar pertama menerobos kabut, aku tahu — ini baru permulaan. Kastil itu sudah hidup dalam imajinasiku, dan sekarang tugasku adalah membuatnya hidup dalam imajinasimu juga.
+                        </p>
+                    </div>
                     <div class="note-tags">
                         <span class="tag">#KastilDiUfukMalam</span>
                         <span class="tag">#Inspirasi</span>
@@ -802,14 +897,27 @@
                 </div>
 
                 <div class="note-card animate-in delay-2" data-tags="behind-scenes">
+                    <button class="close-expand" onclick="closeNote(this)">✕</button>
                     <div class="floating-quote">✧</div>
-                    <div class="note-date">10 Feb 2025</div>
+                    <div class="note-date">📅 10 Feb 2025</div>
                     <h4 class="note-title">Rahasia Karakter Utama</h4>
+                    <p class="note-tagline">"Setiap pahlawan menyimpan luka yang tak pernah sembuh."</p>
                     <p class="note-excerpt">
                         Dia bukan pahlawan biasa. Ada luka masa kecil yang tak pernah sembuh, 
                         sebuah janji yang tak terucapkan. Setiap kalimat yang kutulis untuknya 
                         terasa seperti mengorek jiwaku sendiri.
                     </p>
+                    <div class="note-full-content">
+                        <p style="margin-bottom: 16px;">
+                            Karakter utama dalam ceritaku bukanlah pahlawan dalam arti konvensional. Dia tidak memiliki kekuatan super, tidak memiliki harta yang melimpah, dan tidak memiliki keluarga yang sempurna. Yang dia miliki hanyalah sebuah luka masa kecil yang tak pernah benar-benar sembuh.
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Ada sebuah janji yang tak pernah terucapkan antara dia dan seseorang yang sudah tiada. Janji itu menjadi beban yang dia bawa setiap hari, menjadi alasan dia bangun di pagi hari, dan menjadi alasan dia takut untuk tidur di malam hari.
+                        </p>
+                        <p>
+                            Setiap kalimat yang kutulis untuknya terasa seperti mengorek jiwaku sendiri. Aku menangis saat menulis beberapa adegan. Bukan karena sedih, tapi karena aku akhirnya mengerti — dia adalah bagian dari diriku yang selama ini kusembunyikan.
+                        </p>
+                    </div>
                     <div class="note-tags">
                         <span class="tag">#Karakter</span>
                         <span class="tag">#BehindScenes</span>
@@ -818,14 +926,27 @@
                 </div>
 
                 <div class="note-card animate-in delay-1" data-tags="personal">
+                    <button class="close-expand" onclick="closeNote(this)">✕</button>
                     <div class="floating-quote">✶</div>
-                    <div class="note-date">08 Feb 2025</div>
+                    <div class="note-date">📅 08 Feb 2025</div>
                     <h4 class="note-title">Kenapa Aku Menulis?</h4>
+                    <p class="note-tagline">"Tulisan adalah satu-satunya cara aku bernafas bebas."</p>
                     <p class="note-excerpt">
                         Bukan untuk terkenal. Bukan untuk uang. Aku menulis karena dunia ini 
                         terlalu sempit untuk semua imajinasiku. Tulisan adalah satu-satunya 
                         cara aku bernafas bebas.
                     </p>
+                    <div class="note-full-content">
+                        <p style="margin-bottom: 16px;">
+                            Bukan untuk terkenal. Bukan untuk uang. Bukan juga untuk pengakuan. Aku menulis karena alasan yang jauh lebih sederhana dan jauh lebih kompleks secara bersamaan — aku menulis karena dunia ini terlalu sempit untuk semua imajinasiku.
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Sejak kecil, aku selalu merasa seperti orang asing di dunia ini. Aku melihat hal-hal yang orang lain tidak lihat, aku merasakan hal-hal yang orang lain tidak rasakan, dan aku memikirkan hal-hal yang orang lain tidak pikirkan. Dunia nyata terasa seperti sangkar yang terlalu kecil untuk jiwaku.
+                        </p>
+                        <p>
+                            Tulisan adalah satu-satunya cara aku bernafas bebas. Di dalam cerita, aku bisa menjadi siapa saja. Aku bisa pergi ke mana saja. Aku bisa mencintai siapa saja. Dan yang paling penting — aku bisa menjadi diriku sendiri tanpa takut dihakimi.
+                        </p>
+                    </div>
                     <div class="note-tags">
                         <span class="tag">#Pribadi</span>
                         <span class="tag">#Motivasi</span>
@@ -834,14 +955,27 @@
                 </div>
 
                 <div class="note-card animate-in delay-2" data-tags="inspiration">
+                    <button class="close-expand" onclick="closeNote(this)">✕</button>
                     <div class="floating-quote">※</div>
-                    <div class="note-date">05 Feb 2025</div>
+                    <div class="note-date">📅 05 Feb 2025</div>
                     <h4 class="note-title">Kabut yang Menelan Bintang</h4>
+                    <p class="note-tagline">"Kabut bukan sekadar uap, tapi karakter dengan kehendaknya sendiri."</p>
                     <p class="note-excerpt">
                         Melihat kabut pagi menyelimuti lembah, tiba-tiba terpikir: 
                         bagaimana jika kabut itu hidup? Bagaimana jika ia menyimpan 
                         rahasia kastil kuno? Ide ini tak mau pergi dari kepalaku.
                     </p>
+                    <div class="note-full-content">
+                        <p style="margin-bottom: 16px;">
+                            Pagi itu aku berdiri di balkon, melihat kabut pagi menyelimuti lembah dengan lembut namun misterius. Tiba-tiba sebuah pertanyaan muncul: bagaimana jika kabut itu hidup? Bagaimana jika ia bukan sekadar uap air, tapi makhluk kuno yang menyimpan rahasia?
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Bayanganku mulai liar. Kabut yang menelan bintang-bintang di malam hari. Kabut yang berbisik rahasia kepada mereka yang berani mendengarkan. Kabut yang melindungi kastil kuno dari mata dunia, menjaga penghuninya yang sudah lama mati tapi tak pernah benar-benar pergi.
+                        </p>
+                        <p>
+                            Ide ini tak mau pergi dari kepalaku. Seperti parasit yang manis, ia menempel dan tumbuh. Aku tahu ini akan menjadi elemen penting dalam dunia Halicarnas. Kabut bukan lagi sekadar latar, tapi karakter dengan kehendaknya sendiri.
+                        </p>
+                    </div>
                     <div class="note-tags">
                         <span class="tag">#Inspirasi</span>
                         <span class="tag">#Alam</span>
@@ -850,14 +984,30 @@
                 </div>
 
                 <div class="note-card animate-in delay-1" data-tags="behind-scenes">
+                    <button class="close-expand" onclick="closeNote(this)">✕</button>
                     <div class="floating-quote">⁜</div>
-                    <div class="note-date">02 Feb 2025</div>
+                    <div class="note-date">📅 02 Feb 2025</div>
                     <h4 class="note-title">Plot Twist yang Tak Terduga</h4>
+                    <p class="note-tagline">"Ending yang tepat adalah ending yang membuat penulisnya menangis."</p>
                     <p class="note-excerpt">
                         Aku baru menyadari kemarin bahwa penutup cerita ini harus 
                         berbeda dari yang sudah kurencanakan. Lebih gelap. Lebih 
                         memilukan. Dan jauh lebih memuaskan.
                     </p>
+                    <div class="note-full-content">
+                        <p style="margin-bottom: 16px;">
+                            Aku baru menyadari kemarin, saat sedang mandi (ya, ide-ide terbaik memang datang saat mandi), bahwa penutup cerita ini harus berbeda dari yang sudah kurencanakan selama setahun terakhir.
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Ending yang kupikirkan sebelumnya terlalu aman. Terlalu manis. Terlalu... mudah. Tapi cerita ini bukan tentang kemudahan. Cerita ini tentang pengorbanan, tentang pilihan yang sulit, dan tentang konsekuensi dari setiap keputusan.
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Jadi aku mengubahnya. Lebih gelap. Lebih memilukan. Dan jauh lebih memuaskan secara emosional. Pembaca akan benci padaku untuk ini. Tapi kemudian mereka akan mengerti kenapa ending harus seperti itu.
+                        </p>
+                        <p>
+                            Aku sudah menulis draft ending barunya. Dan aku menangis. Itu tandanya ini ending yang tepat.
+                        </p>
+                    </div>
                     <div class="note-tags">
                         <span class="tag">#PlotTwist</span>
                         <span class="tag">#BehindScenes</span>
@@ -866,14 +1016,27 @@
                 </div>
 
                 <div class="note-card animate-in delay-2" data-tags="personal">
+                    <button class="close-expand" onclick="closeNote(this)">✕</button>
                     <div class="floating-quote">💫</div>
-                    <div class="note-date">28 Jan 2025</div>
+                    <div class="note-date">📅 28 Jan 2025</div>
                     <h4 class="note-title">Kopi Pagi dan Kata Pertama</h4>
+                    <p class="note-tagline">"Kopi pahit, angin dingin, dan kata pertama yang mengalir begitu saja."</p>
                     <p class="note-excerpt">
                         Satu teguk kopi hitam, jendela terbuka menyambut angin pagi, 
                         dan kata pertama mengalir: "Kabut". Hari ini akan jadi hari 
                         yang produktif. Semoga.
                     </p>
+                    <div class="note-full-content">
+                        <p style="margin-bottom: 16px;">
+                            Satu teguk kopi hitam yang pekat, pahit, dan hangat. Jendela terbuka lebar-lebar menyambut angin pagi yang masih membawa sisa-sisa dingin malam. Dan kata pertama mengalir begitu saja: "Kabut".
+                        </p>
+                        <p style="margin-bottom: 16px;">
+                            Aku tidak tahu dari mana kata itu datang. Mungkin dari mimpi yang masih menempel di sudut-sudut pikiranku. Mungkin dari angin yang membawa bisikan dari tempat jauh. Atau mungkin — dan ini yang paling mungkin — dari jiwa yang sudah lama haus untuk bercerita.
+                        </p>
+                        <p>
+                            Hari ini akan jadi hari yang produktif. Aku bisa merasakannya di tulang-tulangku. Semoga. Karena terkadang, hari-hari produktif datang tanpa diundang, dan hari-hari kosong datang tanpa diusir. Tapi hari ini... hari ini berbeda. Aku bisa merasakannya.
+                        </p>
+                    </div>
                     <div class="note-tags">
                         <span class="tag">#Pribadi</span>
                         <span class="tag">#Rutinitas</span>
@@ -886,7 +1049,7 @@
 
     <script>
         (function() {
-            // FAB MENU LOGIC (same as previous)
+            // FAB MENU LOGIC
             const fabMain = document.getElementById('fabMain');
             const fabMenu = document.getElementById('fabMenu');
             const overlay = document.getElementById('sidebarOverlay');
@@ -963,21 +1126,28 @@
                 button.addEventListener('click', () => {
                     const tab = button.dataset.tab;
                     
+                    // Close any expanded note first
+                    noteCards.forEach(card => card.classList.remove('expanded'));
+                    
                     // Update active tab
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
 
-                    // Filter notes
-                    noteCards.forEach(card => {
-                        if (tab === 'all' || card.dataset.tags.includes(tab)) {
+                    // Filter notes with animation
+                    noteCards.forEach((card, index) => {
+                        const matches = tab === 'all' || card.dataset.tags.includes(tab);
+                        
+                        if (matches) {
                             card.style.display = 'block';
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50 * index);
                         } else {
                             card.style.opacity = '0';
                             card.style.transform = 'translateY(10px)';
                             setTimeout(() => {
-                                if (!card.dataset.tags.includes(tab)) {
+                                if (!card.classList.contains('expanded')) {
                                     card.style.display = 'none';
                                 }
                             }, 300);
@@ -986,12 +1156,41 @@
                 });
             });
 
-            // Note card interactions
+            // Note card expand functionality
             noteCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const title = card.querySelector('.note-title').textContent;
-                    alert(`Membuka catatan lengkap:\n\n"${title}"\n\nFitur ini akan membuka halaman detail catatan penulis!`);
+                card.addEventListener('click', (e) => {
+                    // Don't expand if clicking close button
+                    if (e.target.closest('.close-expand')) return;
+                    
+                    const isExpanded = card.classList.contains('expanded');
+                    
+                    // Close all other expanded cards
+                    noteCards.forEach(c => c.classList.remove('expanded'));
+                    
+                    if (!isExpanded) {
+                        card.classList.add('expanded');
+                        // Scroll to card smoothly
+                        setTimeout(() => {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
                 });
+            });
+
+            // Close note function
+            window.closeNote = function(btn) {
+                const card = btn.closest('.note-card');
+                card.classList.remove('expanded');
+            };
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const expanded = document.querySelector('.note-card.expanded');
+                    if (expanded) {
+                        expanded.classList.remove('expanded');
+                    }
+                }
             });
 
         })();
