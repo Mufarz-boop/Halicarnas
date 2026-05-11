@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/jpeg" href="../../assets/icons/Afdal Adha Firnansyah.png">
-    <title>Bahasa dan Sastra</title>
+    <title>Matematika dan Ilmu Terapan</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -257,79 +257,406 @@
             font-weight: 500;
         }
 
-        /* Programs Grid */
-        .programs-grid {
+        /* ============================================ */
+        /* PROGRAM STUDI CARDS - INTERNATIONAL ACADEMY */
+        /* ============================================ */
+        .programs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .program-item {
+            position: relative;
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .program-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold), var(--pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .program-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.08);
+        }
+
+        .program-item:hover::before {
+            opacity: 1;
+        }
+
+        .program-number {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(232, 121, 168, 0.1));
+            border: 1.5px solid rgba(212, 175, 55, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .program-item:hover .program-number {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(232, 121, 168, 0.2));
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .program-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .program-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.3px;
+        }
+
+        .program-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .program-description {
+            font-size: 13px;
+            color: var(--light-gray);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .program-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .meta-tag .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.6;
+        }
+
+        .program-arrow {
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .program-item:hover .program-arrow {
+            opacity: 1;
+            transform: translateY(-50%) translateX(4px);
+        }
+
+        /* ============================================ */
+        /* ACADEMIC TRACKS - INTERNATIONAL PATHWAYS */
+        /* ============================================ */
+        .path-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .path-card {
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.4s ease;
+        }
+
+        .path-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .path-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .path-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 121, 168, 0.15));
+            border: 1.5px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .path-info h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .path-info p {
+            font-size: 12px;
+            color: var(--light-gray);
+        }
+
+        .path-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .topic-tag {
+            padding: 6px 14px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .topic-tag:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Competencies Section */
+        .competencies-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin-bottom: 32px;
         }
 
-        .program-card {
+        .competency-card {
             background: rgba(20, 18, 14, 0.4);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(212, 175, 55, 0.1);
             border-radius: 16px;
             padding: 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
             transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
         }
 
-        .program-card:hover {
+        .competency-card:hover {
             border-color: rgba(212, 175, 55, 0.3);
             background: rgba(212, 175, 55, 0.05);
-            transform: translateX(4px);
+            transform: translateY(-4px);
         }
 
-        .program-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        .competency-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(232, 121, 168, 0.1);
+            border: 1px solid rgba(232, 121, 168, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .competency-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .competency-desc {
+            font-size: 13px;
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        /* ============================================ */
+        /* RESEARCH & PROJECT AREAS - ACADEMY LEVEL */
+        /* ============================================ */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .research-card {
+            position: relative;
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .research-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--pink));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .research-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .research-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .research-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .research-emoji {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(232, 121, 168, 0.1));
+            border: 1.5px solid rgba(212, 175, 55, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
             flex-shrink: 0;
             transition: all 0.3s ease;
         }
 
-        .program-card:hover .program-icon {
-            background: rgba(212, 175, 55, 0.2);
-            transform: scale(1.1);
+        .research-card:hover .research-emoji {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
         }
 
-        .program-info {
-            flex: 1;
-        }
-
-        .program-name {
+        .research-title {
             font-size: 15px;
             font-weight: 600;
             color: var(--white);
-            margin-bottom: 4px;
+            line-height: 1.4;
         }
 
-        .program-desc {
-            font-size: 12px;
+        .research-desc {
+            font-size: 13px;
             color: var(--light-gray);
-            line-height: 1.5;
+            line-height: 1.7;
+            margin-bottom: 14px;
         }
 
-        /* Facilities */
-        .facilities-list {
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .research-tag {
+            padding: 4px 10px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================ */
+        /* COMPETITIONS & ACHIEVEMENTS */
+        /* ============================================ */
+        .achievement-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-bottom: 32px;
         }
 
-        .facility-item {
+        .achievement-item {
             display: flex;
             align-items: center;
             gap: 14px;
@@ -341,13 +668,13 @@
             transition: all 0.3s ease;
         }
 
-        .facility-item:hover {
+        .achievement-item:hover {
             border-color: rgba(212, 175, 55, 0.25);
             background: rgba(212, 175, 55, 0.05);
             transform: translateX(4px);
         }
 
-        .facility-icon {
+        .achievement-icon {
             width: 40px;
             height: 40px;
             border-radius: 10px;
@@ -360,10 +687,66 @@
             flex-shrink: 0;
         }
 
-        .facility-text {
+        .achievement-text {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.85);
             font-weight: 500;
+        }
+
+        /* Career Paths */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .career-card {
+            background: rgba(20, 18, 14, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .career-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .career-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 121, 168, 0.2));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 12px;
+            transition: all 0.3s ease;
+        }
+
+        .career-card:hover .career-icon {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .career-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .career-desc {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 1px;
         }
 
         /* Lecturers */
@@ -494,8 +877,41 @@
                 font-size: 28px;
             }
 
-            .programs-grid {
+            .program-item {
+                padding: 20px;
+                gap: 16px;
+            }
+
+            .program-number {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .program-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .program-arrow {
+                display: none;
+            }
+
+            .path-card {
+                padding: 20px;
+            }
+
+            .competencies-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .career-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .lecturers-grid {
@@ -520,6 +936,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .career-grid {
+                grid-template-columns: 1fr;
+            }
+
             .lecturers-grid {
                 grid-template-columns: 1fr;
             }
@@ -530,6 +950,10 @@
 
             .desc-card {
                 padding: 20px;
+            }
+
+            .program-meta {
+                gap: 10px;
             }
         }
 
@@ -576,21 +1000,18 @@
         <main class="main-content">
             <!-- Hero Section -->
             <div class="jurusan-hero">
-                <div class="badge">Jurusan</div>
-                <h1>Bahasa dan Sastra</h1>
-                <p class="subtitle">"Kata-kata membentuk jiwa, budaya, dan kehidupan abadi."</p>
-                <div class="code">BS-HA</div>
+                <div class="badge">Divisi Akademik</div>
+                <h1>Matematika dan Ilmu Terapan</h1>
+                <p class="subtitle">"Where logic meets infinity, and numbers tell the story of the universe."</p>
+                <div class="code">MIT-HA</div>
             </div>
 
             <!-- Description -->
             <div class="desc-card">
                 <p>
-                    Jurusan Bahasa dan Sastra (BS) merupakan bidang akademik yang berfokus pada kajian sistem bahasa, struktur linguistik,
-                    serta eksplorasi sastra sebagai representasi pemikiran, budaya, dan ekspresi manusia dalam konteks global.
-                    Jurusan ini tidak hanya menelaah bahasa sebagai alat komunikasi, tetapi juga sebagai sistem simbolik yang
-                    kompleks dan dinamis, yang mencerminkan cara manusia memahami dunia, pendekatannya bersifat analitis, interpretatif,
-                    dan kreatif, dengan penekanan pada penguasaan bahasa, retorika, serta produksi teks akademik dan artistik yang
-                    berstandar internasional.
+                    Divisi Matematika dan Ilmu Terapan (Mathematics & Applied Sciences) adalah program studi unggulan yang dirancang untuk mempersiapkan siswa menuju universitas top dunia. 
+                    Kurikulum berbasis internasional (Cambridge A-Level, IB Mathematics, dan Advanced Placement) dengan fokus pada pemikiran analitis rigor, pemodelan matematika, dan komputasi modern. 
+                    Program ini menjadi fondasi bagi siswa yang beraspirasi mengejar karir di bidang data science, engineering, quantitative finance, actuarial science, dan riset akademik di institusi kelas dunia.
                 </p>
             </div>
 
@@ -602,131 +1023,496 @@
                 </div>
                 <div class="stat-card">
                     <div class="number">[XX]</div>
-                    <div class="label">Dosen</div>
+                    <div class="label">Dosen & Pengajar</div>
                 </div>
                 <div class="stat-card">
                     <div class="number">[XXX]</div>
-                    <div class="label">Siswa</div>
+                    <div class="label">Siswa Aktif</div>
                 </div>
             </div>
 
-            <!-- Programs Section -->
+            <!-- Academic Pathways -->
+            <div class="section-title">
+                Jalur Akademik Internasional
+                <span class="line"></span>
+            </div>
+            <div class="path-container">
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">🇬🇧</div>
+                        <div class="path-info">
+                            <h3>Cambridge A-Level Pathway</h3>
+                            <p>Pure Mathematics, Mechanics & Statistics</p>
+                        </div>
+                    </div>
+                    <div class="path-topics">
+                        <span class="topic-tag">Pure Mathematics 1-3</span>
+                        <span class="topic-tag">Mechanics 1-2</span>
+                        <span class="topic-tag">Probability & Statistics 1-2</span>
+                        <span class="topic-tag">Further Mathematics</span>
+                    </div>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">🌍</div>
+                        <div class="path-info">
+                            <h3>IB Diploma Programme</h3>
+                            <p>Analysis & Approaches / Applications & Interpretation</p>
+                        </div>
+                    </div>
+                    <div class="path-topics">
+                        <span class="topic-tag">HL Mathematics</span>
+                        <span class="topic-tag">SL Mathematics</span>
+                        <span class="topic-tag">Internal Assessment</span>
+                        <span class="topic-tag">Extended Essay</span>
+                    </div>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">🇺🇸</div>
+                        <div class="path-info">
+                            <h3>Advanced Placement (AP)</h3>
+                            <p>Calculus, Statistics & Computer Science Principles</p>
+                        </div>
+                    </div>
+                    <div class="path-topics">
+                        <span class="topic-tag">AP Calculus AB/BC</span>
+                        <span class="topic-tag">AP Statistics</span>
+                        <span class="topic-tag">AP Computer Science A</span>
+                        <span class="topic-tag">AP Physics C</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Studi Section -->
             <div class="section-title">
                 Program Studi
                 <span class="line"></span>
             </div>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-icon">01</div>
-                    <div class="program-info">
-                        <div class="program-name">Foundational Linguistic Structures</div>
-                        <div class="program-desc"></div>
+            <div class="programs-container">
+                <div class="program-item">
+                    <div class="program-number">01</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Pure Mathematics Foundations</div>
+                            <span class="program-badge">Core</span>
+                        </div>
+                        <div class="program-description">
+                            Aljabar abstrak, teori bilangan, dan analisis real sebagai fondasi berpikir matematis rigor. Persiapan untuk Further Mathematics A-Level dan Olympiad Mathematics.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>6 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 1</span>
+                            <span class="meta-tag"><span class="dot"></span>A-Level / IB HL</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">02</div>
-                    <div class="program-info">
-                        <div class="program-name">Academic Writing and Textual Formation</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">02</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Advanced Calculus & Analysis</div>
+                            <span class="program-badge">Core</span>
+                        </div>
+                        <div class="program-description">
+                            Kalkulus diferensial dan integral multivariabel, deret Taylor, dan pengenalan analisis kompleks untuk persiapan masuk universitas STEM elite.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>6 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 1-2</span>
+                            <span class="meta-tag"><span class="dot"></span>AP Calculus BC</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">03</div>
-                    <div class="program-info">
-                        <div class="program-name">Introductory Literary Analysis</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">03</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Discrete Mathematics & Logic</div>
+                            <span class="program-badge">Core</span>
+                        </div>
+                        <div class="program-description">
+                            Logika proposisional dan predikat, teori himpunan, kombinatorika lanjut, teori graf, dan fondasi pembuktian matematis untuk computer science dan cryptography.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 1</span>
+                            <span class="meta-tag"><span class="dot"></span>IB / A-Level</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">04</div>
-                    <div class="program-info">
-                        <div class="program-name">Communication Theory Fundamentals</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">04</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Probability & Statistical Inference</div>
+                            <span class="program-badge">Core</span>
+                        </div>
+                        <div class="program-description">
+                            Teori peluang, distribusi probabilitas, statistika inferensial, regresi lanjut, dan pengenalan Bayesian statistics dengan software R dan Python.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 2</span>
+                            <span class="meta-tag"><span class="dot"></span>AP Statistics</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">05</div>
-                    <div class="program-info">
-                        <div class="program-name">Comparative Linguistics Systems</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">05</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Linear Algebra & Matrix Theory</div>
+                            <span class="program-badge">Core</span>
+                        </div>
+                        <div class="program-description">
+                            Ruang vektor, transformasi linear, eigenvalue dan eigenvector, serta aplikasi dalam computer graphics, quantum mechanics, dan machine learning.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 2</span>
+                            <span class="meta-tag"><span class="dot"></span>University Level</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">06</div>
-                    <div class="program-info">
-                        <div class="program-name">Advanced Literary Criticism</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">06</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Differential Equations & Dynamics</div>
+                            <span class="program-badge">Applied</span>
+                        </div>
+                        <div class="program-description">
+                            Persamaan diferensial biasa dan parsial, sistem dinamis, chaos theory, dan aplikasi dalam modeling fenomena fisik, biologi, dan ekonomi.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 2</span>
+                            <span class="meta-tag"><span class="dot"></span>Further Math</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">07</div>
-                    <div class="program-info">
-                        <div class="program-name">Discourse and Pragmatics Studies</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">07</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Mathematical Modeling & Simulation</div>
+                            <span class="program-badge">Applied</span>
+                        </div>
+                        <div class="program-description">
+                            Pemodelan matematika untuk fenomena nyata, agent-based modeling, Monte Carlo simulation, dan validasi model dengan data empiris menggunakan MATLAB.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 2</span>
+                            <span class="meta-tag"><span class="dot"></span>Project Based</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">08</div>
-                    <div class="program-info">
-                        <div class="program-name">Creative Writing and Narrative Design</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">08</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Optimization & Operations Research</div>
+                            <span class="program-badge">Advanced</span>
+                        </div>
+                        <div class="program-description">
+                            Linear programming, convex optimization, game theory, dan metaheuristics untuk supply chain, financial portfolio optimization, dan machine learning.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>3 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 2-3</span>
+                            <span class="meta-tag"><span class="dot"></span>Case Study</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">09</div>
-                    <div class="program-info">
-                        <div class="program-name">Advanced Semantics and Meaning Systems</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">09</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Numerical Methods & Scientific Computing</div>
+                            <span class="program-badge">Advanced</span>
+                        </div>
+                        <div class="program-description">
+                            Metode numerik lanjut: interpolasi spline, solusi sistem nonlinear, eigenvalue computation, dan implementasi dengan Python, MATLAB, dan Julia.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 2-3</span>
+                            <span class="meta-tag"><span class="dot"></span>Lab Intensive</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">10</div>
-                    <div class="program-info">
-                        <div class="program-name">Global Literary Systems</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">10</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Stochastic Processes & Risk Theory</div>
+                            <span class="program-badge">Advanced</span>
+                        </div>
+                        <div class="program-description">
+                            Markov chains, Brownian motion, martingales, dan stochastic calculus untuk persiapan jurusan Actuarial Science, Quantitative Finance, dan Risk Management.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>3 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 3</span>
+                            <span class="meta-tag"><span class="dot"></span>University Bridging</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">11</div>
-                    <div class="program-info">
-                        <div class="program-name">Stylistics and Rhetorical Mastery</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">11</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Introduction to Machine Learning & AI</div>
+                            <span class="program-badge">Specialized</span>
+                        </div>
+                        <div class="program-description">
+                            Algoritma supervised dan unsupervised learning, neural networks fundamentals, dan mathematical foundations of deep learning dengan PyTorch dan TensorFlow.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>4 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 3</span>
+                            <span class="meta-tag"><span class="dot"></span>Industry Ready</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">12</div>
-                    <div class="program-info">
-                        <div class="program-name">Language Philosophy and Semiotic Theory</div>
-                        <div class="program-desc"></div>
+
+                <div class="program-item">
+                    <div class="program-number">12</div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <div class="program-title">Capstone Research Project</div>
+                            <span class="program-badge">Thesis</span>
+                        </div>
+                        <div class="program-description">
+                            Proyek riset individu atau kelompok dengan supervisi dosen, publikasi di jurnal akademi, dan presentasi di konferensi siswa internasional untuk portfolio universitas.
+                        </div>
+                        <div class="program-meta">
+                            <span class="meta-tag"><span class="dot"></span>6 Credits</span>
+                            <span class="meta-tag"><span class="dot"></span>Year 3</span>
+                            <span class="meta-tag"><span class="dot"></span>Publication</span>
+                        </div>
                     </div>
+                    <div class="program-arrow">→</div>
                 </div>
             </div>
 
-            <!-- Facilities Section -->
+            <!-- Core Competencies Section -->
             <div class="section-title">
-                Fasilitas
+                Kompetensi Utama
                 <span class="line"></span>
             </div>
-            <div class="facilities-list">
-                <div class="facility-item">
-                    <div class="facility-icon">🏛️</div>
-                    <div class="facility-text">[Nama Fasilitas 1 - contoh: Gedung Kuliah Modern]</div>
+            <div class="competencies-grid">
+                <div class="competency-card">
+                    <div class="competency-icon">🧠</div>
+                    <div class="competency-title">Mathematical Rigor & Proof</div>
+                    <div class="competency-desc">Kemampuan membangun argumen matematis yang valid, memahami fondasi logika, dan mengaplikasikan metode pembuktian formal untuk problem-solving kompleks.</div>
                 </div>
-                <div class="facility-item">
-                    <div class="facility-icon">📚</div>
-                    <div class="facility-text">[Nama Fasilitas 2 - contoh: Perpustakaan Digital]</div>
+                <div class="competency-card">
+                    <div class="competency-icon">📊</div>
+                    <div class="competency-title">Quantitative Modeling</div>
+                    <div class="competency-desc">Membangun model matematika untuk merepresentasikan sistem nyata, melakukan simulasi, dan menginterpretasikan hasil untuk pengambilan keputusan berbasis data.</div>
                 </div>
-                <div class="facility-item">
-                    <div class="facility-icon">🔬</div>
-                    <div class="facility-text">[Nama Fasilitas 3 - contoh: Laboratorium Riset]</div>
+                <div class="competency-card">
+                    <div class="competency-icon">💻</div>
+                    <div class="competency-title">Computational Proficiency</div>
+                    <div class="competency-desc">Penguasaan tools komputasi modern: Python, MATLAB, R, Mathematica, dan Julia untuk simulasi numerik, data analysis, dan algorithmic implementation.</div>
                 </div>
-                <div class="facility-item">
-                    <div class="facility-icon">💻</div>
-                    <div class="facility-text">[Nama Fasilitas 4 - contoh: Studio Komputer]</div>
+                <div class="competency-card">
+                    <div class="competency-icon">🌍</div>
+                    <div class="competency-title">Global Academic Readiness</div>
+                    <div class="competency-desc">Persiapan untuk kuliah di universitas top dunia: academic writing, research methodology, critical discourse, dan presentasi konferensi internasional.</div>
                 </div>
             </div>
 
-            <!-- Lecturers Section -->
+            <!-- Research & Project Areas Section -->
+            <div class="section-title">
+                Bidang Riset & Proyek Unggulan
+                <span class="line"></span>
+            </div>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-emoji">🧬</div>
+                        <div class="research-title">Mathematical Biology & Epidemiology</div>
+                    </div>
+                    <div class="research-desc">
+                        Pemodelan dinamika penyakit, pertumbuhan populasi, dan ekosistem menggunakan persamaan diferensial dan model stokastik untuk kesiapan pandemi masa depan.
+                    </div>
+                    <div class="research-tags">
+                        <span class="research-tag">ODE/PDE</span>
+                        <span class="research-tag">Agent-Based</span>
+                        <span class="research-tag">Public Health</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-emoji">🤖</div>
+                        <div class="research-title">Geometric Deep Learning & AI Topology</div>
+                    </div>
+                    <div class="research-desc">
+                        Teori graf spektral, manifold learning, dan geometric deep learning untuk AI yang robust pada data non-Euclidean seperti jaringan sosial dan molekul.
+                    </div>
+                    <div class="research-tags">
+                        <span class="research-tag">Graph Neural Nets</span>
+                        <span class="research-tag">Differential Geometry</span>
+                        <span class="research-tag">Topological Data</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-emoji">🌡️</div>
+                        <div class="research-title">Climate Mathematics & Earth Systems</div>
+                    </div>
+                    <div class="research-desc">
+                        Model matematika untuk prediksi iklim, dinamika atmosfer, dan sistem Bumi menggunakan data assimilation dan uncertainty quantification.
+                    </div>
+                    <div class="research-tags">
+                        <span class="research-tag">Fluid Dynamics</span>
+                        <span class="research-tag">Data Assimilation</span>
+                        <span class="research-tag">Sustainability</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-emoji">🔐</div>
+                        <div class="research-title">Post-Quantum Cryptography</div>
+                    </div>
+                    <div class="research-desc">
+                        Kriptografi tahan kuantum berbasis lattice-based cryptography dan isogeny-based protocols untuk keamanan data di era komputasi kuantum.
+                    </div>
+                    <div class="research-tags">
+                        <span class="research-tag">Lattice Crypto</span>
+                        <span class="research-tag">Number Theory</span>
+                        <span class="research-tag">Cybersecurity</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-emoji">⚡</div>
+                        <div class="research-title">Quantum Computing & Information</div>
+                    </div>
+                    <div class="research-desc">
+                        Algoritma kuantum, quantum error correction, dan quantum machine learning untuk komputasi next-generation dan secure communication.
+                    </div>
+                    <div class="research-tags">
+                        <span class="research-tag">QML</span>
+                        <span class="research-tag">Shor's Algorithm</span>
+                        <span class="research-tag">QKD</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-emoji">🧮</div>
+                        <div class="research-title">Foundational AI & Theorem Proving</div>
+                    </div>
+                    <div class="research-desc">
+                        Integrasi formal methods dengan neural theorem provers dan proof assistants (Lean 4, Coq) untuk verifikasi matematika dan software mission-critical.
+                    </div>
+                    <div class="research-tags">
+                        <span class="research-tag">Lean 4</span>
+                        <span class="research-tag">Neural Provers</span>
+                        <span class="research-tag">Formal Verif</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitions & Achievements Section -->
+            <div class="section-title">
+                Prestasi & Kompetisi Internasional
+                <span class="line"></span>
+            </div>
+            <div class="achievement-list">
+                <div class="achievement-item">
+                    <div class="achievement-icon">🥇</div>
+                    <div class="achievement-text">International Mathematical Olympiad (IMO) & Asian Pacific Mathematics Olympiad (APMO)</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🥈</div>
+                    <div class="achievement-text">HiMCM (High School Mathematical Contest in Modeling) - USA & IMMC (International Mathematical Modeling Challenge)</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🥉</div>
+                    <div class="achievement-text">Harvard-MIT Mathematics Tournament (HMMT) & Berkeley Math Tournament (BMT)</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🏅</div>
+                    <div class="achievement-text">Putnam Mathematical Competition (Preparation for Undergraduate)</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🎖️</div>
+                    <div class="achievement-text">Siemens Competition & Regeneron ISEF (International Science & Engineering Fair) - Mathematics Category</div>
+                </div>
+            </div>
+
+            <!-- Career Paths Section -->
+            <div class="section-title">
+                Jalur Karir Masa Depan
+                <span class="line"></span>
+            </div>
+            <div class="career-grid">
+                <div class="career-card">
+                    <div class="career-icon">📉</div>
+                    <div class="career-name">Data Scientist</div>
+                    <div class="career-desc">AI & Big Data Analytics</div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">🏦</div>
+                    <div class="career-name">Quantitative Analyst</div>
+                    <div class="career-desc">Hedge Funds & Trading</div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">🔬</div>
+                    <div class="career-name">Research Scientist</div>
+                    <div class="career-desc">PhD & R&D Labs</div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">📊</div>
+                    <div class="career-name">Actuary</div>
+                    <div class="career-desc">Risk & Insurance</div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">🚀</div>
+                    <div class="career-name">Aerospace Engineer</div>
+                    <div class="career-desc">Dynamics & Control</div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">🎓</div>
+                    <div class="career-name">Professor / Academia</div>
+                    <div class="career-desc">University & Research</div>
+                </div>
+            </div>
+
+            <!-- Faculty Section -->
             <div class="section-title">
                 Dosen & Pengajar
                 <span class="line"></span>
@@ -735,24 +1521,24 @@
                 <div class="lecturer-card">
                     <div class="lecturer-avatar">👨‍🏫</div>
                     <div class="lecturer-name">[Nama Dosen 1]</div>
-                    <div class="lecturer-role">[Jabatan/Spesialisasi]</div>
+                    <div class="lecturer-role">Pure Mathematics & Analysis</div>
                 </div>
                 <div class="lecturer-card">
                     <div class="lecturer-avatar">👩‍🏫</div>
                     <div class="lecturer-name">[Nama Dosen 2]</div>
-                    <div class="lecturer-role">[Jabatan/Spesialisasi]</div>
+                    <div class="lecturer-role">Applied Mathematics & Modeling</div>
                 </div>
                 <div class="lecturer-card">
                     <div class="lecturer-avatar">👨‍🏫</div>
                     <div class="lecturer-name">[Nama Dosen 3]</div>
-                    <div class="lecturer-role">[Jabatan/Spesialisasi]</div>
+                    <div class="lecturer-role">Computational Mathematics & AI</div>
                 </div>
             </div>
 
             <!-- Quote -->
             <div class="quote-block">
-                <p>Bahasa adalah tempat di mana kita menemukan diri kita sendiri</p>
-                <p>—Goenawan Mohammad</p>
+                <p>Mathematics is the language in which God has written the universe.</p>
+                <p>— Galileo Galilei</p>
             </div>
         </main>
     </div>
