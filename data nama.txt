@@ -1,66 +1,66 @@
 DATA NAMA-NAMA MURID AKADEMI HALICARNAS
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
-11. 
-12. 
-13. 
-14. 
-15. 
-16. 
-17. 
-18. 
-19. 
-20. 
-21. 
-22. 
-23. 
-24. 
-25. 
-26. 
-27. 
-28. 
-29. 
-30. 
-31. 
-32. 
-33. 
-34. 
-35. 
-36. 
-37. 
-38. 
-39. 
-40. 
-41. 
-42. 
-43. 
-44. 
-45. 
-46. 
-47. 
-48. 
-49. 
-50. 
-51. 
-52. 
-53. 
-54. 
-55. 
-56. 
-57. 
-58. 
-59. 
-60. 
-61. 
-62. 
+1. Salsabila Aulia Putri
+2. Amanda Ervina
+3. Nayshila Putri
+4. Zulhijjah
+5. Arafa Syahputra
+6. Fittian Mubaraq
+7. Muhammad Rayvan Kahfi Effendi
+8. Eza Hanafi Sembiring
+9. Nazwa Luthfi Nadia
+10. Salsabila Fitriani Syafrika
+11. Nabilla Hafiz
+12. Shafira Zahirah
+13. Cahya Qhayla
+14. Alya Fachriska
+15. Nadia Lera Safira
+16. Naysyila Syifa
+17. Najinan Cinta Luqyana G.
+18. Ainun Ramadhani
+19. Hafidz Alrizal
+20. Afdal Adha Firnansyah
+21. Nauval Risqullah
+22. Ihsan Habibullah
+23. Ishaq Ramadhani
+24. Dio Putra Ramadan
+25. Yafi Ahmad
+26. Sutan Mara Muhammad
+27. Reza Fadillah
+28. Muhammad Ariq Mufid
+29. Fahrul Rozi
+30. Mulkan Arief Alhuda
+31. Tawaf Dinosi
+32. Mahrin Safa Ulayya
+33. Syarifah Nayra
+34. Alfira Anoya
+35. Jihan Saffah Amira
+36. Wan Nayla Arizdy
+37. Ijlal Hawari
+38. Razita Nurin
+39. Muhammad Farel Affatan
+40. Miftahul Jannah
+41. Nikeisha Faiha Notaria Margoland
+42. Dinatul Sakinah
+43. Raisya Putri Carisa
+44. Muthia Nadhifa Rifda
+45. Indriani Tandean
+46. Muhammad Rayyan
+47. Habibi Eka Dikmaba
+48. Muhammad Dirga Hidayatullah
+49. Fattin Qalbuana Arhas
+50. Nadine Natavia Renalvo
+51. Naufal Aqila Harto
+52. Muhammad Nabil Zharif
+53. Muhammad Ultakarisyah
+54. Niko Erdiansyah
+55. Robbyatul Awaliyah
+56. Sri Safira Umairah
+57. Yufiana Maisyah Putri
+58. Aufa Maulidina Hanim
+59. Mayliza
+60. Byan Al Payaz
+61. Muhammad Aryan
+62. Fatin Batrisyia
 63. 
 64. 
 65. 
