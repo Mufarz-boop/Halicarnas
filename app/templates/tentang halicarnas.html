@@ -1332,7 +1332,248 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(212, 175, 55, 0.5);
         }
-    </style>
+    
+        /* ============================================ */
+        /* DAFTAR KELAS - CLASS LIST STYLES */
+        /* ============================================ */
+        .kelas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kelas-card {
+            background: rgba(20, 18, 14, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 20px;
+            padding: 28px 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kelas-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--pink));
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .kelas-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.05);
+        }
+
+        .kelas-card:hover::before {
+            opacity: 0.8;
+        }
+
+        .kelas-card.kelas-special {
+            border-color: rgba(212, 175, 55, 0.2);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .kelas-card.kelas-special::before {
+            background: linear-gradient(90deg, var(--pink), var(--gold), var(--pink));
+            opacity: 0.5;
+        }
+
+        .kelas-card.kelas-special:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .kelas-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .kelas-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .kelas-card:hover .kelas-icon {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        .kelas-badge {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .kelas-card:hover .kelas-badge {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .kelas-badge.special {
+            background: rgba(232, 121, 168, 0.1);
+            border-color: rgba(232, 121, 168, 0.3);
+            color: var(--pink);
+        }
+
+        .kelas-card.kelas-special:hover .kelas-badge.special {
+            background: rgba(232, 121, 168, 0.2);
+            border-color: rgba(232, 121, 168, 0.5);
+        }
+
+        .kelas-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .kelas-card:hover .kelas-name {
+            color: var(--gold);
+        }
+
+        .kelas-desc {
+            font-size: 13px;
+            color: var(--light-gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .kelas-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .kelas-meta-item {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .kelas-card:hover .kelas-meta-item {
+            background: rgba(212, 175, 55, 0.05);
+            border-color: rgba(212, 175, 55, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 1024px) {
+            .kelas-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+
+            .kelas-card {
+                padding: 24px 20px;
+            }
+
+            .kelas-name {
+                font-size: 17px;
+            }
+
+            .kelas-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .kelas-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-bottom: 32px;
+            }
+
+            .kelas-card {
+                padding: 20px 18px;
+                border-radius: 16px;
+            }
+
+            .kelas-header {
+                margin-bottom: 12px;
+            }
+
+            .kelas-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            .kelas-name {
+                font-size: 16px;
+            }
+
+            .kelas-desc {
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+
+            .kelas-meta {
+                gap: 8px;
+            }
+
+            .kelas-meta-item {
+                font-size: 11px;
+                padding: 3px 8px;
+            }
+
+            .kelas-badge {
+                font-size: 10px;
+                padding: 3px 10px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .kelas-card {
+                padding: 18px 14px;
+            }
+
+            .kelas-name {
+                font-size: 15px;
+            }
+
+            .kelas-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+        }
+</style>
+<base target="_blank">
 </head>
 <body>
     <div class="bg-image"></div>
@@ -1601,7 +1842,159 @@
                 </div>
             </div>
 
-            <!-- Quote Block -->
+            
+                        <!-- Daftar Kelas Section -->
+            <div class="section-title animate-in delay-1">
+                Daftar Kelas
+                <span class="line"></span>
+            </div>
+            <div class="kelas-grid">
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">📐</div>
+                        <div class="kelas-badge">1-A</div>
+                    </div>
+                    <div class="kelas-name">Kelas 1-A</div>
+                    <div class="kelas-desc">Angkatan 1 - Kelas A</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">📚</div>
+                        <div class="kelas-badge">1-B</div>
+                    </div>
+                    <div class="kelas-name">Kelas 1-B</div>
+                    <div class="kelas-desc">Angkatan 1 - Kelas B</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">🔬</div>
+                        <div class="kelas-badge">1-C</div>
+                    </div>
+                    <div class="kelas-name">Kelas 1-C</div>
+                    <div class="kelas-desc">Angkatan 1 - Kelas C</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">💻</div>
+                        <div class="kelas-badge">1-D</div>
+                    </div>
+                    <div class="kelas-name">Kelas 1-D</div>
+                    <div class="kelas-desc">Angkatan 1 - Kelas D</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">🎨</div>
+                        <div class="kelas-badge">2-A</div>
+                    </div>
+                    <div class="kelas-name">Kelas 2-A</div>
+                    <div class="kelas-desc">Angkatan 2 - Kelas A</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">📊</div>
+                        <div class="kelas-badge">2-B</div>
+                    </div>
+                    <div class="kelas-name">Kelas 2-B</div>
+                    <div class="kelas-desc">Angkatan 2 - Kelas B</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">🏥</div>
+                        <div class="kelas-badge">2-C</div>
+                    </div>
+                    <div class="kelas-name">Kelas 2-C</div>
+                    <div class="kelas-desc">Angkatan 2 - Kelas C</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">⚖️</div>
+                        <div class="kelas-badge">2-D</div>
+                    </div>
+                    <div class="kelas-name">Kelas 2-D</div>
+                    <div class="kelas-desc">Angkatan 2 - Kelas D</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">🏛️</div>
+                        <div class="kelas-badge">3-A</div>
+                    </div>
+                    <div class="kelas-name">Kelas 3-A</div>
+                    <div class="kelas-desc">Angkatan 3 - Kelas A</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">🌍</div>
+                        <div class="kelas-badge">3-B</div>
+                    </div>
+                    <div class="kelas-name">Kelas 3-B</div>
+                    <div class="kelas-desc">Angkatan 3 - Kelas B</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">🧮</div>
+                        <div class="kelas-badge">3-C</div>
+                    </div>
+                    <div class="kelas-name">Kelas 3-C</div>
+                    <div class="kelas-desc">Angkatan 3 - Kelas C</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+                <div class="kelas-card">
+                    <div class="kelas-header">
+                        <div class="kelas-icon">✒️</div>
+                        <div class="kelas-badge">3-D</div>
+                    </div>
+                    <div class="kelas-name">Kelas 3-D</div>
+                    <div class="kelas-desc">Angkatan 3 - Kelas D</div>
+                    <div class="kelas-meta">
+                        <span class="kelas-meta-item">👥 30 Murid</span>
+                        <span class="kelas-meta-item">📅 Aktif</span>
+                    </div>
+                </div>
+            </div>
+<!-- Quote Block -->
             <div class="quote-block">
                 <p>
                     Di Halicarnas, kami percaya bahwa setiap murid memiliki potensi unik. 
