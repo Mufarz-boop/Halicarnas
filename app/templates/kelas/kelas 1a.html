@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#050505">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Detail Kelas 1-A — Halicarnas Academy</title>
+    <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
+    <title>Kelas 1-A</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        :root {--bg: #050505; --surface: #0c0c0c; --elevated: #111111; --card: #141414; --border: rgba(255,255,255,0.06); --border-hover: rgba(212,175,55,0.2); --gold: #c9a84c; --gold-dim: #a68b3c; --gold-glow: rgba(201,168,76,0.12); --rose: #c47a8a; --rose-glow: rgba(196,122,138,0.08); --text: #f0f0f0; --text-secondary: #8a8a8a; --text-muted: #555555; --success: #7eb88c; --warning: #d4a76a; --danger: #c47878; }
+        :root {
+            --bg: #050505; --surface: #0c0c0c; --elevated: #111111; --card: #141414;
+            --border: rgba(255,255,255,0.06); --border-hover: rgba(212,175,55,0.2);
+            --gold: #c9a84c; --gold-dim: #a68b3c; --gold-glow: rgba(201,168,76,0.12);
+            --rose: #c47a8a; --rose-glow: rgba(196,122,138,0.08);
+            --text: #f0f0f0; --text-secondary: #8a8a8a; --text-muted: #555555;
+            --success: #7eb88c; --warning: #d4a76a; --danger: #c47878;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
-        body {font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100dvh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg); color: var(--text);
+            min-height: 100dvh; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+        }
         .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
         .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4; animation: orbFloat 20s ease-in-out infinite; }
         .ambient-orb:nth-child(1) { width: 600px; height: 600px; background: radial-gradient(circle, var(--gold-glow), transparent 70%); top: -10%; left: -5%; animation-delay: 0s; }
@@ -86,8 +98,8 @@
         .student-meta { flex: 1; min-width: 0; }
         .student-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 0.3s ease; }
         .student-card:hover .student-name { color: var(--gold); }
-        .student-nis { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
-        .student-jurusan { font-size: 9px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+        .student-nis { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .student-jurusan { font-size: 10px; color: var(--gold-dim); font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .student-status { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
         .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 6px rgba(126,184,140,0.4); animation: pulse 2.5s ease-in-out infinite; }
         .status-text { font-size: 10px; color: var(--success); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
@@ -115,7 +127,7 @@
         .modal-status { position: absolute; bottom: 4px; right: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--success); border: 4px solid rgba(18,18,18,0.98); box-shadow: 0 0 12px rgba(126,184,140,0.4); animation: pulse 2.5s ease-in-out infinite; }
         .modal-name { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; color: var(--text); margin-bottom: 6px; position: relative; }
         .modal-nis { font-size: 12px; color: var(--gold-dim); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; position: relative; }
-        .modal-jurusan { font-size: 10px; color: var(--gold-dim); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; position: relative; }
+        .modal-jurusan { font-size: 11px; color: var(--rose); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; position: relative; margin-top: 8px; padding: 4px 12px; background: rgba(196,122,138,0.08); border: 1px solid rgba(196,122,138,0.15); border-radius: 8px; display: inline-block; }
         .modal-body { padding: 32px 40px; }
         .biodata-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 32px; }
         .bio-chip { padding: 18px; border-radius: 18px; background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.04); transition: all 0.4s cubic-bezier(0.22,1,0.36,1); }
@@ -200,6 +212,13 @@
             </div>
             <div class="students-grid" id="studentsGrid"></div>
         </div>
+        <div class="schedule-wrap">
+            <div class="section-divider">
+                <div class="section-icon">📅</div>
+                <div class="section-title-group"><div class="section-title">Jadwal Pelajaran</div><div class="section-subtitle">Semester Genap 2025/2026</div></div>
+                <div class="section-line"></div>
+            </div>
+        </div>
     </div>
     <div class="modal-overlay" id="studentModal">
         <div class="modal-box">
@@ -212,7 +231,7 @@
                 </div>
                 <div class="modal-name" id="modalName">Ahmad Rizky Pratama</div>
                 <div class="modal-nis" id="modalNis">NIS: 2024001</div>
-                <div class="modal-jurusan" id="modaljurusan">Matematika dan Ilmu Terapan (MIT)</div>
+                <div class="modal-jurusan" id="modalJurusan">Matematika dan Ilmu Terapan (MIT)</div>
             </div>
             <div class="modal-body">
                 <div class="biodata-grid">
@@ -246,11 +265,15 @@
     <script>
 const students = [
     {
-        name: "Ahmad Rizky Pratama", nis: "2024001", jurusan: "Matematika dan Ilmu Terapan (MIT)", gender: "L", avatar: "👦",
-        dob: "15 Maret 2006", blood: "O", address: "Jl. Mawar No. 123, RT 003/RW 007, Kelurahan Cilandak Barat, Kecamatan Cilandak, Jakarta Selatan 12430",
+        name: "Ahmad Rizky Pratama", nis: "2024001",
+        jurusan: "Matematika dan Ilmu Terapan (MIT)", gender: "L", avatar: "👦",
+        dob: "15 Maret 2006", blood: "O",
+        address: "Jl. Mawar No. 123, RT 003/RW 007, Kelurahan Cilandak Barat, Kecamatan Cilandak, Jakarta Selatan 12430",
         phone: "+62 812-9876-5432", email: "ahmad.rizky@student.halicarnas.ac.id",
-        parent: "Bapak Surya Pratama & Ibu Dina Marlina", parentJob: "Pegawai Negeri Sipil & Guru SD",
-        prevSchool: "SMP Negeri 12 Jakarta", hobby: "Robotika, Catur, dan Pemrograman",
+        parent: "Bapak Surya Pratama & Ibu Dina Marlina",
+        parentJob: "Pegawai Negeri Sipil & Guru SD",
+        prevSchool: "SMP Negeri 12 Jakarta",
+        hobby: "Robotika, Catur, dan Pemrograman",
         grades: [
             {subject: "Matematika Lanjut", score: 92},
             {subject: "Fisika Dasar", score: 88},
@@ -261,174 +284,218 @@ const students = [
         attendance: {present: 95, sick: 3, absent: 2}
     },
     {
-        name: "Bella Anindya Putri", nis: "2024002", jurusan: "Bahasa dan Sastra (BAS)", gender: "P", avatar: "👧",
-        dob: "22 Juli 2006", blood: "A", address: "Jl. Melati Indah No. 45, RT 005/RW 012, Kelurahan Duren Sawit, Kecamatan Duren Sawit, Jakarta Timur 13440",
+        name: "Bella Anindya Putri", nis: "2024002",
+        jurusan: "Bahasa dan Sastra (BAS)", gender: "P", avatar: "👧",
+        dob: "22 Juli 2006", blood: "A",
+        address: "Jl. Melati Indah No. 45, RT 005/RW 012, Kelurahan Duren Sawit, Kecamatan Duren Sawit, Jakarta Timur 13440",
         phone: "+62 813-2345-6789", email: "bella.anindya@student.halicarnas.ac.id",
-        parent: "Bapak Hendra Wijaya & Ibu Rini Susanti", parentJob: "Dokter Spesialis & Akuntan",
-        prevSchool: "SMP Labschool Jakarta", hobby: "Menari, Melukis, dan Debat Bahasa Inggris",
+        parent: "Bapak Hendra Wijaya & Ibu Rini Susanti",
+        parentJob: "Dokter Spesialis & Akuntan",
+        prevSchool: "SMP Labschool Jakarta",
+        hobby: "Menari, Melukis, dan Debat Bahasa Inggris",
         grades: [
-            {subject: "Matematika Lanjut", score: 96},
-            {subject: "Fisika Dasar", score: 94},
-            {subject: "Algoritma & Pemrograman", score: 98},
-            {subject: "Statistika Terapan", score: 92},
-            {subject: "Kalkulus Multivariabel", score: 95}
+            {subject: "Sastra Indonesia", score: 96},
+            {subject: "Bahasa Inggris", score: 98},
+            {subject: "Sejarah", score: 94},
+            {subject: "Sosiologi", score: 92},
+            {subject: "Antropologi", score: 95}
         ],
         attendance: {present: 98, sick: 2, absent: 0}
     },
     {
-        name: "Candra Wijaya Kusuma", nis: "2024003", gender: "L", avatar: "👦",
-        dob: "10 Januari 2006", blood: "B", address: "Jl. Anggrek Lestari No. 78, RT 002/RW 008, Kelurahan Palmerah, Kecamatan Palmerah, Jakarta Barat 11480",
+        name: "Candra Wijaya Kusuma", nis: "2024003",
+        jurusan: "Teknik Informatika (TI)", gender: "L", avatar: "👦",
+        dob: "10 Januari 2006", blood: "B",
+        address: "Jl. Anggrek Lestari No. 78, RT 002/RW 008, Kelurahan Palmerah, Kecamatan Palmerah, Jakarta Barat 11480",
         phone: "+62 814-3456-7890", email: "candra.wijaya@student.halicarnas.ac.id",
-        parent: "Bapak Agus Kusuma & Ibu Sri Wahyuni", parentJob: "Wiraswasta & Ibu Rumah Tangga",
-        prevSchool: "SMP Negeri 45 Jakarta", hobby: "Basket, Fotografi, dan Desain Grafis",
+        parent: "Bapak Agus Kusuma & Ibu Sri Wahyuni",
+        parentJob: "Wiraswasta & Ibu Rumah Tangga",
+        prevSchool: "SMP Negeri 45 Jakarta",
+        hobby: "Basket, Fotografi, dan Desain Grafis",
         grades: [
-            {subject: "Matematika Lanjut", score: 85},
-            {subject: "Fisika Dasar", score: 82},
-            {subject: "Algoritma & Pemrograman", score: 88},
-            {subject: "Statistika Terapan", score: 84},
-            {subject: "Kalkulus Multivariabel", score: 86}
+            {subject: "Pemrograman Web", score: 85},
+            {subject: "Basis Data", score: 82},
+            {subject: "Jaringan Komputer", score: 88},
+            {subject: "Sistem Operasi", score: 84},
+            {subject: "Keamanan Siber", score: 86}
         ],
         attendance: {present: 90, sick: 5, absent: 5}
     },
     {
-        name: "Dewi Lestari Sari", nis: "2024004", gender: "P", avatar: "👧",
-        dob: "5 Mei 2006", blood: "AB", address: "Jl. Kenanga Raya No. 12, RT 007/RW 003, Kelurahan Tanjung Priok, Kecamatan Tanjung Priok, Jakarta Utara 14310",
+        name: "Dewi Lestari Sari", nis: "2024004",
+        jurusan: "Ilmu Hukum (IH)", gender: "P", avatar: "👧",
+        dob: "5 Mei 2006", blood: "AB",
+        address: "Jl. Kenanga Raya No. 12, RT 007/RW 003, Kelurahan Tanjung Priok, Kecamatan Tanjung Priok, Jakarta Utara 14310",
         phone: "+62 815-4567-8901", email: "dewi.lestari@student.halicarnas.ac.id",
-        parent: "Bapak Bambang Sari & Ibu Lina Kusuma", parentJob: "Pengacara & Dosen Universitas",
-        prevSchool: "SMP Negeri 89 Jakarta", hobby: "Musik Klasik, Menulis Puisi, dan Voli",
+        parent: "Bapak Bambang Sari & Ibu Lina Kusuma",
+        parentJob: "Pengacara & Dosen Universitas",
+        prevSchool: "SMP Negeri 89 Jakarta",
+        hobby: "Musik Klasik, Menulis Puisi, dan Voli",
         grades: [
-            {subject: "Matematika Lanjut", score: 91},
-            {subject: "Fisika Dasar", score: 89},
-            {subject: "Algoritma & Pemrograman", score: 93},
-            {subject: "Statistika Terapan", score: 90},
-            {subject: "Kalkulus Multivariabel", score: 92}
+            {subject: "Hukum Perdata", score: 91},
+            {subject: "Hukum Pidana", score: 89},
+            {subject: "Hukum Tata Negara", score: 93},
+            {subject: "Hukum Internasional", score: 90},
+            {subject: "Etika Hukum", score: 92}
         ],
         attendance: {present: 96, sick: 3, absent: 1}
     },
     {
-        name: "Eko Prasetyo Nugroho", nis: "2024005", gender: "L", avatar: "👦",
-        dob: "18 Agustus 2006", blood: "O", address: "Jl. Cempaka Putih No. 56, RT 001/RW 010, Kelurahan Cempaka Putih Barat, Kecamatan Cempaka Putih, Jakarta Pusat 10520",
+        name: "Eko Prasetyo Nugroho", nis: "2024005",
+        jurusan: "Olahraga dan Kesehatan (ORKES)", gender: "L", avatar: "👦",
+        dob: "18 Agustus 2006", blood: "O",
+        address: "Jl. Cempaka Putih No. 56, RT 001/RW 010, Kelurahan Cempaka Putih Barat, Kecamatan Cempaka Putih, Jakarta Pusat 10520",
         phone: "+62 816-5678-9012", email: "eko.prasetyo@student.halicarnas.ac.id",
-        parent: "Bapak Joko Nugroho & Ibu Siti Aminah", parentJob: "Supir Truk & Penjual Sayur",
-        prevSchool: "SMP Negeri 67 Jakarta", hobby: "Sepak Bola, Game Online, dan Memancing",
+        parent: "Bapak Joko Nugroho & Ibu Siti Aminah",
+        parentJob: "Supir Truk & Penjual Sayur",
+        prevSchool: "SMP Negeri 67 Jakarta",
+        hobby: "Sepak Bola, Game Online, dan Memancing",
         grades: [
-            {subject: "Matematika Lanjut", score: 78},
-            {subject: "Fisika Dasar", score: 75},
-            {subject: "Algoritma & Pemrograman", score: 82},
-            {subject: "Statistika Terapan", score: 80},
-            {subject: "Kalkulus Multivariabel", score: 79}
+            {subject: "Teori Olahraga", score: 78},
+            {subject: "Anatomi Tubuh", score: 75},
+            {subject: "Nutrisi Atlet", score: 82},
+            {subject: "Psikologi Olahraga", score: 80},
+            {subject: "Manajemen Kebugaran", score: 79}
         ],
         attendance: {present: 88, sick: 7, absent: 5}
     },
     {
-        name: "Fitriani Rahmawati", nis: "2024006", gender: "P", avatar: "👧",
-        dob: "30 September 2006", blood: "A", address: "Jl. Dahlia Permai No. 34, RT 004/RW 006, Kelurahan Pondok Bambu, Kecamatan Duren Sawit, Jakarta Timur 13430",
+        name: "Fitriani Rahmawati", nis: "2024006",
+        jurusan: "Kedokteran (KED)", gender: "P", avatar: "👧",
+        dob: "30 September 2006", blood: "A",
+        address: "Jl. Dahlia Permai No. 34, RT 004/RW 006, Kelurahan Pondok Bambu, Kecamatan Duren Sawit, Jakarta Timur 13430",
         phone: "+62 817-6789-0123", email: "fitriani.rahmawati@student.halicarnas.ac.id",
-        parent: "Bapak Ahmad Rahmat & Ibu Ningsih", parentJob: "Polisi & Perawat",
-        prevSchool: "SMP Negeri 78 Jakarta", hobby: "Badminton, Memasak, dan Komik Jepang",
+        parent: "Bapak Ahmad Rahmat & Ibu Ningsih",
+        parentJob: "Polisi & Perawat",
+        prevSchool: "SMP Negeri 78 Jakarta",
+        hobby: "Badminton, Memasak, dan Komik Jepang",
         grades: [
-            {subject: "Matematika Lanjut", score: 94},
-            {subject: "Fisika Dasar", score: 91},
-            {subject: "Algoritma & Pemrograman", score: 96},
-            {subject: "Statistika Terapan", score: 93},
-            {subject: "Kalkulus Multivariabel", score: 95}
+            {subject: "Biologi Sel", score: 94},
+            {subject: "Kimia Organik", score: 91},
+            {subject: "Fisiologi Manusia", score: 96},
+            {subject: "Farmakologi Dasar", score: 93},
+            {subject: "Anatomi", score: 95}
         ],
         attendance: {present: 97, sick: 2, absent: 1}
     },
     {
-        name: "Galang Saputra Wibowo", nis: "2024007", gender: "L", avatar: "👦",
-        dob: "12 Februari 2006", blood: "B", address: "Jl. Flamboyan No. 89, RT 009/RW 001, Kelurahan Kebon Jeruk, Kecamatan Kebon Jeruk, Jakarta Barat 11530",
+        name: "Galang Saputra Wibowo", nis: "2024007",
+        jurusan: "Desain Komunikasi Visual (DKV)", gender: "L", avatar: "👦",
+        dob: "12 Februari 2006", blood: "B",
+        address: "Jl. Flamboyan No. 89, RT 009/RW 001, Kelurahan Kebon Jeruk, Kecamatan Kebon Jeruk, Jakarta Barat 11530",
         phone: "+62 818-7890-1234", email: "galang.saputra@student.halicarnas.ac.id",
-        parent: "Bapak Samsul Wibowo & Ibu Tuti Handayani", parentJob: "Montir & Penjahit",
-        prevSchool: "SMP Negeri 34 Jakarta", hobby: "Modifikasi Motor, Parkour, dan Hip-Hop",
+        parent: "Bapak Samsul Wibowo & Ibu Tuti Handayani",
+        parentJob: "Montir & Penjahit",
+        prevSchool: "SMP Negeri 34 Jakarta",
+        hobby: "Modifikasi Motor, Parkour, dan Hip-Hop",
         grades: [
-            {subject: "Matematika Lanjut", score: 83},
-            {subject: "Fisika Dasar", score: 80},
-            {subject: "Algoritma & Pemrograman", score: 85},
-            {subject: "Statistika Terapan", score: 82},
-            {subject: "Kalkulus Multivariabel", score: 84}
+            {subject: "Desain Grafis", score: 83},
+            {subject: "Tipografi", score: 80},
+            {subject: "Fotografi", score: 85},
+            {subject: "Ilustrasi Digital", score: 82},
+            {subject: "Branding", score: 84}
         ],
         attendance: {present: 92, sick: 5, absent: 3}
     },
     {
-        name: "Hana Tiara Maharani", nis: "2024008", gender: "P", avatar: "👧",
-        dob: "25 November 2006", blood: "O", address: "Jl. Bougenville No. 67, RT 006/RW 004, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Jakarta Utara 14240",
+        name: "Hana Tiara Maharani", nis: "2024008",
+        jurusan: "Astronomi dan Astrofisika (AA)", gender: "P", avatar: "👧",
+        dob: "25 November 2006", blood: "O",
+        address: "Jl. Bougenville No. 67, RT 006/RW 004, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Jakarta Utara 14240",
         phone: "+62 819-8901-2345", email: "hana.tiara@student.halicarnas.ac.id",
-        parent: "Bapak Dedi Maharani & Ibu Yanti Suryani", parentJob: "Pengusaha Restoran & Interior Designer",
-        prevSchool: "SMP Labschool Cibubur", hobby: "Piano, Bulu Tangkis, dan Astronomi",
+        parent: "Bapak Dedi Maharani & Ibu Yanti Suryani",
+        parentJob: "Pengusaha Restoran & Interior Designer",
+        prevSchool: "SMP Labschool Cibubur",
+        hobby: "Piano, Bulu Tangkis, dan Astronomi",
         grades: [
-            {subject: "Matematika Lanjut", score: 97},
-            {subject: "Fisika Dasar", score: 95},
-            {subject: "Algoritma & Pemrograman", score: 99},
-            {subject: "Statistika Terapan", score: 96},
-            {subject: "Kalkulus Multivariabel", score: 98}
+            {subject: "Mekanika Benda Langit", score: 97},
+            {subject: "Kosmologi", score: 95},
+            {subject: "Astrofisika", score: 99},
+            {subject: "Teleskop dan Observasi", score: 96},
+            {subject: "Fisika Modern", score: 98}
         ],
         attendance: {present: 99, sick: 1, absent: 0}
     },
     {
-        name: "Indra Kusuma Jaya", nis: "2024009", gender: "L", avatar: "👦",
-        dob: "8 April 2006", blood: "AB", address: "Jl. Teratai No. 23, RT 008/RW 011, Kelurahan Pondok Labu, Kecamatan Cilandak, Jakarta Selatan 12450",
+        name: "Indra Kusuma Jaya", nis: "2024009",
+        jurusan: "Teknik Penerbangan (TP)", gender: "L", avatar: "👦",
+        dob: "8 April 2006", blood: "AB",
+        address: "Jl. Teratai No. 23, RT 008/RW 011, Kelurahan Pondok Labu, Kecamatan Cilandak, Jakarta Selatan 12450",
         phone: "+62 821-9012-3456", email: "indra.kusuma@student.halicarnas.ac.id",
-        parent: "Bapak Budi Jaya & Ibu Ratna Kusuma", parentJob: "Pilot & Pramugari",
-        prevSchool: "SMP Negeri 15 Jakarta", hobby: "Menggambar Anime, Futsal, dan Drone Racing",
+        parent: "Bapak Budi Jaya & Ibu Ratna Kusuma",
+        parentJob: "Pilot & Pramugari",
+        prevSchool: "SMP Negeri 15 Jakarta",
+        hobby: "Menggambar Anime, Futsal, dan Drone Racing",
         grades: [
-            {subject: "Matematika Lanjut", score: 87},
-            {subject: "Fisika Dasar", score: 84},
-            {subject: "Algoritma & Pemrograman", score: 89},
-            {subject: "Statistika Terapan", score: 86},
-            {subject: "Kalkulus Multivariabel", score: 88}
+            {subject: "Aerodinamika", score: 87},
+            {subject: "Navigasi Udara", score: 84},
+            {subject: "Meteorologi Penerbangan", score: 89},
+            {subject: "Mekanika Pesawat", score: 86},
+            {subject: "Regulasi Penerbangan", score: 88}
         ],
         attendance: {present: 93, sick: 4, absent: 3}
     },
     {
-        name: "Jasmine Aulia Putri", nis: "2024010", gender: "P", avatar: "👧",
-        dob: "14 Juni 2006", blood: "A", address: "Jl. Lavender No. 90, RT 003/RW 009, Kelurahan Cibubur, Kecamatan Ciracas, Jakarta Timur 13720",
+        name: "Jasmine Aulia Putri", nis: "2024010",
+        jurusan: "Psikologi (PSI)", gender: "P", avatar: "👧",
+        dob: "14 Juni 2006", blood: "A",
+        address: "Jl. Lavender No. 90, RT 003/RW 009, Kelurahan Cibubur, Kecamatan Ciracas, Jakarta Timur 13720",
         phone: "+62 822-0123-4567", email: "jasmine.aulia@student.halicarnas.ac.id",
-        parent: "Bapak Fajar Putra & Ibu Dewi Aulia", parentJob: "Arsitek & Psikolog",
-        prevSchool: "SMP Negeri 88 Jakarta", hobby: "Teater, Fotografi, dan Kaligrafi",
+        parent: "Bapak Fajar Putra & Ibu Dewi Aulia",
+        parentJob: "Arsitek & Psikolog",
+        prevSchool: "SMP Negeri 88 Jakarta",
+        hobby: "Teater, Fotografi, dan Kaligrafi",
         grades: [
-            {subject: "Matematika Lanjut", score: 93},
-            {subject: "Fisika Dasar", score: 90},
-            {subject: "Algoritma & Pemrograman", score: 94},
-            {subject: "Statistika Terapan", score: 91},
-            {subject: "Kalkulus Multivariabel", score: 93}
+            {subject: "Psikologi Umum", score: 93},
+            {subject: "Psikologi Perkembangan", score: 90},
+            {subject: "Psikologi Sosial", score: 94},
+            {subject: "Psikologi Klinis", score: 91},
+            {subject: "Statistik Psikologi", score: 93}
         ],
         attendance: {present: 96, sick: 3, absent: 1}
     },
     {
-        name: "Kevin Ardiansyah", nis: "2024011", gender: "L", avatar: "👦",
-        dob: "19 Desember 2006", blood: "B", address: "Jl. Sakura No. 11, RT 010/RW 005, Kelurahan Tomang, Kecamatan Grogol Petamburan, Jakarta Barat 11440",
+        name: "Kevin Ardiansyah", nis: "2024011",
+        jurusan: "Ekonomi dan Bisnis (EB)", gender: "L", avatar: "👦",
+        dob: "19 Desember 2006", blood: "B",
+        address: "Jl. Sakura No. 11, RT 010/RW 005, Kelurahan Tomang, Kecamatan Grogol Petamburan, Jakarta Barat 11440",
         phone: "+62 823-1234-5678", email: "kevin.ardiansyah@student.halicarnas.ac.id",
-        parent: "Bapak Rudi Ardiansyah & Ibu Mawar Sari", parentJob: "Karyawan Bank & Kasir Supermarket",
-        prevSchool: "SMP Negeri 56 Jakarta", hobby: "Gitar, Skateboard, dan Nonton Film",
+        parent: "Bapak Rudi Ardiansyah & Ibu Mawar Sari",
+        parentJob: "Karyawan Bank & Kasir Supermarket",
+        prevSchool: "SMP Negeri 56 Jakarta",
+        hobby: "Gitar, Skateboard, dan Nonton Film",
         grades: [
-            {subject: "Matematika Lanjut", score: 81},
-            {subject: "Fisika Dasar", score: 78},
-            {subject: "Algoritma & Pemrograman", score: 84},
-            {subject: "Statistika Terapan", score: 80},
-            {subject: "Kalkulus Multivariabel", score: 82}
+            {subject: "Ekonomi Mikro", score: 81},
+            {subject: "Akuntansi Dasar", score: 78},
+            {subject: "Manajemen Bisnis", score: 84},
+            {subject: "Pemasaran", score: 80},
+            {subject: "Statistik Ekonomi", score: 82}
         ],
         attendance: {present: 91, sick: 5, absent: 4}
     },
     {
-        name: "Larasati Dewi Indah", nis: "2024012", gender: "P", avatar: "👧",
-        dob: "3 Oktober 2006", blood: "O", address: "Jl. Tulip No. 55, RT 002/RW 007, Kelurahan Sunter Agung, Kecamatan Tanjung Priok, Jakarta Utara 14350",
+        name: "Larasati Dewi Indah", nis: "2024012",
+        jurusan: "Biologi dan Bioteknologi (BB)", gender: "P", avatar: "👧",
+        dob: "3 Oktober 2006", blood: "O",
+        address: "Jl. Tulip No. 55, RT 002/RW 007, Kelurahan Sunter Agung, Kecamatan Tanjung Priok, Jakarta Utara 14350",
         phone: "+62 824-2345-6789", email: "larasati.dewi@student.halicarnas.ac.id",
-        parent: "Bapak Eko Indah & Ibu Sari Dewi", parentJob: "Dosen Teknik & Manajer HRD",
-        prevSchool: "SMP Negeri 99 Jakarta", hobby: "Biologi, Renang, dan Podcasting",
+        parent: "Bapak Eko Indah & Ibu Sari Dewi",
+        parentJob: "Dosen Teknik & Manajer HRD",
+        prevSchool: "SMP Negeri 99 Jakarta",
+        hobby: "Biologi, Renang, dan Podcasting",
         grades: [
-            {subject: "Matematika Lanjut", score: 95},
-            {subject: "Fisika Dasar", score: 92},
-            {subject: "Algoritma & Pemrograman", score: 97},
-            {subject: "Statistika Terapan", score: 94},
-            {subject: "Kalkulus Multivariabel", score: 96}
+            {subject: "Biologi Molekuler", score: 95},
+            {subject: "Genetika", score: 92},
+            {subject: "Mikrobiologi", score: 97},
+            {subject: "Bioteknologi", score: 94},
+            {subject: "Ekologi", score: 96}
         ],
         attendance: {present: 98, sick: 1, absent: 1}
     }
 ];
 
 function getAverage(grades) {
-    return (grades.reduce((a,g) => a + g.score, 0) / grades.length).toFixed(1);
+    return (grades.reduce((a, g) => a + g.score, 0) / grades.length).toFixed(1);
 }
 
 function renderStudents() {
@@ -442,7 +509,7 @@ function renderStudents() {
                     <div class="student-meta">
                         <div class="student-name">${s.name}</div>
                         <div class="student-nis">NIS: ${s.nis}</div>
-                        <div class="student-jurusan">Jurusan: ${s.jurusan}</div>
+                        <div class="student-jurusan">${s.jurusan}</div>
                         <div class="student-status"><div class="status-dot"></div><span class="status-text">Aktif</span></div>
                     </div>
                 </div>
@@ -461,7 +528,7 @@ function openModal(index) {
     document.getElementById('modalAvatar').textContent = s.avatar;
     document.getElementById('modalName').textContent = s.name;
     document.getElementById('modalNis').textContent = 'NIS: ' + s.nis;
-    document.getElementById('modaljurusan'),textContent = s.jurusan
+    document.getElementById('modalJurusan').textContent = s.jurusan;
     document.getElementById('modalDob').textContent = s.dob;
     document.getElementById('modalGender').textContent = s.gender === 'L' ? 'Laki-laki' : 'Perempuan';
     document.getElementById('modalBlood').textContent = s.blood;

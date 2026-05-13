@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/jpeg" href="../assets/icons/Afdal Adha Firnansyah.png">
+    <title>Kelas 3-B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505; --surface: #0c0c0c; --elevated: #111111; --card: #141414;
+            --border: rgba(255,255,255,0.06); --border-hover: rgba(212,175,55,0.2);
+            --gold: #c9a84c; --gold-dim: #a68b3c; --gold-glow: rgba(201,168,76,0.12);
+            --rose: #c47a8a; --rose-glow: rgba(196,122,138,0.08);
+            --text: #f0f0f0; --text-secondary: #8a8a8a; --text-muted: #555555;
+            --success: #7eb88c; --warning: #d4a76a; --danger: #c47878;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg); color: var(--text);
+            min-height: 100dvh; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+        }
+        .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4; animation: orbFloat 20s ease-in-out infinite; }
+        .ambient-orb:nth-child(1) { width: 600px; height: 600px; background: radial-gradient(circle, var(--gold-glow), transparent 70%); top: -10%; left: -5%; animation-delay: 0s; }
+        .ambient-orb:nth-child(2) { width: 500px; height: 500px; background: radial-gradient(circle, var(--rose-glow), transparent 70%); top: 20%; right: -10%; animation-delay: -7s; }
+        .ambient-orb:nth-child(3) { width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%); bottom: 10%; left: 30%; animation-delay: -14s; }
+        @keyframes orbFloat { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-30px) scale(1.05); } 66% { transform: translate(-20px,20px) scale(0.95); } }
+        .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        .wrap { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+        .nav { position: sticky; top: 0; z-index: 100; padding: 20px 0; margin-bottom: 40px; backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%); background: linear-gradient(to bottom, rgba(5,5,5,0.85), rgba(5,5,5,0.6)); border-bottom: 1px solid var(--border); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .nav-back { display: inline-flex; align-items: center; gap: 10px; color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; padding: 10px 16px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .nav-back:hover { color: var(--gold); border-color: var(--border-hover); background: rgba(201,168,76,0.04); transform: translateX(-3px); }
+        .nav-back svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .nav-brand { font-family: 'Instrument Serif', serif; font-size: 15px; font-style: italic; color: var(--gold-dim); letter-spacing: 1px; opacity: 0.7; }
+        .hero { position: relative; padding: 48px 40px; border-radius: 28px; background: linear-gradient(145deg, rgba(201,168,76,0.06), rgba(196,122,138,0.03)); border: 1px solid rgba(201,168,76,0.1); margin-bottom: 32px; overflow: hidden; animation: heroIn 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+        @keyframes heroIn { from { opacity: 0; transform: translateY(40px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%); pointer-events: none; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 100px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .hero-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); animation: pulse 2.5s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+        .hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(40px, 6vw, 64px); font-weight: 400; line-height: 1.05; letter-spacing: -1px; margin-bottom: 12px; background: linear-gradient(135deg, #e8d5a3, var(--gold), var(--rose)); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 10s ease infinite; }
+        @keyframes shimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .hero p { font-size: 15px; color: var(--text-secondary); font-weight: 400; max-width: 360px; line-height: 1.5; }
+        .hero-icon { position: absolute; top: 36px; right: 40px; width: 72px; height: 72px; border-radius: 20px; background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(196,122,138,0.1)); border: 1.5px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 32px rgba(201,168,76,0.1); animation: gentleFloat 5s ease-in-out infinite; }
+        @keyframes gentleFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 48px; }
+        .stat { position: relative; padding: 28px 22px; border-radius: 22px; background: var(--card); border: 1px solid var(--border); transition: all 0.5s cubic-bezier(0.22,1,0.36,1); overflow: hidden; animation: statIn 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+        .stat:nth-child(1) { animation-delay: 0.1s; } .stat:nth-child(2) { animation-delay: 0.18s; } .stat:nth-child(3) { animation-delay: 0.26s; } .stat:nth-child(4) { animation-delay: 0.34s; }
+        @keyframes statIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .stat::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0; transition: opacity 0.5s ease; }
+        .stat:hover { border-color: var(--border-hover); transform: translateY(-5px); box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 40px var(--gold-glow); }
+        .stat:hover::after { opacity: 0.4; }
+        .stat-icon { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(196,122,138,0.08)); border: 1px solid rgba(201,168,76,0.12); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 16px; transition: all 0.4s ease; }
+        .stat:hover .stat-icon { transform: scale(1.1); box-shadow: 0 0 20px var(--gold-glow); }
+        .stat-value { font-family: 'Instrument Serif', serif; font-size: 34px; font-weight: 400; color: var(--gold); line-height: 1; margin-bottom: 8px; transition: all 0.3s ease; }
+        .stat:hover .stat-value { color: #e8d5a3; transform: scale(1.03); }
+        .stat-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; letter-spacing: 0.3px; }
+        .section-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; animation: fadeIn 0.6s ease both; }
+        .section-icon { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(196,122,138,0.06)); border: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .section-title-group { flex: 1; }
+        .section-title { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 3px; }
+        .section-subtitle { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+        .section-line { flex: 1; height: 1px; max-width: 160px; background: linear-gradient(90deg, rgba(201,168,76,0.15), transparent); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .wali-wrap { margin-bottom: 48px; animation: fadeIn 0.6s ease 0.15s both; }
+        .wali-card { position: relative; padding: 36px 40px; border-radius: 26px; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; gap: 28px; transition: all 0.5s cubic-bezier(0.22,1,0.36,1); overflow: hidden; }
+        .wali-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--rose)); border-radius: 26px 0 0 26px; }
+        .wali-card:hover { border-color: rgba(201,168,76,0.15); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .wali-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(196,122,138,0.1)); border: 2.5px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; transition: all 0.4s ease; }
+        .wali-card:hover .wali-avatar { transform: scale(1.06); box-shadow: 0 0 32px var(--gold-glow); }
+        .wali-info { flex: 1; }
+        .wali-tag { display: inline-block; font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; padding: 4px 10px; background: rgba(201,168,76,0.06); border-radius: 6px; border: 1px solid rgba(201,168,76,0.1); }
+        .wali-name { font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400; color: var(--text); margin-bottom: 6px; }
+        .wali-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+        .wali-contacts { display: flex; gap: 10px; flex-wrap: wrap; }
+        .wali-chip { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); background: rgba(255,255,255,0.02); padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border); transition: all 0.3s ease; }
+        .wali-chip:hover { background: rgba(201,168,76,0.04); border-color: rgba(201,168,76,0.15); color: var(--gold); }
+        .students-wrap { margin-bottom: 48px; }
+        .students-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .student-card { position: relative; padding: 22px; border-radius: 22px; background: var(--card); border: 1px solid var(--border); transition: all 0.5s cubic-bezier(0.22,1,0.36,1); cursor: pointer; overflow: hidden; animation: cardIn 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+        .student-card:nth-child(1) { animation-delay: 0.05s; } .student-card:nth-child(2) { animation-delay: 0.1s; } .student-card:nth-child(3) { animation-delay: 0.15s; } .student-card:nth-child(4) { animation-delay: 0.2s; } .student-card:nth-child(5) { animation-delay: 0.25s; } .student-card:nth-child(6) { animation-delay: 0.3s; } .student-card:nth-child(7) { animation-delay: 0.35s; } .student-card:nth-child(8) { animation-delay: 0.4s; } .student-card:nth-child(9) { animation-delay: 0.45s; } .student-card:nth-child(10) { animation-delay: 0.5s; } .student-card:nth-child(11) { animation-delay: 0.55s; } .student-card:nth-child(12) { animation-delay: 0.6s; }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .student-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.02), transparent); transition: left 0.7s ease; }
+        .student-card:hover { border-color: var(--border-hover); transform: translateY(-5px) scale(1.01); box-shadow: 0 16px 32px rgba(0,0,0,0.4), 0 0 24px var(--gold-glow); }
+        .student-card:hover::before { left: 100%; }
+        .student-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+        .student-avatar { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(196,122,138,0.08)); border: 1.5px solid rgba(201,168,76,0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; transition: all 0.4s ease; }
+        .student-card:hover .student-avatar { transform: scale(1.12) rotate(3deg); border-color: rgba(201,168,76,0.3); box-shadow: 0 0 20px var(--gold-glow); }
+        .student-meta { flex: 1; min-width: 0; }
+        .student-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 0.3s ease; }
+        .student-card:hover .student-name { color: var(--gold); }
+        .student-nis { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .student-jurusan { font-size: 10px; color: var(--gold-dim); font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .student-status { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+        .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 6px rgba(126,184,140,0.4); animation: pulse 2.5s ease-in-out infinite; }
+        .status-text { font-size: 10px; color: var(--success); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .student-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.04); }
+        .student-avg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+        .student-avg span { font-weight: 800; color: var(--gold); font-size: 13px; }
+        .student-arrow { width: 26px; height: 26px; border-radius: 50%; background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 11px; transition: all 0.3s ease; opacity: 0; transform: translateX(-8px); }
+        .student-card:hover .student-arrow { opacity: 1; transform: translateX(0); }
+        .time-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,168,76,0.05); padding: 6px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; color: var(--gold); border: 1px solid rgba(201,168,76,0.08); white-space: nowrap; }
+        .subject-name { font-weight: 700; color: var(--text); }
+        .teacher-name { font-size: 12px; color: var(--text-secondary); }
+        .room-chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(196,122,138,0.05); padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 600; color: var(--rose); border: 1px solid rgba(196,122,138,0.08); white-space: nowrap; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(3,3,3,0.88); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.22,1,0.36,1); }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-box { background: linear-gradient(160deg, rgba(18,18,18,0.98), rgba(12,12,12,0.98)); border: 1px solid rgba(201,168,76,0.1); border-radius: 28px; width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; position: relative; transform: scale(0.88) translateY(30px); transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 48px 96px rgba(0,0,0,0.7), 0 0 60px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.03); }
+        .modal-overlay.active .modal-box { transform: scale(1) translateY(0); }
+        .modal-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; z-index: 10; font-size: 16px; font-weight: 300; }
+        .modal-close:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.2); color: var(--gold); transform: rotate(90deg) scale(1.05); }
+        .modal-hero { position: relative; padding: 52px 40px 32px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.04); overflow: hidden; }
+        .modal-hero::before { content: ''; position: absolute; top: -60%; left: 50%; transform: translateX(-50%); width: 350px; height: 350px; background: radial-gradient(ellipse, rgba(201,168,76,0.08), transparent 70%); pointer-events: none; }
+        .modal-avatar-wrap { position: relative; width: 110px; height: 110px; margin: 0 auto 20px; }
+        .modal-ring { position: absolute; inset: -3px; border-radius: 50%; background: conic-gradient(from 0deg, var(--gold), var(--rose), #e8d5a3, var(--gold)); animation: ringSpin 10s linear infinite; opacity: 0.5; }
+        @keyframes ringSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .modal-avatar { position: relative; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(196,122,138,0.15)); border: 2.5px solid rgba(201,168,76,0.25); display: flex; align-items: center; justify-content: center; font-size: 48px; box-shadow: 0 8px 24px var(--gold-glow); overflow: hidden; }
+        .modal-status { position: absolute; bottom: 4px; right: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--success); border: 4px solid rgba(18,18,18,0.98); box-shadow: 0 0 12px rgba(126,184,140,0.4); animation: pulse 2.5s ease-in-out infinite; }
+        .modal-name { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; color: var(--text); margin-bottom: 6px; position: relative; }
+        .modal-nis { font-size: 12px; color: var(--gold-dim); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; position: relative; }
+        .modal-jurusan { font-size: 11px; color: var(--rose); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; position: relative; margin-top: 8px; padding: 4px 12px; background: rgba(196,122,138,0.08); border: 1px solid rgba(196,122,138,0.15); border-radius: 8px; display: inline-block; }
+        .modal-body { padding: 32px 40px; }
+        .biodata-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 32px; }
+        .bio-chip { padding: 18px; border-radius: 18px; background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.04); transition: all 0.4s cubic-bezier(0.22,1,0.36,1); }
+        .bio-chip:hover { background: rgba(201,168,76,0.03); border-color: rgba(201,168,76,0.1); transform: translateY(-2px); }
+        .bio-chip.full-width { grid-column: 1 / -1; }
+        .bio-label { font-size: 10px; color: var(--gold-dim); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .bio-value { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
+        .bio-value.muted { font-size: 13px; color: var(--text-secondary); font-weight: 400; }
+        .grades-wrap { margin-bottom: 32px; }
+        .grades-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .grades-title { font-family: 'Instrument Serif', serif; font-size: 18px; font-weight: 400; color: var(--text); }
+        .grades-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,168,76,0.15), transparent); }
+        .grade-row { margin-bottom: 16px; } .grade-row:last-child { margin-bottom: 0; }
+        .grade-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .grade-subject { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+        .grade-score { font-size: 14px; font-weight: 800; color: var(--gold); }
+        .grade-track { height: 8px; background: rgba(255,255,255,0.03); border-radius: 4px; overflow: hidden; }
+        .grade-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--gold-dim), var(--gold), #e8d5a3); background-size: 200% 100%; transition: width 1.2s cubic-bezier(0.22,1,0.36,1); position: relative; width: 0; }
+        .grade-fill::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 24px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3)); border-radius: 0 4px 4px 0; }
+        .attendance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .attendance-card { padding: 20px 14px; border-radius: 18px; background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.04); text-align: center; transition: all 0.4s ease; }
+        .attendance-card:hover { background: rgba(255,255,255,0.03); border-color: rgba(201,168,76,0.1); transform: translateY(-3px); }
+        .attendance-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+        .attendance-value { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+        .attendance-label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+        @media (max-width: 1024px) { .stats { grid-template-columns: repeat(2, 1fr); } .students-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .wrap { padding: 0 16px 60px; } .hero { padding: 28px 24px; } .hero-icon { width: 56px; height: 56px; font-size: 26px; top: 20px; right: 20px; } .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; } .stat { padding: 20px 16px; } .wali-card { flex-direction: column; text-align: center; padding: 28px 24px; } .wali-card::before { width: 100%; height: 3px; border-radius: 26px 26px 0 0; } .wali-contacts { justify-content: center; } .students-grid { grid-template-columns: 1fr; } .modal-hero { padding: 40px 24px 24px; } .modal-body { padding: 24px; } .biodata-grid { grid-template-columns: 1fr; } .attendance-grid { grid-template-columns: 1fr; } .schedule-glass { padding: 20px 14px; border-radius: 20px; } .schedule-table th, .schedule-table td { padding: 10px 12px; font-size: 12px; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 36px; } .stats { grid-template-columns: 1fr 1fr; } .stat-value { font-size: 28px; } .section-title { font-size: 18px; } .modal-box { border-radius: 24px; max-height: 95vh; } .modal-name { font-size: 22px; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+        ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.35); }
+    </style>
+</head>
+<body>
+    <div class="ambient"><div class="ambient-orb"></div><div class="ambient-orb"></div><div class="ambient-orb"></div></div>
+    <div class="grain"></div>
+    <div class="wrap">
+        <nav class="nav">
+            <div class="nav-inner">
+                <a href="../../templates/tentang halicarnas.html" class="nav-back">
+                    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Kembali
+                </a>
+                <div class="nav-brand">Halicarnas Academy</div>
+            </div>
+        </nav>
+        <div class="hero">
+            <div class="hero-badge">Angkatan 1</div>
+            <h1>Kelas 1-A</h1>
+            <p>Ruang Nomor 001</p>
+            <div class="hero-icon">📐</div>
+        </div>
+        <div class="stats">
+            <div class="stat"><div class="stat-icon">👥</div><div class="stat-value">30</div><div class="stat-label">Total Murid</div></div>
+            <div class="stat"><div class="stat-icon">👦</div><div class="stat-value">15</div><div class="stat-label">Laki-laki</div></div>
+            <div class="stat"><div class="stat-icon">👧</div><div class="stat-value">15</div><div class="stat-label">Perempuan</div></div>
+            <div class="stat"><div class="stat-icon">📊</div><div class="stat-value">8.7</div><div class="stat-label">Rata-rata Nilai</div></div>
+        </div>
+        <div class="wali-wrap">
+            <div class="section-divider">
+                <div class="section-icon">👨‍🏫</div>
+                <div class="section-title-group"><div class="section-title">Wali Kelas</div><div class="section-subtitle">Pengajar utama kelas 1-A</div></div>
+                <div class="section-line"></div>
+            </div>
+            <div class="wali-card">
+                <div class="wali-avatar">👨‍🏫</div>
+                <div class="wali-info">
+                    <div class="wali-tag">Wali Kelas</div>
+                    <div class="wali-name">Budi Santoso, M.Pd.</div>
+                    <div class="wali-sub">Guru Matematika & Fisika · 12 tahun pengalaman</div>
+                    <div class="wali-contacts">
+                        <span class="wali-chip">📧 budi.santoso@halicarnas.ac.id</span>
+                        <span class="wali-chip">📱 +62 812-3456-7890</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="students-wrap">
+            <div class="section-divider">
+                <div class="section-icon">🎓</div>
+                <div class="section-title-group"><div class="section-title">Daftar Murid</div><div class="section-subtitle">12 dari 30 siswa terdaftar</div></div>
+                <div class="section-line"></div>
+            </div>
+            <div class="students-grid" id="studentsGrid"></div>
+        </div>
+        <div class="schedule-wrap">
+            <div class="section-divider">
+                <div class="section-icon">📅</div>
+                <div class="section-title-group"><div class="section-title">Jadwal Pelajaran</div><div class="section-subtitle">Semester Genap 2025/2026</div></div>
+                <div class="section-line"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="studentModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-hero">
+                <div class="modal-avatar-wrap">
+                    <div class="modal-ring"></div>
+                    <div class="modal-avatar" id="modalAvatar">👦</div>
+                    <div class="modal-status"></div>
+                </div>
+                <div class="modal-name" id="modalName">Ahmad Rizky Pratama</div>
+                <div class="modal-nis" id="modalNis">NIS: 2024001</div>
+                <div class="modal-jurusan" id="modalJurusan">Matematika dan Ilmu Terapan (MIT)</div>
+            </div>
+            <div class="modal-body">
+                <div class="biodata-grid">
+                    <div class="bio-chip"><div class="bio-label">📅 Tanggal Lahir</div><div class="bio-value" id="modalDob">15 Maret 2006</div></div>
+                    <div class="bio-chip"><div class="bio-label">👤 Jenis Kelamin</div><div class="bio-value" id="modalGender">Laki-laki</div></div>
+                    <div class="bio-chip"><div class="bio-label">🩸 Golongan Darah</div><div class="bio-value" id="modalBlood">O</div></div>
+                    <div class="bio-chip"><div class="bio-label">🎯 Status</div><div class="bio-value" id="modalStatus" style="color: var(--success);">Aktif</div></div>
+                    <div class="bio-chip full-width"><div class="bio-label">📍 Alamat Lengkap</div><div class="bio-value muted" id="modalAddress">Jl. Mawar No. 123, RT 003/RW 007, Kelurahan Cilandak Barat, Kecamatan Cilandak, Jakarta Selatan 12430</div></div>
+                    <div class="bio-chip"><div class="bio-label">📞 Telepon</div><div class="bio-value" id="modalPhone">+62 812-9876-5432</div></div>
+                    <div class="bio-chip"><div class="bio-label">✉️ Email</div><div class="bio-value muted" id="modalEmail">ahmad.rizky@student.halicarnas.ac.id</div></div>
+                    <div class="bio-chip"><div class="bio-label">👨‍👩‍👧 Nama Orang Tua</div><div class="bio-value" id="modalParent">Bapak Surya Pratama & Ibu Dina Marlina</div></div>
+                    <div class="bio-chip"><div class="bio-label">💼 Pekerjaan Ortu</div><div class="bio-value muted" id="modalParentJob">Pegawai Negeri Sipil & Guru SD</div></div>
+                    <div class="bio-chip"><div class="bio-label">🏫 Asal Sekolah</div><div class="bio-value" id="modalPrevSchool">SMP Negeri 12 Jakarta</div></div>
+                    <div class="bio-chip"><div class="bio-label">🎨 Minat & Bakat</div><div class="bio-value muted" id="modalHobby">Robotika, Catur, dan Pemrograman</div></div>
+                </div>
+                <div class="grades-wrap">
+                    <div class="grades-header"><div class="grades-title">📊 Nilai Akademik</div><div class="grades-line"></div></div>
+                    <div id="gradeBars"></div>
+                </div>
+                <div class="grades-wrap">
+                    <div class="grades-header"><div class="grades-title">📋 Kehadiran Semester</div><div class="grades-line"></div></div>
+                    <div class="attendance-grid">
+                        <div class="attendance-card"><span class="attendance-icon">✅</span><div class="attendance-value" id="attendancePresent">95%</div><div class="attendance-label">Hadir</div></div>
+                        <div class="attendance-card"><span class="attendance-icon">🏥</span><div class="attendance-value" id="attendanceSick">3%</div><div class="attendance-label">Sakit</div></div>
+                        <div class="attendance-card"><span class="attendance-icon">❌</span><div class="attendance-value" id="attendanceAbsent">2%</div><div class="attendance-label">Alpha</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+const students = [
+    {
+        name: "Ahmad Rizky Pratama", nis: "2024001",
+        jurusan: "Matematika dan Ilmu Terapan (MIT)", gender: "L", avatar: "👦",
+        dob: "15 Maret 2006", blood: "O",
+        address: "Jl. Mawar No. 123, RT 003/RW 007, Kelurahan Cilandak Barat, Kecamatan Cilandak, Jakarta Selatan 12430",
+        phone: "+62 812-9876-5432", email: "ahmad.rizky@student.halicarnas.ac.id",
+        parent: "Bapak Surya Pratama & Ibu Dina Marlina",
+        parentJob: "Pegawai Negeri Sipil & Guru SD",
+        prevSchool: "SMP Negeri 12 Jakarta",
+        hobby: "Robotika, Catur, dan Pemrograman",
+        grades: [
+            {subject: "Matematika Lanjut", score: 92},
+            {subject: "Fisika Dasar", score: 88},
+            {subject: "Algoritma & Pemrograman", score: 95},
+            {subject: "Statistika Terapan", score: 87},
+            {subject: "Kalkulus Multivariabel", score: 90}
+        ],
+        attendance: {present: 95, sick: 3, absent: 2}
+    },
+    {
+        name: "Bella Anindya Putri", nis: "2024002",
+        jurusan: "Bahasa dan Sastra (BAS)", gender: "P", avatar: "👧",
+        dob: "22 Juli 2006", blood: "A",
+        address: "Jl. Melati Indah No. 45, RT 005/RW 012, Kelurahan Duren Sawit, Kecamatan Duren Sawit, Jakarta Timur 13440",
+        phone: "+62 813-2345-6789", email: "bella.anindya@student.halicarnas.ac.id",
+        parent: "Bapak Hendra Wijaya & Ibu Rini Susanti",
+        parentJob: "Dokter Spesialis & Akuntan",
+        prevSchool: "SMP Labschool Jakarta",
+        hobby: "Menari, Melukis, dan Debat Bahasa Inggris",
+        grades: [
+            {subject: "Sastra Indonesia", score: 96},
+            {subject: "Bahasa Inggris", score: 98},
+            {subject: "Sejarah", score: 94},
+            {subject: "Sosiologi", score: 92},
+            {subject: "Antropologi", score: 95}
+        ],
+        attendance: {present: 98, sick: 2, absent: 0}
+    },
+    {
+        name: "Candra Wijaya Kusuma", nis: "2024003",
+        jurusan: "Teknik Informatika (TI)", gender: "L", avatar: "👦",
+        dob: "10 Januari 2006", blood: "B",
+        address: "Jl. Anggrek Lestari No. 78, RT 002/RW 008, Kelurahan Palmerah, Kecamatan Palmerah, Jakarta Barat 11480",
+        phone: "+62 814-3456-7890", email: "candra.wijaya@student.halicarnas.ac.id",
+        parent: "Bapak Agus Kusuma & Ibu Sri Wahyuni",
+        parentJob: "Wiraswasta & Ibu Rumah Tangga",
+        prevSchool: "SMP Negeri 45 Jakarta",
+        hobby: "Basket, Fotografi, dan Desain Grafis",
+        grades: [
+            {subject: "Pemrograman Web", score: 85},
+            {subject: "Basis Data", score: 82},
+            {subject: "Jaringan Komputer", score: 88},
+            {subject: "Sistem Operasi", score: 84},
+            {subject: "Keamanan Siber", score: 86}
+        ],
+        attendance: {present: 90, sick: 5, absent: 5}
+    },
+    {
+        name: "Dewi Lestari Sari", nis: "2024004",
+        jurusan: "Ilmu Hukum (IH)", gender: "P", avatar: "👧",
+        dob: "5 Mei 2006", blood: "AB",
+        address: "Jl. Kenanga Raya No. 12, RT 007/RW 003, Kelurahan Tanjung Priok, Kecamatan Tanjung Priok, Jakarta Utara 14310",
+        phone: "+62 815-4567-8901", email: "dewi.lestari@student.halicarnas.ac.id",
+        parent: "Bapak Bambang Sari & Ibu Lina Kusuma",
+        parentJob: "Pengacara & Dosen Universitas",
+        prevSchool: "SMP Negeri 89 Jakarta",
+        hobby: "Musik Klasik, Menulis Puisi, dan Voli",
+        grades: [
+            {subject: "Hukum Perdata", score: 91},
+            {subject: "Hukum Pidana", score: 89},
+            {subject: "Hukum Tata Negara", score: 93},
+            {subject: "Hukum Internasional", score: 90},
+            {subject: "Etika Hukum", score: 92}
+        ],
+        attendance: {present: 96, sick: 3, absent: 1}
+    },
+    {
+        name: "Eko Prasetyo Nugroho", nis: "2024005",
+        jurusan: "Olahraga dan Kesehatan (ORKES)", gender: "L", avatar: "👦",
+        dob: "18 Agustus 2006", blood: "O",
+        address: "Jl. Cempaka Putih No. 56, RT 001/RW 010, Kelurahan Cempaka Putih Barat, Kecamatan Cempaka Putih, Jakarta Pusat 10520",
+        phone: "+62 816-5678-9012", email: "eko.prasetyo@student.halicarnas.ac.id",
+        parent: "Bapak Joko Nugroho & Ibu Siti Aminah",
+        parentJob: "Supir Truk & Penjual Sayur",
+        prevSchool: "SMP Negeri 67 Jakarta",
+        hobby: "Sepak Bola, Game Online, dan Memancing",
+        grades: [
+            {subject: "Teori Olahraga", score: 78},
+            {subject: "Anatomi Tubuh", score: 75},
+            {subject: "Nutrisi Atlet", score: 82},
+            {subject: "Psikologi Olahraga", score: 80},
+            {subject: "Manajemen Kebugaran", score: 79}
+        ],
+        attendance: {present: 88, sick: 7, absent: 5}
+    },
+    {
+        name: "Fitriani Rahmawati", nis: "2024006",
+        jurusan: "Kedokteran (KED)", gender: "P", avatar: "👧",
+        dob: "30 September 2006", blood: "A",
+        address: "Jl. Dahlia Permai No. 34, RT 004/RW 006, Kelurahan Pondok Bambu, Kecamatan Duren Sawit, Jakarta Timur 13430",
+        phone: "+62 817-6789-0123", email: "fitriani.rahmawati@student.halicarnas.ac.id",
+        parent: "Bapak Ahmad Rahmat & Ibu Ningsih",
+        parentJob: "Polisi & Perawat",
+        prevSchool: "SMP Negeri 78 Jakarta",
+        hobby: "Badminton, Memasak, dan Komik Jepang",
+        grades: [
+            {subject: "Biologi Sel", score: 94},
+            {subject: "Kimia Organik", score: 91},
+            {subject: "Fisiologi Manusia", score: 96},
+            {subject: "Farmakologi Dasar", score: 93},
+            {subject: "Anatomi", score: 95}
+        ],
+        attendance: {present: 97, sick: 2, absent: 1}
+    },
+    {
+        name: "Galang Saputra Wibowo", nis: "2024007",
+        jurusan: "Desain Komunikasi Visual (DKV)", gender: "L", avatar: "👦",
+        dob: "12 Februari 2006", blood: "B",
+        address: "Jl. Flamboyan No. 89, RT 009/RW 001, Kelurahan Kebon Jeruk, Kecamatan Kebon Jeruk, Jakarta Barat 11530",
+        phone: "+62 818-7890-1234", email: "galang.saputra@student.halicarnas.ac.id",
+        parent: "Bapak Samsul Wibowo & Ibu Tuti Handayani",
+        parentJob: "Montir & Penjahit",
+        prevSchool: "SMP Negeri 34 Jakarta",
+        hobby: "Modifikasi Motor, Parkour, dan Hip-Hop",
+        grades: [
+            {subject: "Desain Grafis", score: 83},
+            {subject: "Tipografi", score: 80},
+            {subject: "Fotografi", score: 85},
+            {subject: "Ilustrasi Digital", score: 82},
+            {subject: "Branding", score: 84}
+        ],
+        attendance: {present: 92, sick: 5, absent: 3}
+    },
+    {
+        name: "Hana Tiara Maharani", nis: "2024008",
+        jurusan: "Astronomi dan Astrofisika (AA)", gender: "P", avatar: "👧",
+        dob: "25 November 2006", blood: "O",
+        address: "Jl. Bougenville No. 67, RT 006/RW 004, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Jakarta Utara 14240",
+        phone: "+62 819-8901-2345", email: "hana.tiara@student.halicarnas.ac.id",
+        parent: "Bapak Dedi Maharani & Ibu Yanti Suryani",
+        parentJob: "Pengusaha Restoran & Interior Designer",
+        prevSchool: "SMP Labschool Cibubur",
+        hobby: "Piano, Bulu Tangkis, dan Astronomi",
+        grades: [
+            {subject: "Mekanika Benda Langit", score: 97},
+            {subject: "Kosmologi", score: 95},
+            {subject: "Astrofisika", score: 99},
+            {subject: "Teleskop dan Observasi", score: 96},
+            {subject: "Fisika Modern", score: 98}
+        ],
+        attendance: {present: 99, sick: 1, absent: 0}
+    },
+    {
+        name: "Indra Kusuma Jaya", nis: "2024009",
+        jurusan: "Teknik Penerbangan (TP)", gender: "L", avatar: "👦",
+        dob: "8 April 2006", blood: "AB",
+        address: "Jl. Teratai No. 23, RT 008/RW 011, Kelurahan Pondok Labu, Kecamatan Cilandak, Jakarta Selatan 12450",
+        phone: "+62 821-9012-3456", email: "indra.kusuma@student.halicarnas.ac.id",
+        parent: "Bapak Budi Jaya & Ibu Ratna Kusuma",
+        parentJob: "Pilot & Pramugari",
+        prevSchool: "SMP Negeri 15 Jakarta",
+        hobby: "Menggambar Anime, Futsal, dan Drone Racing",
+        grades: [
+            {subject: "Aerodinamika", score: 87},
+            {subject: "Navigasi Udara", score: 84},
+            {subject: "Meteorologi Penerbangan", score: 89},
+            {subject: "Mekanika Pesawat", score: 86},
+            {subject: "Regulasi Penerbangan", score: 88}
+        ],
+        attendance: {present: 93, sick: 4, absent: 3}
+    },
+    {
+        name: "Jasmine Aulia Putri", nis: "2024010",
+        jurusan: "Psikologi (PSI)", gender: "P", avatar: "👧",
+        dob: "14 Juni 2006", blood: "A",
+        address: "Jl. Lavender No. 90, RT 003/RW 009, Kelurahan Cibubur, Kecamatan Ciracas, Jakarta Timur 13720",
+        phone: "+62 822-0123-4567", email: "jasmine.aulia@student.halicarnas.ac.id",
+        parent: "Bapak Fajar Putra & Ibu Dewi Aulia",
+        parentJob: "Arsitek & Psikolog",
+        prevSchool: "SMP Negeri 88 Jakarta",
+        hobby: "Teater, Fotografi, dan Kaligrafi",
+        grades: [
+            {subject: "Psikologi Umum", score: 93},
+            {subject: "Psikologi Perkembangan", score: 90},
+            {subject: "Psikologi Sosial", score: 94},
+            {subject: "Psikologi Klinis", score: 91},
+            {subject: "Statistik Psikologi", score: 93}
+        ],
+        attendance: {present: 96, sick: 3, absent: 1}
+    },
+    {
+        name: "Kevin Ardiansyah", nis: "2024011",
+        jurusan: "Ekonomi dan Bisnis (EB)", gender: "L", avatar: "👦",
+        dob: "19 Desember 2006", blood: "B",
+        address: "Jl. Sakura No. 11, RT 010/RW 005, Kelurahan Tomang, Kecamatan Grogol Petamburan, Jakarta Barat 11440",
+        phone: "+62 823-1234-5678", email: "kevin.ardiansyah@student.halicarnas.ac.id",
+        parent: "Bapak Rudi Ardiansyah & Ibu Mawar Sari",
+        parentJob: "Karyawan Bank & Kasir Supermarket",
+        prevSchool: "SMP Negeri 56 Jakarta",
+        hobby: "Gitar, Skateboard, dan Nonton Film",
+        grades: [
+            {subject: "Ekonomi Mikro", score: 81},
+            {subject: "Akuntansi Dasar", score: 78},
+            {subject: "Manajemen Bisnis", score: 84},
+            {subject: "Pemasaran", score: 80},
+            {subject: "Statistik Ekonomi", score: 82}
+        ],
+        attendance: {present: 91, sick: 5, absent: 4}
+    },
+    {
+        name: "Larasati Dewi Indah", nis: "2024012",
+        jurusan: "Biologi dan Bioteknologi (BB)", gender: "P", avatar: "👧",
+        dob: "3 Oktober 2006", blood: "O",
+        address: "Jl. Tulip No. 55, RT 002/RW 007, Kelurahan Sunter Agung, Kecamatan Tanjung Priok, Jakarta Utara 14350",
+        phone: "+62 824-2345-6789", email: "larasati.dewi@student.halicarnas.ac.id",
+        parent: "Bapak Eko Indah & Ibu Sari Dewi",
+        parentJob: "Dosen Teknik & Manajer HRD",
+        prevSchool: "SMP Negeri 99 Jakarta",
+        hobby: "Biologi, Renang, dan Podcasting",
+        grades: [
+            {subject: "Biologi Molekuler", score: 95},
+            {subject: "Genetika", score: 92},
+            {subject: "Mikrobiologi", score: 97},
+            {subject: "Bioteknologi", score: 94},
+            {subject: "Ekologi", score: 96}
+        ],
+        attendance: {present: 98, sick: 1, absent: 1}
+    }
+];
+
+function getAverage(grades) {
+    return (grades.reduce((a, g) => a + g.score, 0) / grades.length).toFixed(1);
+}
+
+function renderStudents() {
+    const grid = document.getElementById('studentsGrid');
+    grid.innerHTML = students.map((s, i) => {
+        const avg = getAverage(s.grades);
+        return `
+            <div class="student-card" onclick="openModal(${i})" style="animation-delay: ${i * 0.05}s">
+                <div class="student-header">
+                    <div class="student-avatar">${s.avatar}</div>
+                    <div class="student-meta">
+                        <div class="student-name">${s.name}</div>
+                        <div class="student-nis">NIS: ${s.nis}</div>
+                        <div class="student-jurusan">${s.jurusan}</div>
+                        <div class="student-status"><div class="status-dot"></div><span class="status-text">Aktif</span></div>
+                    </div>
+                </div>
+                <div class="student-footer">
+                    <div class="student-avg">Rata-rata: <span>${avg}</span></div>
+                    <div class="student-arrow">→</div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function openModal(index) {
+    const s = students[index];
+    const modal = document.getElementById('studentModal');
+    document.getElementById('modalAvatar').textContent = s.avatar;
+    document.getElementById('modalName').textContent = s.name;
+    document.getElementById('modalNis').textContent = 'NIS: ' + s.nis;
+    document.getElementById('modalJurusan').textContent = s.jurusan;
+    document.getElementById('modalDob').textContent = s.dob;
+    document.getElementById('modalGender').textContent = s.gender === 'L' ? 'Laki-laki' : 'Perempuan';
+    document.getElementById('modalBlood').textContent = s.blood;
+    document.getElementById('modalAddress').textContent = s.address;
+    document.getElementById('modalPhone').textContent = s.phone;
+    document.getElementById('modalEmail').textContent = s.email;
+    document.getElementById('modalParent').textContent = s.parent;
+    document.getElementById('modalParentJob').textContent = s.parentJob;
+    document.getElementById('modalPrevSchool').textContent = s.prevSchool;
+    document.getElementById('modalHobby').textContent = s.hobby;
+    document.getElementById('attendancePresent').textContent = s.attendance.present + '%';
+    document.getElementById('attendanceSick').textContent = s.attendance.sick + '%';
+    document.getElementById('attendanceAbsent').textContent = s.attendance.absent + '%';
+
+    const bars = document.getElementById('gradeBars');
+    bars.innerHTML = s.grades.map(g => `
+        <div class="grade-row">
+            <div class="grade-info"><span class="grade-subject">${g.subject}</span><span class="grade-score">${g.score}</span></div>
+            <div class="grade-track"><div class="grade-fill" data-width="${g.score}%"></div></div>
+        </div>
+    `).join('');
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            document.querySelectorAll('.grade-fill').forEach(bar => {
+                bar.style.width = bar.getAttribute('data-width');
+            });
+        }, 400);
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('studentModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.grade-fill').forEach(bar => { bar.style.width = '0'; });
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('studentModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('DOMContentLoaded', renderStudents);
+    </script>
+</body>
+</html>
